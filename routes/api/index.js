@@ -1,7 +1,7 @@
 const router = require("express").Router();
 const bookRoutes = require("./books");
 const consumerRoutes = require("./consumers");
-// const sellerRoutes = require("./sellers");
+const sellerRoutes = require("./sellers");
 // const storeRoutes = require("./stores");
 // const productRoutes = require("./products");
 // const categoryRoutes = require("./categories");
@@ -17,7 +17,7 @@ router.use("/books", bookRoutes);
 router.use("/consumers", consumerRoutes);
 
 // Seller routes
-// router.use("/sellers", sellerRoutes);
+router.use("/sellers", sellerRoutes);
 
 // Store routes
 // router.use("/stores", storeRoutes);
