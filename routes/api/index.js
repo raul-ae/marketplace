@@ -4,7 +4,7 @@ const consumerRoutes = require("./consumers");
 const sellerRoutes = require("./sellers");
 const storeRoutes = require("./stores");
 const productRoutes = require("./products");
-// const categoryRoutes = require("./categories");
+const categoryRoutes = require("./categories");
 // const orderRoutes = require("./orders");
 
 
@@ -26,7 +26,7 @@ router.use("/stores", storeRoutes);
 router.use("/products", productRoutes);
 
 // Categories routes
-// router.use("/categories", categoryRoutes);
+router.use("/categories", categoryRoutes);
 
 // Order routes
 // router.use("/orders", orderRoutes);
