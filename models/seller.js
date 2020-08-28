@@ -9,7 +9,10 @@ const sellerSchema = new Schema({
   email: { type: String, required: true },
   mobile: { type: String, required: true },
   picture: { type: String, required: true },
-  storeId: { type: String, required: true },
+  storeId: { 
+    type: Schema.Types.ObjectId, 
+    ref: "store" 
+  },
   memberSince: { type: Date, default: Date.now }
 });
 

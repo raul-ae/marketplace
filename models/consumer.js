@@ -11,7 +11,13 @@ const consumerSchema = new Schema({
   mobile: { type: String, required: true },
   picture: { type: String, required: true },
   paymentMethod: { type: String, required: true },
-  memberSince: { type: Date, default: Date.now }
+  memberSince: { type: Date, default: Date.now },
+  orders: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: "order"
+    }
+  ]
 });
 
 const Consumer = mongoose.model("Consumer", consumerSchema);
