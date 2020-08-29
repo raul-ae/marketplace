@@ -2,92 +2,30 @@ import React from "react";
 import CardColumns from 'react-bootstrap/CardColumns';
 import Card from 'react-bootstrap/Card';
 
-function mainproducts() {
+function mainproducts(props) {
   return (
       <div>
     <h1>
         All products
     </h1>
         <CardColumns>
-            <Card>
-                <Card.Img variant="top" src="../../Images/productph.png" />
-                <Card.Body>
-                <Card.Title>Card title</Card.Title>
-                <Card.Text>
-                    This card has supporting text below as a natural lead-in to additional
-                    content.{' '}
-                </Card.Text>
-                </Card.Body>
-                <Card.Footer>
-                <small className="text-muted">Last updated 3 mins ago</small>
-                </Card.Footer>
-            </Card>
-            <Card>
-                <Card.Img variant="top" src="../../Images/productph.png" />
-                <Card.Body>
-                <Card.Title>Card title</Card.Title>
-                <Card.Text>
-                    This card has supporting text below as a natural lead-in to additional
-                    content.{' '}
-                </Card.Text>
-                </Card.Body>
-                <Card.Footer>
-                <small className="text-muted">Last updated 3 mins ago</small>
-                </Card.Footer>
-            </Card>
-            <Card>
-                <Card.Img variant="top" src="../../Images/productph.png" />
-                <Card.Body>
-                <Card.Title>Card title</Card.Title>
-                <Card.Text>
-                    This card has supporting text below as a natural lead-in to additional
-                    content.{' '}
-                </Card.Text>
-                </Card.Body>
-                <Card.Footer>
-                <small className="text-muted">Last updated 3 mins ago</small>
-                </Card.Footer>
-            </Card>
-            <Card>
-                <Card.Img variant="top" src="../../Images/productph.png" />
-                <Card.Body>
-                <Card.Title>Card title</Card.Title>
-                <Card.Text>
-                    This card has supporting text below as a natural lead-in to additional
-                    content.{' '}
-                </Card.Text>
-                </Card.Body>
-                <Card.Footer>
-                <small className="text-muted">Last updated 3 mins ago</small>
-                </Card.Footer>
-            </Card>
-            <Card>
-                <Card.Img variant="top" src="../../Images/productph.png" />
-                <Card.Body>
-                <Card.Title>Card title</Card.Title>
-                <Card.Text>
-                    This card has supporting text below as a natural lead-in to additional
-                    content.{' '}
-                </Card.Text>
-                </Card.Body>
-                <Card.Footer>
-                <small className="text-muted">Last updated 3 mins ago</small>
-                </Card.Footer>
-            </Card>
-            <Card>
-                <Card.Img variant="top" src="../../Images/productph.png" />
-                <Card.Body>
-                <Card.Title>Card title</Card.Title>
-                <Card.Text>
-                    This card has supporting text below as a natural lead-in to additional
-                    content.{' '}
-                </Card.Text>
-                </Card.Body>
-                <Card.Footer>
-                <small className="text-muted">Last updated 3 mins ago</small>
-                </Card.Footer>
-            </Card>
-    
+        {props.products.map(product => {
+                  return (
+                    <Card>
+                      <Card.Img variant="top" src={product.picture} />
+                      <Card.Body>
+                        <Card.Title>{product.productName}</Card.Title>
+                        <Card.Text>{product.description}</Card.Text>
+                      </Card.Body>
+                      <Card.Footer>
+                        <small className="text-muted">
+                          SellerID: {product.sellerId}
+                        </small>
+                      </Card.Footer>
+                    </Card>
+                  );
+              })
+              }
         </CardColumns>
     </div>
   );
