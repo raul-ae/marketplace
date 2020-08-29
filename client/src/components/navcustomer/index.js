@@ -5,19 +5,24 @@ import NavDropdown from 'react-bootstrap/NavDropdown';
 import Form from 'react-bootstrap/Form';
 import FormControl from 'react-bootstrap/FormControl';
 import Button from 'react-bootstrap/Button';
+import { Link } from "react-router-dom";
 
 
 function NavCustomer() {
   return (
     <Navbar bg="light" expand="lg">
         <Navbar.Brand href="#home">
-            <img
-                alt=""
-                src="../../Images/logo.png"
-                width="340"
-                height="120"
-                className="d-inline-block align-top"
-            />
+            <Link
+                to={process.env.PUBLIC_URL + '/'}
+                >
+                <img
+                    alt=""
+                    src="../../Images/logo.png"
+                    width="340"
+                    height="120"
+                    className="d-inline-block align-top"
+                />
+            </Link>
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
