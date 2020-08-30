@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { CardElement, useStripe, useElements } from "@stripe/react-stripe-js";
-// import './CheckoutForm.css'
+import './CheckoutForm.css'
 
 export default function CheckoutForm() {
   // Set up the state
@@ -87,33 +87,37 @@ export default function CheckoutForm() {
   // Add a CardElement to your payment form, which embeds an iframe with the necessary input fields to collect the card data. This creates a single input that collects the card number, expiry date, CVC, and postal code. Elements displays localized placeholder text of the postal code field based on your customer's browser locale (e.g. showing "ZIP" for U.S. cardholders, "Postcode" for U.K. cardholders).
 
   return (
-    <form id="payment-form" onSubmit={handleSubmit}>
-      <CardElement
-        id="card-element"
-        options={cardStyle}
-        onChange={handleChange}
-      />
-      <button disabled={processing || disabled || succeeded} id="submit">
-        <span id="button-text">
-          {processing ? <div className="spinner" id="spinner"></div> : "Pay"}
-        </span>
-      </button>
-      {/* Show any error that happens when processing the payment */}
-      {error && (
-        <div className="card-error" role="alert">
-          {error}
-        </div>
-      )}
-      {/* Show a success message upon completion */}
-      <p className={succeeded ? "result-message" : "result-message hidden"}>
-        Payment succeeded, see the result in your
+    <div className='root'>
+      <div className='body'>
+        <form id="payment-form" onSubmit={handleSubmit}>
+          <CardElement
+            id="card-element"
+            options={cardStyle}
+            onChange={handleChange}
+          />
+          <button disabled={processing || disabled || succeeded} id="submit">
+            <span id="button-text">
+              {processing ? <div className="spinner" id="spinner"></div> : "Pay"}
+            </span>
+          </button>
+          {/* Show any error that happens when processing the payment */}
+          {error && (
+            <div className="card-error" role="alert">
+              {error}
+            </div>
+          )}
+          {/* Show a success message upon completion */}
+          <p className={succeeded ? "result-message" : "result-message hidden"}>
+            Payment succeeded, see the result in your
         <a href={`https://dashboard.stripe.com/test/payments`}>
-          {" "}
+              {" "}
           Stripe dashboard.
         </a>{" "}
         Refresh the page to pay again.
       </p>
-    </form>
+        </form>
+      </div>
+    </div>
   );
 }
 
