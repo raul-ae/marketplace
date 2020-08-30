@@ -4,20 +4,30 @@ const mongoose = require("mongoose");
 const routes = require("./routes");
 const app = express();
 const PORT = process.env.PORT || 3001;
+const path = require("path");
 
-const { resolve } = require("path");
+// Handling api keys
+// require('dotenv').config();
+// console.log('proces.env.STRIPE_API_KEY: ', process.env.STRIPE_API_KEY);
 
 // Stripe library
-const stripe = require("stripe")("sk_test_51HLY6nIsyYjySygOJGmCWX231cMig2jVrEr4IQXgkYOEYR4Bvz5ebA1NIzMrDh4IeO70KXZMyxKu5XqKe1UFCPdy00OxBsv0Jq");
+const stripe = require("stripe")('sk_test_51HLY6nIsyYjySygOJGmCWX231cMig2jVrEr4IQXgkYOEYR4Bvz5ebA1NIzMrDh4IeO70KXZMyxKu5XqKe1UFCPdy00OxBsv0Jq');
 
 
 // Define middleware here
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+
+console.log('***** process.env.NODE_ENV: ***** ', process.env.NODE_ENV);
+
 // Serve up static assets (usually on heroku)
 if (process.env.NODE_ENV === "production") {
   app.use(express.static("client/build"));
+} else {
+  app.use('/static', express.static(path.join(__dirname, 'client/public')))
+  console.log("path.join(__dirname, 'client/public'): ", path.join(__dirname, 'client/public'));
 }
+
 // Add routes, both API and view
 app.use(routes);
 
