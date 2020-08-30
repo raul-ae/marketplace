@@ -34,15 +34,15 @@ function App() {
           <Switch>
             <Route path={process.env.PUBLIC_URL + '/home'} component={MasterCustomer} />
             <Route path={process.env.PUBLIC_URL + '/admin'} component={MasterAdmin} />
+            <Route path={process.env.PUBLIC_URL + '/checkout'} component={CheckoutForm} />
             <Route component={MasterCustomer} />
           </Switch>
         </Wrapper>
       </Router>
-      <CheckoutForm />
     </Elements>
   );
 }
 
 export default App;
 
-/* <Route path={process.env.PUBLIC_URL + '/pay'} component={CheckoutForm} /> */
+/* <CheckoutForm /> */
