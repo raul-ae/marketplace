@@ -25,9 +25,14 @@ export default function CheckoutForm() {
         body: JSON.stringify({items: [{ id: "xl-tshirt" }]})
       })
       .then(res => {
+        /* console.log('CheckoutForm / useEffect / res: ', res);
+        console.log('CheckoutForm / useEffect / res.json(): ', res.json()); */
         return res.json();
       })
+      /* .then(res => res.text())
+      .then(text => console.log('CheckoutForm / useEffect / res.text(): ', text)) */
       .then(data => {
+        console.log('CheckoutForm / useEffect / data: ', data);
         setClientSecret(data.clientSecret);
       });
   }, []);
