@@ -7,11 +7,10 @@ const PORT = process.env.PORT || 3001;
 const path = require("path");
 
 // Handling api keys
-// require('dotenv').config();
-// console.log('proces.env.STRIPE_API_KEY: ', process.env.STRIPE_API_KEY);
+require('dotenv').config();
 
 // Stripe library
-const stripe = require("stripe")('sk_test_51HLY6nIsyYjySygOJGmCWX231cMig2jVrEr4IQXgkYOEYR4Bvz5ebA1NIzMrDh4IeO70KXZMyxKu5XqKe1UFCPdy00OxBsv0Jq');
+const stripe = require("stripe")(process.env.STRIPE_TEST_SECRET_API_KEY);
 
 
 // Define middleware here
