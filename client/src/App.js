@@ -9,7 +9,7 @@ import Wrapper from "./components/Wrapper";
 import { loadStripe } from "@stripe/stripe-js";
 import { Elements } from "@stripe/react-stripe-js";
 // import CheckoutForm from "./components/CheckoutForm";
-import CheckoutForm from "./CheckoutForm";
+import CheckoutForm from "./components/CheckoutForm";
 
 // Handling the api keys
 import dotenv from 'dotenv';
