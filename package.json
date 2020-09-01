@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "",
   "main": "server.js",
+  "proxy": "http://localhost:3001",
   "scripts": {
     "start": "if-env NODE_ENV=production && npm run start:prod || npm run start:dev",
     "start:prod": "node server.js",
@@ -16,16 +17,23 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "concurrently": "^4.1.0",
     "nodemon": "^1.18.7"
   },
   "dependencies": {
+    "@stripe/react-stripe-js": "^1.1.2",
+    "@stripe/stripe-js": "^1.9.0",
     "axios": "^0.18.0",
     "bootstrap": "^4.5.2",
+    "dotenv": "^8.2.0",
     "express": "^4.16.3",
     "if-env": "^1.0.4",
     "mongoose": "^5.3.16",
     "react-bootstrap": "^1.3.0",
-    "react-image-gallery": "^1.0.8"
+    "react-image-gallery": "^1.0.8",
+    "react": "^16.9.0",
+    "react-dom": "^16.9.0",
+    "react-scripts": "^3.4.0",
+    "concurrently": "4.1.2",
+    "stripe": "^8.90.0"
   }
 }
