@@ -3,9 +3,9 @@ import NavCustomer from '../components/navcustomer'
 import Categories from '../components/categoriescustomer'
 import Footer from '../components/footercustomer'
 import HomeCustomer from './Home.js'
-import { BrowserRouter as Router, Route } from "react-router-dom";
-import Wrapper from "./components/Wrapper";
-import Productdp from "./PDPCustomer"
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import Wrapper from "../components/Wrapper";
+import Productdp from "./PDPCustomer" 
 
 function MasterCustomer() {
   return (
@@ -13,8 +13,11 @@ function MasterCustomer() {
         <NavCustomer />
         <Categories />
         <Wrapper>
-            <Route exact path={process.env.PUBLIC_URL + '/'}  component={HomeCustomer} />
-            <Route exact path={process.env.PUBLIC_URL + '/product'}  component={Productdp} />
+            <Switch>
+                <Route exact path={process.env.PUBLIC_URL + '/home'}  component={HomeCustomer} />
+                <Route exact path={process.env.PUBLIC_URL + '/home/product'}  component={Productdp} />
+                <Route component={HomeCustomer} />
+            </Switch>
         </Wrapper>
         <Footer />
     </Router>

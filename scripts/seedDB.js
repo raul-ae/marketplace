@@ -190,7 +190,7 @@ mongoose.connect(
     {
       sku: "293847",
       productName: "Bicicleta",
-      categoryName: "Deportes",
+      categoryName: "Sports",
       price: 20500,
       stock: 9,
       description: "2 ruedas con canastilla",
@@ -199,7 +199,7 @@ mongoose.connect(
     {
       sku: "293850",
       productName: "portafolios",
-      categoryName: "oficina",
+      categoryName: "Office",
       price: 1300,
       stock: 4,
       description: "de piel vacuno, color negro",
@@ -208,7 +208,7 @@ mongoose.connect(
     {
       sku: "293853",
       productName: "Balon",
-      categoryName: "Deportes",
+      categoryName: "Sports",
       price: 205,
       stock: 29,
       description: "de futbol profesional",
@@ -304,6 +304,39 @@ mongoose.connect(
   db.Order
   .remove({})
   .then(() => db.Order.collection.insertMany(orderSeed))
+  .then(data => {
+    console.log(data.result.n + " records inserted!");
+    process.exit(0);
+  })
+  .catch(err => {
+    console.error(err);
+    process.exit(1);
+  });
+
+  const categorySeed = [
+    {
+      categoryName: "Sports"
+    },
+    {
+      categoryName: "Office"
+    },
+    {
+      categoryName: "Home"
+    },
+    {
+      categoryName: "Clothing"
+    },
+    {
+      categoryName: "Beauty"
+    },
+    {
+      categoryName: "Accesories"
+    }
+  ];
+
+  db.Category
+  .remove({})
+  .then(() => db.Category.collection.insertMany(categorySeed))
   .then(data => {
     console.log(data.result.n + " records inserted!");
     process.exit(0);

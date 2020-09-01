@@ -1,21 +1,20 @@
 import React from "react";
-import NavCustomer from './components/navcustomer'
-import Categories from './components/categoriescustomer'
-// import Carousel from './components/carouselcustomer'
-// import Container from 'react-bootstrap/Container'
-import Footer from './components/footercustomer'
-// import Mainproducts from './components/mainproductscustomer'
-// import Allproducts from './components/allproductscustomer'
-import HomeCustomer from './pages/Home.js'
+import MasterCustomer from './pages/MasterCustomer'
+import MasterAdmin from './pages/MasterAdmin'
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import Wrapper from "./components/Wrapper";
 
 function App() {
   return (
-    <div>
-      <NavCustomer />
-      <Categories />
-        <HomeCustomer />
-      <Footer />
-    </div>
+    <Router>
+      <Wrapper>
+        <Switch>
+          <Route path={process.env.PUBLIC_URL + '/home'}  component={MasterCustomer} />
+          <Route path={process.env.PUBLIC_URL + '/admin'} component={MasterAdmin} />
+          <Route component={MasterCustomer} />
+        </Switch>
+      </Wrapper>
+    </Router>
   );
 }
 

@@ -1,16 +1,13 @@
 import React from "react";
-import NavCustomer from '../components/navcustomer'
-import Categories from '../components/categoriescustomer'
 import Footer from '../components/footercustomer'
-import HomeCustomer from './Home.js'
+import Header from '../components/navadmin'
 
 function MasterCustomer() {
   return (
     <div>
-      <NavCustomer />
-      <Categories />
+        <Header />
            ADMIN
-      <Footer />
+         <Footer />
     </div>
   );
 }
