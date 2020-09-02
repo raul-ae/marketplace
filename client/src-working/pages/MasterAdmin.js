@@ -1,13 +1,12 @@
 import React from "react";
-import Footer from '../components/footeradmin'
+import Footer from '../components/footercustomer'
 import Header from '../components/navadmin'
-import Home from './HomeAdmin'
 
 function MasterCustomer() {
   return (
     <div>
         <Header />
-           <Home />
+           ADMIN
          <Footer />
     </div>
   );
