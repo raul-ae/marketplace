@@ -1,5 +1,5 @@
 import React from "react";
-import { Card, Row, Col, ListGroup, InputGroup, Button } from 'react-bootstrap';
+import { Card, Row, Col, ListGroup } from 'react-bootstrap';
 
 /* 
   products: [
@@ -21,7 +21,7 @@ import { Card, Row, Col, ListGroup, InputGroup, Button } from 'react-bootstrap';
   Date: { type: Date, default: Date.now }
 */
 
-function ProductsConfig() {
+function OrdersConfig() {
     const orders = ['Order 1', 'Order 2', 'Order 3'];
     const products = ['Product 1', 'Product 2', 'Product 3']
     return (
@@ -60,4 +60,4 @@ function ProductsConfig() {
     );
 }
 
-export default ProductsConfig;
+export default OrdersConfig;
