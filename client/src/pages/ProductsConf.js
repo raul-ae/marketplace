@@ -1,14 +1,31 @@
-import React, {useState, useEffect} from "react";
+import React from "react";
 import Container from 'react-bootstrap/Container';
 import Form from 'react-bootstrap/Form'
 
+/* 
+  sku: { type: String, required: true }, input text
+  productName: { type: String, required: true }, input text
+  categoryName: { type: String, required: true }, select
+  price: { type: Number, required: true },
+  stock: { type: Number, required: true },
+  description: { type: String, required: true },
+  sellerId: {
+    type: Schema.Types.ObjectId,
+    ref: "seller",
+  },
+  storeId: {
+    type: Schema.Types.ObjectId,
+    ref: "store",
+  },
+  picture: { type: String, required: true }
+*/
 
 function ProductsConfig() {
     return (
         <div>
             <Container>
                 <Form>
-                    PRODUCT FORM EXAMPLE
+                    <h4><strong>Create new product</strong></h4>
                     <Form.Group controlId="exampleForm.ControlInput1">
                         <Form.Label>Email address</Form.Label>
                         <Form.Control type="email" placeholder="name@example.com" />
