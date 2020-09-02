@@ -10,7 +10,7 @@ categoryName: { type: String, required: true },
 */
 
 function ProductsConfig() {
-    const currentCategories = ['Cras justo odio', 'Dapibus ac facilisis in', 'Morbi leo risus']
+    const currentCategories = ['Category 1', 'Category 2', 'Category 3']
     return (
         <div>
             <h4><strong>Manage your categories</strong></h4>
@@ -38,7 +38,7 @@ function ProductsConfig() {
                     aria-describedby="basic-addon2"
                 />
                 <InputGroup.Append>
-                    <Button variant="outline-secondary">Add</Button>
+                    <Button variant="outline-secondary">Create</Button>
                 </InputGroup.Append>
             </InputGroup>
         </div>
