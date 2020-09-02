@@ -1,5 +1,5 @@
 import React from "react";
-import { InputGroup, FormControl, Button, ListGroup, Form } from 'react-bootstrap';
+import { InputGroup, FormControl, Button, ListGroup, Form, Image } from 'react-bootstrap';
 
 /* 
   userName: { type: String, required: true },
@@ -28,6 +28,9 @@ function SellersConfig() {
                 {currentSellers.map((seller, index) => {
                     return (
                         <InputGroup key={index} className="mb-3">
+                            <InputGroup.Prepend>
+                                <Image src="https://via.placeholder.com/100/ADD8E6" roundedCircle />
+                            </InputGroup.Prepend>
                             <ListGroup.Item >{seller}</ListGroup.Item>
                             <InputGroup.Append>
                                 <Button variant="outline-secondary">Update</Button>
