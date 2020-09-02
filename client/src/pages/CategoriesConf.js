@@ -9,7 +9,7 @@ categoryName: { type: String, required: true },
   }
 */
 
-function ProductsConfig() {
+function CategoriesConfig() {
     const currentCategories = ['Category 1', 'Category 2', 'Category 3']
     return (
         <div>
@@ -45,4 +45,4 @@ function ProductsConfig() {
     );
 }
 
-export default ProductsConfig;
+export default CategoriesConfig;
