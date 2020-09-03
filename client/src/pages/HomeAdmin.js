@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import API from "../utils/API";
 
 // React components
 import { Tab, Row, Col, Nav } from "react-bootstrap";
@@ -12,27 +13,26 @@ import StoresConfig from "./StoresConf";
 
 function HomeAdmin() {
 
-  const [categories] = useState({
+  const [categories, setCategories] = useState({
     categories: [],
     categoryName: '',
     category_id: ''
   });
 
 
-  /* useEffect(() => {
+  useEffect(() => {
     loadCategories();
   }, []);
 
   const loadCategories = () => {
-    API.getProducts()
+    API.getCategories()
       .then(res => {
-        setProducts(res.data);
-        setTop4(res.data);
-        console.log('loadProducts - res.data: ', res.data);
+        setCategories(res.data);
+        console.log('loadCategories - res.data: ', res.data);
       }
       )
       .catch(err => console.log(err));
-  } */
+  }
 
   return (
     <Tab.Container id="left-tabs-example" defaultActiveKey="first">
