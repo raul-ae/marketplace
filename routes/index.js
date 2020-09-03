@@ -6,7 +6,7 @@ const apiRoutes = require("./api");
 router.use("/api", apiRoutes);
 
 // Stripe Route
-router.use("/api", apiRoutes);
+// router.use("/api", apiRoutes);
 
 // If no API routes are hit, send the React app
 /* router.use(function (req, res) {
