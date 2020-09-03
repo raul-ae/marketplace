@@ -28,18 +28,20 @@ function App() {
   // Initialize Stripe Elements
   // Pass the resulting promise from loadStripe to the Elements provider. This allows the child components to access the Stripe service via the Elements consumer.
   return (
-    <Elements stripe={promise}>
-      <Router>
-        <Wrapper>
-          <Switch>
-            <Route path={process.env.PUBLIC_URL + '/home'} component={MasterCustomer} />
-            <Route path={process.env.PUBLIC_URL + '/admin'} component={MasterAdmin} />
+
+    <Router>
+      <Wrapper>
+        <Switch>
+          <Route exact path={process.env.PUBLIC_URL + '/'} component={MasterCustomer} />
+          <Route path={process.env.PUBLIC_URL + '/home'} component={MasterCustomer} />
+          <Route path={process.env.PUBLIC_URL + '/admin'} component={MasterAdmin} />
+          <Elements stripe={promise}>
             <Route path={process.env.PUBLIC_URL + '/checkout'} component={CheckoutForm} />
-            <Route component={MasterCustomer} />
-          </Switch>
-        </Wrapper>
-      </Router>
-    </Elements>
+          </Elements>
+          <Route component={MasterCustomer} />
+        </Switch>
+      </Wrapper>
+    </Router>
   );
 }
 
