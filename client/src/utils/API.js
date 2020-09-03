@@ -24,15 +24,12 @@ export default {
   getCategories: function () {
     return axios.get("/api/categories");
   },
-
   getCategory: function (id) {
     return axios.get("/api/categories/" + id);
   },
-
   deleteCategory: function (id) {
     return axios.delete("/api/categories/" + id);
   },
-
   saveCategoy: function (categoryData) {
     return axios.post("/api/categories", categoryData);
   }
