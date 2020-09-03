@@ -27,7 +27,9 @@ function HomeAdmin() {
   const loadCategories = () => {
     API.getCategories()
       .then(res => {
-        setCategories(res.data);
+        setCategories({
+          categories: res.data
+        });
         console.log('loadCategories - res.data: ', res.data);
       }
       )
@@ -67,7 +69,7 @@ function HomeAdmin() {
               <OrdersConfig />
             </Tab.Pane>
             <Tab.Pane eventKey="third">
-              <CategoriesConfig />
+              <CategoriesConfig categories={categories.categories} />
             </Tab.Pane>
             <Tab.Pane eventKey="fourth">
               <SellersConfig />

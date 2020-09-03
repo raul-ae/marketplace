@@ -9,8 +9,9 @@ categoryName: { type: String, required: true },
   }
 */
 
-function CategoriesConfig() {
-    const currentCategories = ['Category 1', 'Category 2', 'Category 3']
+function CategoriesConfig({ categories }) {
+    // const currentCategories = ['Category 1', 'Category 2', 'Category 3']
+    const currentCategories = [...categories]
     return (
         <div>
             <h4><strong>Manage your categories</strong></h4>
@@ -20,7 +21,7 @@ function CategoriesConfig() {
                 {currentCategories.map((category, index) => {
                     return (
                         <InputGroup key={index} className="mb-3">
-                            <ListGroup.Item >{category}</ListGroup.Item>
+                            <ListGroup.Item >{category.categoryName}</ListGroup.Item>
                             <InputGroup.Append>
                                 <Button variant="outline-secondary">Update</Button>
                                 <Button variant="outline-secondary">Delete</Button>
