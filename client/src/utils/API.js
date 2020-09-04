@@ -35,5 +35,23 @@ export default {
   },
   saveCategoy: function (categoryName) {
     return axios.post("/api/categories", { categoryName });
+  },
+
+  // ********** Sellers **********
+  getSellers: function () {
+    return axios.get("/api/sellers");
+  },
+  getSeller: function (id) {
+    return axios.get("/api/sellers/" + id);
+  },
+  deleteSeller: function (id) {
+    return axios.delete("/api/sellers/" + id);
+  },
+  updateSeller: function (id, sellerData) {
+    return axios.put("/api/sellers/" + id, sellerData);
+  },
+  saveSeller: function (sellerData) {
+    return axios.post("/api/sellers", sellerData);
   }
 };
+

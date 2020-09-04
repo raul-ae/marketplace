@@ -13,6 +13,7 @@ import StoresConfig from "./StoresConf";
 
 function HomeAdmin() {
 
+  const [sellers, setSellers] = useState([]);
   const [categories, setCategories] = useState([]);
   const [categoryName, setCategoryName] = useState('');
   const [categoryUpdatedName, setCategoryUpdatedName] = useState('');
@@ -32,6 +33,7 @@ function HomeAdmin() {
   useEffect(() => {
     loadProducts()
     loadCategories();
+    loadSellers();
   }, []);
 
   function loadProducts() {
@@ -49,7 +51,17 @@ function HomeAdmin() {
     API.getCategories()
       .then(res => {
         setCategories(res.data);
-        console.log('loadCategories - res.data: ', res.data);
+        // console.log('loadCategories - res.data: ', res.data);
+      }
+      )
+      .catch(err => console.log(err));
+  }
+
+  const loadSellers = () => {
+    API.getSellers()
+      .then(res => {
+        setSellers(res.data);
+        console.log('loadSellers - res.data: ', res.data);
       }
       )
       .catch(err => console.log(err));
@@ -94,7 +106,7 @@ function HomeAdmin() {
   const handleCategoryUpdatedInputOnChange = (e) => {
     let value = e.target.value;
     setCategoryUpdatedName(value);
-    console.log('handleCategoryUpdatedInputOnChange - e.target.value: ', e.target.value);
+    // console.log('handleCategoryUpdatedInputOnChange - e.target.value: ', e.target.value);
   }
 
   const handleCategorySaveButton = () => {
@@ -104,13 +116,13 @@ function HomeAdmin() {
 
   const handleCategoryDeleteButton = (e) => {
     let id = e.target.getAttribute('data-categoryid');
-    console.log('handleCategoryDeleteButton - id: ', id);
+    // console.log('handleCategoryDeleteButton - id: ', id);
     deleteCategory(id);
   }
 
   const handleCategoryUpdateButton = (e) => {
     let id = e.target.getAttribute('data-categoryid');
-    console.log('handleCategoryUpdateButton - id: ', id);
+    // console.log('handleCategoryUpdateButton - id: ', id);
     updateCategory(id, categoryUpdatedName);
   }
 
@@ -118,7 +130,7 @@ function HomeAdmin() {
     let key = e.target.id
     let value = e.target.value;
 
-    console.log(e.target.id, ": ", e.target.value)
+    // console.log(e.target.id, ": ", e.target.value)
     setNewProduct({ ...newProduct, [key]: value });
     // console.log('handleCategoryInputOnChange - e.target.value: ', e.target.value);
   }
