@@ -17,7 +17,7 @@ import { InputGroup, FormControl, Button, ListGroup, Form, Image } from 'react-b
 */
 
 
-function SellersConfig({ sellers, handleSellerSaveButton }) {
+function SellersConfig({ sellers, handleSellerSaveButton, handleSellerDeleteButton }) {
     // const currentSellers = ['Seller 1', 'Seller 2', 'Seller 3']
 
     let currentSellers = [];
@@ -44,7 +44,11 @@ function SellersConfig({ sellers, handleSellerSaveButton }) {
                             <ListGroup.Item >{`${seller.firstName} ${seller.lastName}`}</ListGroup.Item>
                             <InputGroup.Append>
                                 <Button variant="outline-secondary">Update</Button>
-                                <Button variant="outline-secondary">Delete</Button>
+                                <Button
+                                    variant="outline-secondary"
+                                    data-sellerid={seller._id}
+                                    onClick={handleSellerDeleteButton}
+                                >Delete</Button>
                             </InputGroup.Append>
                         </InputGroup>
                     );

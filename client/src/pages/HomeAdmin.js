@@ -68,6 +68,16 @@ function HomeAdmin() {
       .catch(err => console.log(err));
   }
 
+  const deleteSeller = (id) => {
+    // console.log('deleteSeller - id: ', id);
+    API.deleteSeller(id)
+      .then(res => {
+        // console.log('Seller deleted - res.data: ', res.data);
+        loadSellers();
+      })
+      .catch(err => console.log(err));
+  }
+
   const handleSellerSaveButton = () => {
     // console.log('handleSellerSaveButton - sellerData: ', sellerData);
     let sellerData = {
@@ -77,12 +87,17 @@ function HomeAdmin() {
       password: "12345678",
       email: "perenganito@sales.com",
       mobile: "5555555555",
-      picture: "http://lorempixel.com/50/50/people/ ",
+      picture: "http://lorempixel.com/71/70/people/ ",
       memberSince: "2020-09-04T18:08:54.776Z"
     }
     saveSeller(sellerData);
   }
 
+  const handleSellerDeleteButton = (e) => {
+    let id = e.target.getAttribute('data-sellerid');
+    // console.log('handleCategoryDeleteButton - id: ', id);
+    deleteSeller(id);
+  }
 
   // ****************************** CATEGORIES ******************************
 
@@ -226,6 +241,7 @@ function HomeAdmin() {
               <SellersConfig
                 sellers={sellers}
                 handleSellerSaveButton={handleSellerSaveButton}
+                handleSellerDeleteButton={handleSellerDeleteButton}
               />
             </Tab.Pane>
             <Tab.Pane eventKey="fifth">
