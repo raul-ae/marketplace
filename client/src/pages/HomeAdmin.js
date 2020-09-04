@@ -46,22 +46,51 @@ function HomeAdmin() {
       .catch(err => console.log(err));
   };
 
-
-  const loadCategories = () => {
-    API.getCategories()
-      .then(res => {
-        setCategories(res.data);
-        // console.log('loadCategories - res.data: ', res.data);
-      }
-      )
-      .catch(err => console.log(err));
-  }
+  // ****************************** SELLERS ******************************
 
   const loadSellers = () => {
     API.getSellers()
       .then(res => {
         setSellers(res.data);
         console.log('loadSellers - res.data: ', res.data);
+      }
+      )
+      .catch(err => console.log(err));
+  }
+
+  const saveSeller = (sellerData) => {
+    // console.log('SAVESELLER - sellerData: ', sellerData);
+    API.saveSeller(sellerData)
+      .then(res => {
+        // console.log('Seller saved - res.data: ', res.data);
+        loadSellers();
+      })
+      .catch(err => console.log(err));
+  }
+
+  const handleSellerSaveButton = () => {
+    // console.log('handleSellerSaveButton - sellerData: ', sellerData);
+    let sellerData = {
+      userName: "perengano2000",
+      firstName: "Perenganito",
+      lastName: "Gonzalez",
+      password: "12345678",
+      email: "perenganito@sales.com",
+      mobile: "5555555555",
+      picture: "http://lorempixel.com/50/50/people/ ",
+      memberSince: "2020-09-04T18:08:54.776Z"
+    }
+    saveSeller(sellerData);
+  }
+
+
+  // ****************************** CATEGORIES ******************************
+
+  const loadCategories = () => {
+    API.getCategories()
+      .then(res => {
+        setCategories(res.data);
+        // console.log('loadCategories - res.data: ', res.data);
       }
       )
       .catch(err => console.log(err));
@@ -196,6 +225,7 @@ function HomeAdmin() {
             <Tab.Pane eventKey="fourth">
               <SellersConfig
                 sellers={sellers}
+                handleSellerSaveButton={handleSellerSaveButton}
               />
             </Tab.Pane>
             <Tab.Pane eventKey="fifth">

@@ -17,7 +17,7 @@ import { InputGroup, FormControl, Button, ListGroup, Form, Image } from 'react-b
 */
 
 
-function SellersConfig({ sellers }) {
+function SellersConfig({ sellers, handleSellerSaveButton }) {
     // const currentSellers = ['Seller 1', 'Seller 2', 'Seller 3']
 
     let currentSellers = [];
@@ -131,7 +131,10 @@ function SellersConfig({ sellers }) {
                     />
                 </InputGroup>
 
-                <Button variant="outline-secondary">Create</Button>
+                <Button
+                    variant="outline-secondary"
+                    onClick={handleSellerSaveButton}
+                >Create</Button>
             </Form>
         </div>
     );
