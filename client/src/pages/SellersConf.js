@@ -17,8 +17,18 @@ import { InputGroup, FormControl, Button, ListGroup, Form, Image } from 'react-b
 */
 
 
-function SellersConfig() {
-    const currentSellers = ['Seller 1', 'Seller 2', 'Seller 3']
+function SellersConfig({ sellers }) {
+    // const currentSellers = ['Seller 1', 'Seller 2', 'Seller 3']
+
+    let currentSellers = [];
+
+    if (sellers) {
+        if (sellers.length > 0) {
+            currentSellers = [...sellers];
+        }
+    }
+
+
     return (
         <div>
             <h4><strong>Manage your sellers</strong></h4>
@@ -29,9 +39,9 @@ function SellersConfig() {
                     return (
                         <InputGroup key={index} className="mb-3">
                             <InputGroup.Prepend>
-                                <Image src="https://via.placeholder.com/100/ADD8E6" roundedCircle />
+                                <Image src={seller.picture} roundedCircle />
                             </InputGroup.Prepend>
-                            <ListGroup.Item >{seller}</ListGroup.Item>
+                            <ListGroup.Item >{`${seller.firstName} ${seller.lastName}`}</ListGroup.Item>
                             <InputGroup.Append>
                                 <Button variant="outline-secondary">Update</Button>
                                 <Button variant="outline-secondary">Delete</Button>

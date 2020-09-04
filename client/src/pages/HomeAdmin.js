@@ -194,7 +194,9 @@ function HomeAdmin() {
               />
             </Tab.Pane>
             <Tab.Pane eventKey="fourth">
-              <SellersConfig />
+              <SellersConfig
+                sellers={sellers}
+              />
             </Tab.Pane>
             <Tab.Pane eventKey="fifth">
               <StoresConfig />
