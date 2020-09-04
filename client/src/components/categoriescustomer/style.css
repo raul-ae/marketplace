@@ -1,0 +1,14 @@
+.nav{
+    color: white;
+}
+
+.nav-item{
+    background-color: #E9E9E9;
+    color: black;
+    margin-bottom: 5px;
+}
+
+.nav-item:hover{
+    background-color: #BCBCBC;
+    color: white;
+}

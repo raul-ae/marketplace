@@ -1,0 +1,21 @@
+.add{
+    background-color: #3299BB;
+    color:white;
+    padding: 8px 30px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 1rem;
+  border-radius: 5px;
+  margin-left: 2px;
+}
+.add:hover{
+    background-color: #424242;
+    color:white;
+}
+.productheight{
+    height: 500px;
+}
+.align{
+    display:inline;
+}

@@ -1,16 +1,14 @@
 import React from "react";
 import Navbar from 'react-bootstrap/Navbar';
 import Nav from 'react-bootstrap/Nav';
-import Form from 'react-bootstrap/Form';
-import FormControl from 'react-bootstrap/FormControl';
 import { Link } from "react-router-dom";
 import "./style.css";
 
 
-function NavCustomer() {
+function NavCustomerCheckout() {
     return (
         <Navbar bg="light" expand="lg">
-            <Navbar.Brand>
+            <Navbar.Brand href="#home" className="col-6">
                 <Link
                     to={process.env.PUBLIC_URL + '/'}
                 >
@@ -25,22 +23,14 @@ function NavCustomer() {
             </Navbar.Brand>
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
             <Navbar.Collapse id="basic-navbar-nav">
-                <Form inline className="col-10">
-                    <FormControl type="text" placeholder="Search" className="col-10" />
-                    <div className="buttonNav">Search</div>
-                </Form>
-                <Nav className="col-2">
-
-                    <Link
-                        to={process.env.PUBLIC_URL + '/check/resume'}
-                    >
-                        <Nav.Link href="#home"><i class="fas fa-shopping-cart"></i>Shopping Cart</Nav.Link>
-                    </Link>
-
+                <Nav className="col-6">
+                    <Nav.Link>1.Review</Nav.Link>
+                    <Nav.Link>2.Shippment & Payment</Nav.Link>
+                    <Nav.Link>3.Confirmation</Nav.Link>
                 </Nav>
             </Navbar.Collapse>
         </Navbar>
     );
 }
 
-export default NavCustomer;
+export default NavCustomerCheckout;

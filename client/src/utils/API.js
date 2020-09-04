@@ -30,7 +30,10 @@ export default {
   deleteCategory: function (id) {
     return axios.delete("/api/categories/" + id);
   },
-  saveCategoy: function (categoryData) {
-    return axios.post("/api/categories", categoryData);
+  updateCategory: function (id, categoryName) {
+    return axios.put("/api/categories/" + id, { categoryName });
+  },
+  saveCategoy: function (categoryName) {
+    return axios.post("/api/categories", { categoryName });
   }
 };

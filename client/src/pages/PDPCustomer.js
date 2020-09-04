@@ -3,42 +3,35 @@ import Container from 'react-bootstrap/Container';
 import Carousel from '../components/carouselPDP'
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-import Button from 'react-bootstrap/Button';
 import Details from '../components/pdpdetailtabs'
-
+import ProductDetail from '../components/pdpproductdetail'
+import Related from '../components/pdprelatedproducts'
 
 function PDP() {
     return (
-      <Container>
+        <Container>
             <Row>
                 <Col>
                     <Carousel />
                 </Col>
                 <Col>
-                    <h1>Product title</h1>
-                    <div>Product description:
-
-                    </div>
-                    <div>
-                        <Button variant="secondary" size="lg">
-                            Add to cart
-                        </Button>
-                    </div>
+                    <ProductDetail />
                 </Col>
             </Row>
             <Row>
                 <Col>
-                    <h1>Product Details:</h1>
+                    <h2>Product Specification</h2>
                     <Details />
                 </Col>
             </Row>
             <Row>
                 <Col>
-                    <h1>Related products</h1>
+                    <h2>Related products</h2>
+                    <Related />
                 </Col>
             </Row>
-      </Container>
+        </Container>
     );
-  }
-  
-  export default PDP;
+}
+
+export default PDP;
