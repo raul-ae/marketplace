@@ -1,0 +1,17 @@
+.ftrC {
+  background-color: #3299bb;
+  height: 150px;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  margin-top: 20px;
+}
+
+.link {
+  color: white;
+}
+
+.float {
+  float: right;
+}

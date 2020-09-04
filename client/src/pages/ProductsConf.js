@@ -19,9 +19,15 @@ import { InputGroup, FormControl, Button, ListGroup, Form } from 'react-bootstra
   picture: { type: String, required: true } input url ? or text
 */
 
-function ProductsConfig() {
-    const currentCategories = ['Category 1', 'Category 2', 'Category 3']
-    const currentProducts = ['Product 1', 'Product 2', 'Product 3']
+function ProductsConfig({
+    products,
+    categories,
+    handleProductSaveButton,
+    handleNewProductInputOnChange
+}) {
+    let currentCategories = categories.map(category => category.categoryName)
+    let currentProducts = products.map(product => product.productName)
+    console.log("Raul-products: ", currentProducts)
     return (
         <div>
             <h4><strong>Manage your products</strong></h4>
@@ -51,6 +57,8 @@ function ProductsConfig() {
                         placeholder="CAT/###"
                         aria-label="sku"
                         aria-describedby="sku"
+                        id="sku"
+                        onChange={handleNewProductInputOnChange}
                     />
                 </InputGroup>
 
@@ -62,12 +70,19 @@ function ProductsConfig() {
                         placeholder=""
                         aria-label="sku"
                         aria-describedby="productName"
+                        id="productName"
+                        onChange={handleNewProductInputOnChange}
+
                     />
                 </InputGroup>
 
                 <Form.Group controlId="exampleForm.ControlSelect1">
                     <Form.Label>Select a Category</Form.Label>
-                    <Form.Control as="select">
+                    <Form.Control
+                        as="select"
+                        id="category"
+                        onChange={handleNewProductInputOnChange}
+                    >
                         {currentCategories.map((category, index) => {
                             return (
                                 <option key={index}>{category}</option>
@@ -84,6 +99,8 @@ function ProductsConfig() {
                         placeholder="MXN"
                         aria-label="price"
                         aria-describedby="price"
+                        id="price"
+                        onChange={handleNewProductInputOnChange}
                     />
                 </InputGroup>
 
@@ -95,12 +112,19 @@ function ProductsConfig() {
                         placeholder="###,###"
                         aria-label="stock"
                         aria-describedby="stock"
+                        id="stock"
+                        onChange={handleNewProductInputOnChange}
                     />
                 </InputGroup>
 
                 <Form.Group controlId="exampleForm.ControlTextarea1">
                     <Form.Label>Description</Form.Label>
-                    <Form.Control as="textarea" rows="3" />
+                    <Form.Control
+                        as="textarea"
+                        rows="3"
+                        id="description"
+                        onChange={handleNewProductInputOnChange}
+                    />
                 </Form.Group>
 
                 <InputGroup className="mb-3">
@@ -111,10 +135,15 @@ function ProductsConfig() {
                         placeholder="URL"
                         aria-label="picture"
                         aria-describedby="picture"
+                        id="picture"
+                        onChange={handleNewProductInputOnChange}
                     />
                 </InputGroup>
 
-                <Button variant="outline-secondary">Create</Button>
+                <Button
+                    variant="outline-secondary"
+                    onClick={handleProductSaveButton}
+                >Create</Button>
             </Form>
         </div>
     );

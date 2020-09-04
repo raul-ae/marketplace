@@ -89,11 +89,12 @@ function StoresConfig() {
                 </Form.Group>
 
                 <p>Select the products for your store:</p>
-                {products.map((product) => {
+                {products.map((product, index) => {
                     return (
                         <Form.Check
                             custom
                             type='checkbox'
+                            key={index}
                             id={`custom-checkbox`}
                             label={product}
                         />
