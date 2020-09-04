@@ -103,13 +103,13 @@ function HomeAdmin() {
   }
 
   const handleCategoryDeleteButton = (e) => {
-    let id = e.target.getAttribute('data-categoryId');
+    let id = e.target.getAttribute('data-categoryid');
     console.log('handleCategoryDeleteButton - id: ', id);
     deleteCategory(id);
   }
 
   const handleCategoryUpdateButton = (e) => {
-    let id = e.target.getAttribute('data-categoryId');
+    let id = e.target.getAttribute('data-categoryid');
     console.log('handleCategoryUpdateButton - id: ', id);
     updateCategory(id, categoryUpdatedName);
   }
