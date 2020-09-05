@@ -2,6 +2,24 @@ import axios from "axios";
 
 export default {
 
+  // ********** Stores **********
+  // Gets all 
+  getStores: function () {
+    return axios.get("/api/stores");
+  },
+  // Gets one with the id
+  getStore: function (id) {
+    return axios.get("/api/stores/" + id);
+  },
+  // Deletes one with the id
+  deleteStore: function (id) {
+    return axios.delete("/api/stores/" + id);
+  },
+  // Saves to the database
+  saveStore: function (storeData) {
+    return axios.post("/api/stores", storeData);
+  },
+
   // ********** Products **********
   // Gets all 
   getProducts: function () {
@@ -35,5 +53,23 @@ export default {
   },
   saveCategoy: function (categoryName) {
     return axios.post("/api/categories", { categoryName });
+  },
+
+  // ********** Sellers **********
+  getSellers: function () {
+    return axios.get("/api/sellers");
+  },
+  getSeller: function (id) {
+    return axios.get("/api/sellers/" + id);
+  },
+  deleteSeller: function (id) {
+    return axios.delete("/api/sellers/" + id);
+  },
+  updateSeller: function (id, sellerData) {
+    return axios.put("/api/sellers/" + id, sellerData);
+  },
+  saveSeller: function (sellerData) {
+    return axios.post("/api/sellers", sellerData);
   }
 };
+

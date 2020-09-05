@@ -4,6 +4,9 @@ import Allproducts from '../components/allproductscustomer'
 import Carousel from '../components/carouselcustomer'
 import Container from 'react-bootstrap/Container'
 import API from "../utils/API";
+import NavCustomer from '../components/navcustomer'
+import Categories from '../components/categoriescustomer'
+import Footer from '../components/footercustomer'
 
 function homeCustomer() {
   const [products, setProducts] = useState([])
@@ -39,11 +42,16 @@ function homeCustomer() {
 
 
   return (
-    <Container>
-      <Carousel />
-      <Mainproducts products={topProducts} />
-      <Allproducts products={products} />
-    </Container>
+    <>
+      <NavCustomer />
+      <Categories />
+      <Container>
+        <Carousel />
+        <Mainproducts products={topProducts} />
+        <Allproducts products={products} />
+      </Container>
+      <Footer />
+    </>
   );
 }
 

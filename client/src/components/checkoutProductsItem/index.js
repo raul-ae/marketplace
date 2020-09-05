@@ -1,6 +1,5 @@
 import React from "react";
 // import "./style.css";
-import Card from 'react-bootstrap/Card';
 import Row from 'react-bootstrap/Row';
 import "./style.css"
 

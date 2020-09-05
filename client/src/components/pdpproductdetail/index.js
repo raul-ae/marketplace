@@ -2,14 +2,17 @@ import React from "react";
 import "./style.css";
 
 
-function ProductDetail() {
+function ProductDetail({ productName, description, price }) {
     return (
         <div>
             <div className="productheight">
-                <h1>Product title</h1>
-                <div>Product description:
-                Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.
-            </div>
+                <h1>{productName}</h1>
+                <div><h4>Description:{' '}</h4>
+                    {description}
+                </div>
+                <div><h4>Price:{' '}</h4>
+                    {`$${price} mxp`}
+                </div>
             </div>
             <div className="align">
                 <div className="col-6">Select: </div>

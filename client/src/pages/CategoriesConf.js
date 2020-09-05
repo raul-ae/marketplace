@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { InputGroup, FormControl, Button, ListGroup, Form } from 'react-bootstrap';
+import React from "react";
+import { InputGroup, FormControl, Button, ListGroup } from 'react-bootstrap';
 
 /* 
 categoryName: { type: String, required: true },
@@ -17,8 +17,6 @@ function CategoriesConfig({
     handleCategoryUpdateButton,
     handleCategoryUpdatedInputOnChange
 }) {
-
-    const [inputValues, setInputValues] = useState([]);
 
     // const currentCategories = ['Category 1', 'Category 2', 'Category 3']
     let currentCategories = [];
@@ -41,18 +39,18 @@ function CategoriesConfig({
                         <InputGroup key={index} className="mb-3">
                             <ListGroup.Item >{currentcategory.categoryName}</ListGroup.Item>
                             <FormControl
-                                data-categoryId={currentcategory._id}
+                                data-categoryid={currentcategory._id}
                                 onChange={handleCategoryUpdatedInputOnChange}
                             />
                             <InputGroup.Append>
                                 <Button
                                     variant="outline-secondary"
-                                    data-categoryId={currentcategory._id}
+                                    data-categoryid={currentcategory._id}
                                     onClick={handleCategoryUpdateButton}
                                 >Update</Button>
                                 <Button
                                     variant="outline-secondary"
-                                    data-categoryId={currentcategory._id}
+                                    data-categoryid={currentcategory._id}
                                     onClick={handleCategoryDeleteButton}
                                 >Delete</Button>
                             </InputGroup.Append>
