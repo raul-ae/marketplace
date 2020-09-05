@@ -17,6 +17,8 @@ const productSchema = new Schema({
     ref: "store",
   },
   picture: { type: String, required: true },
+  picture2: { type: String, required: true },
+  picture3: { type: String, required: true },
 });
 
 const Product = mongoose.model("Product", productSchema);

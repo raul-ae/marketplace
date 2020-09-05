@@ -6,21 +6,30 @@ import HomeCustomer from './Home.js'
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Wrapper from "../components/Wrapper";
 import Productdp from "./PDPCustomer"
+import LogIn from "./LogIn"
+import ResumeCheckout from "./ResumeCheck"
+import ResumePayment from './ResumePayment'
+import ResumeConfirmation from './ResumeConfirmation'
 // import Checkout from "./Checkout"
 
 function MasterCustomer() {
   return (
     <Router>
-      <NavCustomer />
-      <Categories />
       <Wrapper>
         <Switch>
           <Route exact path={process.env.PUBLIC_URL + '/home'} component={HomeCustomer} />
-          <Route exact path={process.env.PUBLIC_URL + '/home/product'} component={Productdp} />
+          <Route path={process.env.PUBLIC_URL + '/home/product/:_id'} component={() => {
+            return (
+              <Productdp />
+            );
+          }} />
+          <Route path={process.env.PUBLIC_URL + '/home/login'} component={LogIn} />
+          <Route path={process.env.PUBLIC_URL + '/home/shoppingcart'} component={ResumeCheckout} />
+          <Route path={process.env.PUBLIC_URL + '/home/payment'} component={ResumePayment} />
+          <Route path={process.env.PUBLIC_URL + '/home/confirmation'} component={ResumeConfirmation} />
           <Route component={HomeCustomer} />
         </Switch>
       </Wrapper>
-      <Footer />
     </Router>
   );
 }

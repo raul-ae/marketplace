@@ -3,7 +3,7 @@ import React from "react";
 import Card from 'react-bootstrap/Card';
 import Row from 'react-bootstrap/Row';
 import "./style.css"
-import Item from '../checkoutProductsItem';
+import { Link } from "react-router-dom";
 
 function ProductsListResume() {
     return (
@@ -33,7 +33,11 @@ function ProductsListResume() {
                     <div className="col-6">$2,100 MXN</div>
                 </Row>
                 <Row>
-                    <div className="buttonNav col-12">Purchase</div>
+                    <Link
+                        to={process.env.PUBLIC_URL + '/check/payment'}
+                    >
+                        <div className="buttonNav col-12">Purchase</div>
+                    </Link>
                 </Row>
             </Card>
         </div>

@@ -1,17 +1,22 @@
 import React from "react";
 import Container from 'react-bootstrap/Container';
-import Row from 'react-bootstrap/Row';
 import ProductList from '../components/checkoutProducts'
 import ProductResume from '../components/checkoutProductsResume'
+import NavCustomer from '../components/navcustomercheckout'
+import Footer from '../components/footercustomercheckout'
 
 
 function PDP() {
   return (
-    <Container fluid>
-      <h2>Review your shopping cart: </h2>
-      <ProductList />
-      <ProductResume />
-    </Container>
+    <>
+      <NavCustomer />
+      <Container fluid>
+        <h2>Review your shopping cart: </h2>
+        <ProductList />
+        <ProductResume />
+      </Container>
+      <Footer />
+    </>
   );
 }
 

@@ -37,13 +37,80 @@ function HomeAdmin() {
     mobile: "",
     picture: "",
   });
-
+  const [stores, setStores] = useState([]);
+  const [newStore, setNewStore] = useState({
+    storeName: "",
+    storePicture: "",
+    seller: "",
+    products: [],
+  })
 
   useEffect(() => {
     loadProducts()
     loadCategories();
     loadSellers();
+    loadStores();
   }, []);
+
+  // ****************************** Stores ******************************
+  function loadStores() {
+    API.getStores()
+      .then(res => {
+        setStores(res.data);
+        console.log('loadStores - res.data: ', res.data);
+      }
+      )
+      .catch(err => console.log(err));
+  };
+
+  const handleStoreDeleteButton = (e) => {
+    let id = e.target.getAttribute('data-categoryid');
+    console.log('handleStoreDeleteButton - id: ', id);
+    deleteStore(id);
+  }
+
+  const deleteStore = (id) => {
+    // console.log('deleteCategory - id: ', id);
+    API.deleteStore(id)
+      .then(res => {
+        // console.log('Category deleted - res.data: ', res.data);
+        loadStores();
+      })
+      .catch(err => console.log(err));
+  }
+
+  const handleNewStoreInputOnChange = (e) => {
+    let key = e.target.getAttribute('aria-label')
+    let value = e.target.value;
+
+    // console.log(e.target.id, ": ", e.target.value)
+    setNewStore({ ...newStore, [key]: value });
+    // console.log('handleCategoryInputOnChange - e.target.value: ', e.target.value);
+  }
+
+  const handleNewStoreCheckOnChange = (e) => {
+    // let key = e.target.getAttribute('aria-label')
+    let productArray = newStore.products
+    productArray.push(e.target.value);
+
+    // console.log(e.target.id, ": ", e.target.value)
+    setNewStore({ ...newStore, products: productArray });
+    // console.log('handleCategoryInputOnChange - e.target.value: ', e.target.value);
+  }
+
+  const handleStoreSaveButton = () => {
+    saveStore()
+  }
+
+  const saveStore = () => {
+    console.log("save new Store: ", newStore)
+    API.saveStore(newStore)
+      .then(res => {
+        // console.log('Category saved - res.data: ', res.data);
+        loadStores();
+      })
+      .catch(err => console.log(err));
+  }
 
   // ****************************** PRODUCTS ******************************
   function loadProducts() {
@@ -57,8 +124,8 @@ function HomeAdmin() {
   };
 
   const handleProductDeleteButton = (e) => {
-    let id = e.target.getAttribute('id');
-    // console.log('handleCategoryDeleteButton - id: ', id);
+    let id = e.target.getAttribute('data-categoryid');
+    console.log('handleProductDeleteButton - id: ', id);
     deleteProduct(id);
   }
 
@@ -289,7 +356,16 @@ function HomeAdmin() {
               />
             </Tab.Pane>
             <Tab.Pane eventKey="fifth">
-              <StoresConfig />
+              <StoresConfig
+                allproducts={products}
+                sellers={sellers}
+                allStores={stores}
+                categories={categories}
+                handleStoreSaveButton={handleStoreSaveButton}
+                handleNewStoreInputOnChange={handleNewStoreInputOnChange}
+                handleNewStoreCheckOnChange={handleNewStoreCheckOnChange}
+                handleStoreDeleteButton={handleStoreDeleteButton}
+              />
             </Tab.Pane>
           </Tab.Content>
         </Col>

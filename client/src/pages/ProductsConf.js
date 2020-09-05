@@ -37,11 +37,12 @@ function ProductsConfig({
             <ListGroup>
                 {currentProducts.map((product, index) => {
                     return (
-                        <InputGroup key={index} className="mb-3" id={product._id}>
+                        <InputGroup key={index} className="mb-3">
                             <ListGroup.Item >{product.productName}</ListGroup.Item>
                             <InputGroup.Append>
                                 <Button
                                     variant="outline-secondary"
+                                    data-categoryid={product._id}
                                     onClick={handleProductDeleteButton}
                                 >Delete</Button>
                             </InputGroup.Append>

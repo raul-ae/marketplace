@@ -30,13 +30,16 @@ function NavCustomer() {
                     <div className="buttonNav">Search</div>
                 </Form>
                 <Nav className="col-2">
-
                     <Link
-                        to={process.env.PUBLIC_URL + '/check/resume'}
+                        to={process.env.PUBLIC_URL + '/home/login'}
                     >
-                        <Nav.Link href="#home"><i class="fas fa-shopping-cart"></i>Shopping Cart</Nav.Link>
+                        <Nav.Link href="/home/login">Log In </Nav.Link>
                     </Link>
-
+                    <Link
+                        to={process.env.PUBLIC_URL + '/home/shoppingcart'}
+                    >
+                        <Nav.Link href="/home/shoppingcart"><i class="fas fa-shopping-cart"></i>Shopping Cart</Nav.Link>
+                    </Link>
                 </Nav>
             </Navbar.Collapse>
         </Navbar>
