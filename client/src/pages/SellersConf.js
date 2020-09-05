@@ -20,7 +20,12 @@ import Form from '../components/adminSellerForm';
 */
 
 
-function SellersConfig({ sellers, handleSellerSaveButton, handleSellerDeleteButton }) {
+function SellersConfig({
+    sellers,
+    handleSellerSaveButton,
+    handleSellerDeleteButton,
+    handleSellerInputOnChange
+}) {
     // const currentSellers = ['Seller 1', 'Seller 2', 'Seller 3']
 
     let currentSellers = [];
@@ -46,7 +51,6 @@ function SellersConfig({ sellers, handleSellerSaveButton, handleSellerDeleteButt
                             </InputGroup.Prepend>
                             <ListGroup.Item >{`${seller.firstName} ${seller.lastName}`}</ListGroup.Item>
                             <InputGroup.Append>
-                                <Button variant="outline-secondary">Update</Button>
                                 <Button
                                     variant="outline-secondary"
                                     data-sellerid={seller._id}
@@ -59,7 +63,10 @@ function SellersConfig({ sellers, handleSellerSaveButton, handleSellerDeleteButt
             </ListGroup>
 
             <h5>Create a new seller</h5>
-            <Form handleSellerSaveButton={handleSellerSaveButton} />
+            <Form
+                handleSellerSaveButton={handleSellerSaveButton}
+                handleSellerInputOnChange={handleSellerInputOnChange}
+            />
         </div>
     );
 }

@@ -45,7 +45,6 @@ function StoresConfig() {
                                         );
                                     })}
                                 </ListGroup>
-                                <Button className='mx-3' variant="outline-secondary">Update</Button>
                                 <Button variant="outline-secondary">Delete</Button>
                             </Col>
                         </Row>

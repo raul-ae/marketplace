@@ -24,9 +24,18 @@ function HomeAdmin() {
     picture: "",
     price: 0,
     description: "",
-    category: "",
+    categoryName: "",
     inventario: 0,
 
+  });
+  const [seller, setSeller] = useState({
+    userName: "",
+    firstName: "",
+    lastName: "",
+    password: "",
+    email: "",
+    mobile: "",
+    picture: "",
   });
 
 
@@ -36,6 +45,7 @@ function HomeAdmin() {
     loadSellers();
   }, []);
 
+  // ****************************** PRODUCTS ******************************
   function loadProducts() {
     API.getProducts()
       .then(res => {
@@ -45,6 +55,44 @@ function HomeAdmin() {
       )
       .catch(err => console.log(err));
   };
+
+  const handleProductDeleteButton = (e) => {
+    let id = e.target.getAttribute('id');
+    // console.log('handleCategoryDeleteButton - id: ', id);
+    deleteProduct(id);
+  }
+
+  const deleteProduct = (id) => {
+    // console.log('deleteCategory - id: ', id);
+    API.deleteProduct(id)
+      .then(res => {
+        // console.log('Category deleted - res.data: ', res.data);
+        loadProducts();
+      })
+      .catch(err => console.log(err));
+  }
+
+  const handleNewProductInputOnChange = (e) => {
+    let key = e.target.getAttribute('aria-label')
+    let value = e.target.value;
+
+    // console.log(e.target.id, ": ", e.target.value)
+    setNewProduct({ ...newProduct, [key]: value });
+    // console.log('handleCategoryInputOnChange - e.target.value: ', e.target.value);
+  }
+
+  const handleProductSaveButton = () => {
+    saveProduct(newProduct)
+  }
+
+  const saveProduct = (newProduct) => {
+    API.saveProduct(newProduct)
+      .then(res => {
+        // console.log('Category saved - res.data: ', res.data);
+        loadProducts();
+      })
+      .catch(err => console.log(err));
+  }
 
   // ****************************** SELLERS ******************************
 
@@ -78,9 +126,21 @@ function HomeAdmin() {
       .catch(err => console.log(err));
   }
 
+  const handleSellerInputOnChange = (e) => {
+    let input = e.target.getAttribute('aria-label');
+    let value = e.target.value;
+
+    console.log('handleSellerInputOnChange - input: ' + input + ' value: ' + value);
+    setSeller({
+      ...seller,
+      [input]: value
+    });
+    console.log('seller state: ', seller);
+  }
+
   const handleSellerSaveButton = () => {
     // console.log('handleSellerSaveButton - sellerData: ', sellerData);
-    let sellerData = {
+    /* let sellerData = {
       userName: "perengano2000",
       firstName: "Perenganito",
       lastName: "Gonzalez",
@@ -89,8 +149,8 @@ function HomeAdmin() {
       mobile: "5555555555",
       picture: "http://lorempixel.com/71/70/people/ ",
       memberSince: "2020-09-04T18:08:54.776Z"
-    }
-    saveSeller(sellerData);
+    } */
+    saveSeller(seller);
   }
 
   const handleSellerDeleteButton = (e) => {
@@ -170,26 +230,8 @@ function HomeAdmin() {
     updateCategory(id, categoryUpdatedName);
   }
 
-  const handleNewProductInputOnChange = (e) => {
-    let key = e.target.id
-    let value = e.target.value;
 
-    // console.log(e.target.id, ": ", e.target.value)
-    setNewProduct({ ...newProduct, [key]: value });
-    // console.log('handleCategoryInputOnChange - e.target.value: ', e.target.value);
-  }
-  const handleProductSaveButton = () => {
-    saveProduct()
-  }
 
-  const saveProduct = () => {
-    API.saveProduct(newProduct)
-      .then(res => {
-        // console.log('Category saved - res.data: ', res.data);
-        loadProducts();
-      })
-      .catch(err => console.log(err));
-  }
   return (
     <Tab.Container id="left-tabs-example" defaultActiveKey="first">
       <Row>
@@ -222,6 +264,7 @@ function HomeAdmin() {
                 categories={categories}
                 handleProductSaveButton={handleProductSaveButton}
                 handleNewProductInputOnChange={handleNewProductInputOnChange}
+                handleProductDeleteButton={handleProductDeleteButton}
               />
             </Tab.Pane>
             <Tab.Pane eventKey="second">
@@ -242,6 +285,7 @@ function HomeAdmin() {
                 sellers={sellers}
                 handleSellerSaveButton={handleSellerSaveButton}
                 handleSellerDeleteButton={handleSellerDeleteButton}
+                handleSellerInputOnChange={handleSellerInputOnChange}
               />
             </Tab.Pane>
             <Tab.Pane eventKey="fifth">

@@ -23,10 +23,11 @@ function ProductsConfig({
     products,
     categories,
     handleProductSaveButton,
-    handleNewProductInputOnChange
+    handleNewProductInputOnChange,
+    handleProductDeleteButton
 }) {
     let currentCategories = categories.map(category => category.categoryName)
-    let currentProducts = products.map(product => product.productName)
+    let currentProducts = products.slice(0);
     console.log("Raul-products: ", currentProducts)
     return (
         <div>
@@ -36,11 +37,13 @@ function ProductsConfig({
             <ListGroup>
                 {currentProducts.map((product, index) => {
                     return (
-                        <InputGroup key={index} className="mb-3">
-                            <ListGroup.Item >{product}</ListGroup.Item>
+                        <InputGroup key={index} className="mb-3" id={product._id}>
+                            <ListGroup.Item >{product.productName}</ListGroup.Item>
                             <InputGroup.Append>
-                                <Button variant="outline-secondary">Update</Button>
-                                <Button variant="outline-secondary">Delete</Button>
+                                <Button
+                                    variant="outline-secondary"
+                                    onClick={handleProductDeleteButton}
+                                >Delete</Button>
                             </InputGroup.Append>
                         </InputGroup>
                     );
@@ -57,7 +60,6 @@ function ProductsConfig({
                         placeholder="CAT/###"
                         aria-label="sku"
                         aria-describedby="sku"
-                        id="sku"
                         onChange={handleNewProductInputOnChange}
                     />
                 </InputGroup>
@@ -68,9 +70,8 @@ function ProductsConfig({
                     </InputGroup.Prepend>
                     <FormControl
                         placeholder=""
-                        aria-label="sku"
+                        aria-label="productName"
                         aria-describedby="productName"
-                        id="productName"
                         onChange={handleNewProductInputOnChange}
 
                     />
@@ -80,7 +81,7 @@ function ProductsConfig({
                     <Form.Label>Select a Category</Form.Label>
                     <Form.Control
                         as="select"
-                        id="category"
+                        aria-label="categoryName"
                         onChange={handleNewProductInputOnChange}
                     >
                         {currentCategories.map((category, index) => {
@@ -99,7 +100,6 @@ function ProductsConfig({
                         placeholder="MXN"
                         aria-label="price"
                         aria-describedby="price"
-                        id="price"
                         onChange={handleNewProductInputOnChange}
                     />
                 </InputGroup>
@@ -112,7 +112,6 @@ function ProductsConfig({
                         placeholder="###,###"
                         aria-label="stock"
                         aria-describedby="stock"
-                        id="stock"
                         onChange={handleNewProductInputOnChange}
                     />
                 </InputGroup>
@@ -122,7 +121,7 @@ function ProductsConfig({
                     <Form.Control
                         as="textarea"
                         rows="3"
-                        id="description"
+                        aria-label="description"
                         onChange={handleNewProductInputOnChange}
                     />
                 </Form.Group>
@@ -135,7 +134,6 @@ function ProductsConfig({
                         placeholder="URL"
                         aria-label="picture"
                         aria-describedby="picture"
-                        id="picture"
                         onChange={handleNewProductInputOnChange}
                     />
                 </InputGroup>

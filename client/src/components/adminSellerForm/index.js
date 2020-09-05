@@ -1,18 +1,19 @@
 import React from 'react';
 import { InputGroup, FormControl, Button, Form } from 'react-bootstrap';
 
-const sellerForm = ({ handleSellerSaveButton }) => {
+const sellerForm = ({ handleSellerInputOnChange, handleSellerSaveButton }) => {
 
     return (
         <Form>
             <InputGroup className="mb-3">
                 <InputGroup.Prepend>
-                    <InputGroup.Text id="userName">User name</InputGroup.Text>
+                    <InputGroup.Text>User name</InputGroup.Text>
                 </InputGroup.Prepend>
                 <FormControl
                     placeholder=""
                     aria-label="userName"
                     aria-describedby="userName"
+                    onChange={handleSellerInputOnChange}
                 />
             </InputGroup>
 
@@ -24,8 +25,10 @@ const sellerForm = ({ handleSellerSaveButton }) => {
                     placeholder=""
                     aria-label="firstName"
                     aria-describedby="firstName"
+                    onChange={handleSellerInputOnChange}
                 />
             </InputGroup>
+
 
             <InputGroup className="mb-3">
                 <InputGroup.Prepend>
@@ -35,6 +38,7 @@ const sellerForm = ({ handleSellerSaveButton }) => {
                     placeholder=""
                     aria-label="lastName"
                     aria-describedby="lastName"
+                    onChange={handleSellerInputOnChange}
                 />
             </InputGroup>
 
@@ -46,6 +50,7 @@ const sellerForm = ({ handleSellerSaveButton }) => {
                     placeholder=""
                     aria-label="password"
                     aria-describedby="password"
+                    onChange={handleSellerInputOnChange}
                 />
             </InputGroup>
 
@@ -57,6 +62,7 @@ const sellerForm = ({ handleSellerSaveButton }) => {
                     placeholder=""
                     aria-label="email"
                     aria-describedby="email"
+                    onChange={handleSellerInputOnChange}
                 />
             </InputGroup>
 
@@ -68,6 +74,7 @@ const sellerForm = ({ handleSellerSaveButton }) => {
                     placeholder=""
                     aria-label="mobile"
                     aria-describedby="mobile"
+                    onChange={handleSellerInputOnChange}
                 />
             </InputGroup>
 
@@ -80,6 +87,7 @@ const sellerForm = ({ handleSellerSaveButton }) => {
                     placeholder="URL"
                     aria-label="picture"
                     aria-describedby="picture"
+                    onChange={handleSellerInputOnChange}
                 />
             </InputGroup>
 
