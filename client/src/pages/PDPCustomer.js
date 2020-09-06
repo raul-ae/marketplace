@@ -105,6 +105,7 @@ function PDP() {
                         </Col>
                         <Col>
                             <ProductDetail
+                                productId={product._id}
                                 productName={product.productName}
                                 description={product.description}
                                 price={product.price}
