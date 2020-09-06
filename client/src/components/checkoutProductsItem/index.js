@@ -3,7 +3,7 @@ import React from "react";
 import Row from 'react-bootstrap/Row';
 import "./style.css"
 
-function ProductsListItem({ product }) {
+function ProductsListItem({ product, handleDeleteBtn }) {
     return (
         <Row className="rowmar">
             <div className="col-1">
@@ -22,7 +22,11 @@ function ProductsListItem({ product }) {
                 ${parseFloat(product.price) * parseFloat(product.quantity)} MXN
                 </div>
             <div className="col-1">
-                <i className="fas fa-trash"></i>
+                <i
+                    className="fas fa-trash"
+                    productId={product._id}
+                    onClick={handleDeleteBtn}
+                ></i>
             </div>
         </Row>
     )

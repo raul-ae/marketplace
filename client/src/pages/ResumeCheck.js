@@ -15,6 +15,13 @@ function PDP() {
     getLocalStoragePdts();
   }, []);
 
+  const handleDeleteBtn = (e) => {
+    console.log('product id to DELETE: ', e.target.getAttribute('productId'));
+    let productId = e.target.getAttribute('productId');
+    localStorage.removeItem(productId);
+    getLocalStoragePdts();
+  }
+
   const getLocalStoragePdts = () => {
     // console.log('localStorage.length: ', localStorage.length);
     for (let i = 0; i < localStorage.length; i++) {
@@ -32,7 +39,10 @@ function PDP() {
       <NavCustomer />
       <Container fluid>
         <h2>Review your shopping cart: </h2>
-        <ProductList localStorageProducts={localStorageProducts} />
+        <ProductList
+          localStorageProducts={localStorageProducts}
+          handleDeleteBtn={handleDeleteBtn}
+        />
         <ProductResume localStorageProducts={localStorageProducts} />
       </Container>
       <Footer />

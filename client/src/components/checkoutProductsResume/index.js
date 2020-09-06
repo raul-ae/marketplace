@@ -8,10 +8,16 @@ import { Link } from "react-router-dom";
 function ProductsListResume({ localStorageProducts }) {
 
     let subtototal = 0;
+    let shipping = 100;
 
     localStorageProducts.forEach(product => {
-        subtototal += parseFloat(product.price) * parseFloat(product.quantity);
+        console.log('product: ', product, typeof (product));
+        if (typeof (product) !== 'number') {
+            subtototal += parseFloat(product.price) * parseFloat(product.quantity);
+        }
     });
+    let total = subtototal + shipping;
+    localStorage.setItem('total', total.toString());
 
     return (
         // <Row>
@@ -33,11 +39,11 @@ function ProductsListResume({ localStorageProducts }) {
                 </Row>
                 <Row>
                     <div className="col-6">Shipping</div>
-                    <div className="col-6">$100 MXN</div>
+                    <div className="col-6">${shipping} MXN</div>
                 </Row>
                 <Row>
                     <div className="col-6">Total</div>
-                    <div className="col-6">${subtototal + 100} MXN</div>
+                    <div className="col-6">${total} MXN</div>
                 </Row>
                 <Row>
                     <Link

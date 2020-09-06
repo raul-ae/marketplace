@@ -5,7 +5,7 @@ import Row from 'react-bootstrap/Row';
 import "./style.css"
 import Item from '../checkoutProductsItem';
 
-function ProductsList({ localStorageProducts }) {
+function ProductsList({ localStorageProducts, handleDeleteBtn }) {
 
     return (
         <Card body className="cardRes">
@@ -24,9 +24,14 @@ function ProductsList({ localStorageProducts }) {
                 </div>
             </Row>
             {localStorageProducts.map((product) => {
-                return (
-                    <Item product={product} />
-                );
+                if (typeof (product) !== 'number') {
+                    return (
+                        <Item
+                            product={product}
+                            handleDeleteBtn={handleDeleteBtn}
+                        />
+                    );
+                }
             })}
         </Card>
     )
