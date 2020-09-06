@@ -5,7 +5,7 @@ import Row from 'react-bootstrap/Row';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import "./styles.css";
-import NavCustomer from '../components/navcustomercheckout'
+import NavCustomer from '../components/navcustomer'
 import Footer from '../components/footercustomercheckout'
 
 function SignIn() {
@@ -17,6 +17,7 @@ function SignIn() {
           <Card className="col-6 marg">
             <h3>Log In</h3>
             <Form>
+              <h3>Log In</h3>
               <Form.Group controlId="formBasicEmail">
                 <Form.Label>Email address</Form.Label>
                 <Form.Control type="email" placeholder="Enter email" />
@@ -32,9 +33,9 @@ function SignIn() {
             </Form>
           </Card>
           <Card className="col-6 marg">
-          <h3>Sign Up</h3>
+            <h3>Sign Up</h3>
             <Form>
-            <Form.Group controlId="userName">
+              <Form.Group controlId="userName">
                 <Form.Label>Username</Form.Label>
                 <Form.Control type="text" placeholder="Enter username" />
                 <Form.Label>Name</Form.Label>
