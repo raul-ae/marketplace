@@ -37,6 +37,10 @@ export default {
   saveProduct: function (productData) {
     return axios.post("/api/products", productData);
   },
+  //Find all products with a specific category
+  getProductByCategory: function (categoryName) {
+    return axios.get("/api/productscat/" + categoryName);
+  },
 
   // ********** Categories **********
   getCategories: function () {
