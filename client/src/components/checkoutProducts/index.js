@@ -1,11 +1,12 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 // import "./style.css";
 import Card from 'react-bootstrap/Card';
 import Row from 'react-bootstrap/Row';
 import "./style.css"
 import Item from '../checkoutProductsItem';
 
-function ProductsList() {
+function ProductsList({ localStorageProducts, handleDeleteBtn }) {
+
     return (
         <Card body className="cardRes">
             <Row>
@@ -22,8 +23,16 @@ function ProductsList() {
                     Total
                 </div>
             </Row>
-            <Item />
-            <Item />
+            {localStorageProducts.map((product) => {
+                if (typeof (product) !== 'number') {
+                    return (
+                        <Item
+                            product={product}
+                            handleDeleteBtn={handleDeleteBtn}
+                        />
+                    );
+                }
+            })}
         </Card>
     )
 }

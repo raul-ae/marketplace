@@ -15,6 +15,8 @@ import Footer from '../components/footercustomer'
 function PDP() {
 
     const [product, setProduct] = useState();
+    const [categories, setCategories] = useState([])
+    const [topProducts, setTopProducts] = useState([])
 
     const history = useHistory();
     const id = history.location.pathname.split('/')[3];
@@ -33,7 +35,35 @@ function PDP() {
 
     useEffect(() => {
         loadProduct(id);
-    }, []);
+    }, [id]);
+
+    useEffect(() => {
+        loadCategories()
+    }, [id])
+
+    useEffect(() => {
+        loadProducts()
+    }, [id])
+
+    function loadCategories() {
+        API.getCategories()
+            .then(res => {
+                setCategories(res.data);
+                console.log('loadCategories - res.data: ', res.data);
+            }
+            )
+            .catch(err => console.log(err));
+    };
+
+    function loadProducts() {
+        API.getProducts()
+            .then(res => {
+                setTop4(res.data);
+                console.log('loadProducts - res.data: ', res.data);
+            }
+            )
+            .catch(err => console.log(err));
+    };
 
     const loadProduct = (id) => {
         API.getProduct(id)
@@ -45,11 +75,24 @@ function PDP() {
             .catch(err => console.log(err));
     };
 
+    function setTop4(array) {
+        let top4 = []
+        let baseArray = array.slice(0);
+
+        for (let i = 0; i < 4; i++) {
+            let index = Math.floor(Math.random() * baseArray.length)
+            top4.push(baseArray[index])
+            baseArray.splice(index, 1);
+        };
+        setTopProducts(top4);
+    }
+
+
 
     return (
         <>
             <NavCustomer />
-            <Categories />
+            <Categories categories={categories} />
             <Container>
                 {product && (
                     <Row>
@@ -62,6 +105,8 @@ function PDP() {
                         </Col>
                         <Col>
                             <ProductDetail
+                                product={product}
+                                productId={product._id}
                                 productName={product.productName}
                                 description={product.description}
                                 price={product.price}
@@ -78,7 +123,7 @@ function PDP() {
                 <Row>
                     <Col>
                         <h2>Related products</h2>
-                        <Related />
+                        <Related products={topProducts} />
                     </Col>
                 </Row>
             </Container>

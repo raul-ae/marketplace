@@ -1,27 +1,25 @@
 import React from "react";
 import Nav from 'react-bootstrap/Nav';
 import "./style.css";
+import { Link } from 'react-router-dom';
 
 
-function categoriescustomer() {
+function Categoriescustomer(props) {
     return (
-        <Nav fill variant="" defaultActiveKey="/home" className="nav">
-            <Nav.Item>
-                <Nav.Link href="#" className="nav-item">Category 1</Nav.Link>
-            </Nav.Item>
-            <Nav.Item>
-                <Nav.Link eventKey="link-1" className="nav-item">Category 1</Nav.Link>
-            </Nav.Item>
-            <Nav.Item>
-                <Nav.Link eventKey="link-2" className="nav-item">Category 1</Nav.Link>
-            </Nav.Item>
-            <Nav.Item>
-                <Nav.Link eventKey="link-3" className="nav-item">
-                    Category 1
-            </Nav.Link>
-            </Nav.Item>
+        <Nav fill>
+        {props.categories.map(cate =>{
+            return (
+                <Nav.Item>
+                    <Link
+                        to={process.env.PUBLIC_URL + '/home/productlist/' + cate.categoryName}
+                        >
+                        <div className="nav-item">{cate.categoryName}</div>
+                    </Link>
+                </Nav.Item>
+            )
+        })}
         </Nav>
     );
 }
 
-export default categoriescustomer;
+export default Categoriescustomer;

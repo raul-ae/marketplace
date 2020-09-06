@@ -8,13 +8,18 @@ import NavCustomer from '../components/navcustomer'
 import Categories from '../components/categoriescustomer'
 import Footer from '../components/footercustomer'
 
-function homeCustomer() {
+function HomeCustomer() {
   const [products, setProducts] = useState([])
   const [topProducts, setTopProducts] = useState([])
+  const [categories, setCategories] = useState([])
 
 
   useEffect(() => {
     loadProducts()
+  }, [])
+
+  useEffect(() => {
+    loadCategories()
   }, [])
 
   function loadProducts() {
@@ -23,6 +28,16 @@ function homeCustomer() {
         setProducts(res.data);
         setTop4(res.data);
         console.log('loadProducts - res.data: ', res.data);
+      }
+      )
+      .catch(err => console.log(err));
+  };
+
+  function loadCategories() {
+    API.getCategories()
+      .then(res => {
+        setCategories(res.data);
+        console.log('loadCategories - res.data: ', res.data);
       }
       )
       .catch(err => console.log(err));
@@ -44,7 +59,7 @@ function homeCustomer() {
   return (
     <>
       <NavCustomer />
-      <Categories />
+      <Categories categories= {categories}/>
       <Container>
         <Carousel />
         <Mainproducts products={topProducts} />
@@ -55,4 +70,4 @@ function homeCustomer() {
   );
 }
 
-export default homeCustomer;
+export default HomeCustomer;

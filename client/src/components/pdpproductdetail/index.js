@@ -2,7 +2,7 @@ import React from "react";
 import "./style.css";
 
 
-function ProductDetail({ productName, description, price }) {
+function ProductDetail({ product, productId, productName, description, price }) {
     return (
         <div>
             <div className="productheight">
@@ -18,10 +18,10 @@ function ProductDetail({ productName, description, price }) {
                 <div className="col-6">Select: </div>
                 <div className="col-6">
                     <form>
-                        <div class="form-row align-items-right">
-                            <div class="col-auto my-1 align-items-right">
-                                <label class="mr-sm-2 sr-only" for="inlineFormCustomSelect">Preference</label>
-                                <select class="custom-select mr-sm-2" id="inlineFormCustomSelect">
+                        <div className="form-row align-items-right">
+                            <div className="col-auto my-1 align-items-right">
+                                <label className="mr-sm-2 sr-only" for="quantity">Preference</label>
+                                <select className="custom-select mr-sm-2" id="quantity">
                                     <option selected>Quantity</option>
                                     <option value="1">1</option>
                                     <option value="2">2</option>
@@ -35,8 +35,14 @@ function ProductDetail({ productName, description, price }) {
                                     <option value="10">10</option>
                                 </select>
                             </div>
-                            <div class="col-auto my-1 align-items-right">
-                                <div type="submit" class="add">Add</div>
+                            <div className="col-auto my-1 align-items-right">
+                                <div type="submit" className="add" onClick={() => {
+                                    let productAndQuantity = {
+                                        ...product,
+                                        quantity: document.querySelector('#quantity').value
+                                    }
+                                    localStorage.setItem(productId, JSON.stringify(productAndQuantity));
+                                }}>Add</div>
                             </div>
                         </div>
                     </form>

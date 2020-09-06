@@ -12,28 +12,28 @@ function footer() {
                 <div className="col-3 mx-auto">
                     <h5>Categories</h5>
                     <ul className="list-unstyled text-small">
-                        <li><a className="link" href="#">Link</a></li>
-                        <li><a className="link" href="#">Link</a></li>
-                        <li><a className="link" href="#">Link</a></li>
-                        <li><a className="link" href="#">Link</a></li>
+                        <li><a className="link" href="/">Link</a></li>
+                        <li><a className="link" href="/">Link</a></li>
+                        <li><a className="link" href="/">Link</a></li>
+                        <li><a className="link" href="/">Link</a></li>
                     </ul>
                 </div>
                 <div className="col-3">
                     <h5>Sellers</h5>
                     <ul className="list-unstyled text-small">
-                        <li><a className="link" href="#">Link</a></li>
-                        <li><a className="link" href="#">Link</a></li>
-                        <li><a className="link" href="#">Link</a></li>
-                        <li><a className="link" href="#">Link</a></li>
+                        <li><a className="link" href="/">Link</a></li>
+                        <li><a className="link" href="/">Link</a></li>
+                        <li><a className="link" href="/">Link</a></li>
+                        <li><a className="link" href="/">Link</a></li>
                     </ul>
                 </div>
                 <div className="col-3">
                     <h5>About</h5>
                     <ul className="list-unstyled text-small">
-                        <li><a className="link" href="#">Link</a></li>
-                        <li><a className="link" href="#">Link</a></li>
-                        <li><a className="link" href="#">Link</a></li>
-                        <li><a className="link" href="#">Link</a></li>
+                        <li><a className="link" href="/">Link</a></li>
+                        <li><a className="link" href="/">Link</a></li>
+                        <li><a className="link" href="/">Link</a></li>
+                        <li><a className="link" href="/">Link</a></li>
                     </ul>
                 </div>
             </div>

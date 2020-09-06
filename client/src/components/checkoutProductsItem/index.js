@@ -3,26 +3,30 @@ import React from "react";
 import Row from 'react-bootstrap/Row';
 import "./style.css"
 
-function ProductsListItem(props) {
+function ProductsListItem({ product, handleDeleteBtn }) {
     return (
         <Row className="rowmar">
             <div className="col-1">
-                <img src="../../Images/carouselph.png" className="imgwd"></img>
+                <img src={product.picture} className="imgwd" alt="Product"></img>
             </div>
             <div className="col-2">
-                Product title
+                {product.productName}
             </div>
             <div className="col-3">
-                $1,000 MXN
+                ${product.price} MXN
                 </div>
             <div className="col-3">
-                2
-                </div>
+                {product.quantity}
+            </div>
             <div className="col-2">
-                $2,000 MXN
+                ${parseFloat(product.price) * parseFloat(product.quantity)} MXN
                 </div>
             <div className="col-1">
-                <i class="fas fa-trash"></i>
+                <i
+                    className="fas fa-trash"
+                    productId={product._id}
+                    onClick={handleDeleteBtn}
+                ></i>
             </div>
         </Row>
     )

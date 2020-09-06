@@ -38,7 +38,7 @@ function NavCustomer() {
                     <Link
                         to={process.env.PUBLIC_URL + '/home/shoppingcart'}
                     >
-                        <Nav.Link href="/home/shoppingcart"><i class="fas fa-shopping-cart"></i>Shopping Cart</Nav.Link>
+                        <Nav.Link href="/home/shoppingcart"><i className="fas fa-shopping-cart"></i>Shopping Cart</Nav.Link>
                     </Link>
                 </Nav>
             </Navbar.Collapse>

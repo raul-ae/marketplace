@@ -3,7 +3,7 @@ import CardDeck from 'react-bootstrap/CardDeck';
 import Card from 'react-bootstrap/Card';
 import { Link } from "react-router-dom";
 import "./style.css";
-import Productdp from '../../pages/PDPCustomer';
+// import Productdp from '../../pages/PDPCustomer';
 
 function Mainproducts({ products }) {
 
