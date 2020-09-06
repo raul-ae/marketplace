@@ -1,60 +1,35 @@
 import React from "react";
 import CardDeck from 'react-bootstrap/CardDeck';
 import Card from 'react-bootstrap/Card';
+import { Link } from "react-router-dom";
 import "./style.css";
-function Mainproducts(props) {
+function Mainproducts({ products }) {
     
     return (
       <div>
         <CardDeck className="cards">
+        {products.map(product => {
+            return (
             <Card>
-                <Card.Img variant="top" src="../../Images/productph.png" />
+                <Card.Img variant="top" src={product.picture} />
                 <Card.Body>
-                <Card.Title>Title</Card.Title>
-                <Card.Text>Text</Card.Text>
+                <Card.Title>{product.productName}</Card.Title>
+                <Card.Text>{product.description}</Card.Text>
+                <Link
+                  to={process.env.PUBLIC_URL + '/home/product/' + product._id}
+                >
+                  <div className="buttonNav col-12">View</div>
+                </Link>
                 </Card.Body>
                 <Card.Footer>
                 <small className="text-muted">
-                    SellerID: Seller
+                    SellerID: {product.sellerId}
                 </small>
                 </Card.Footer>
             </Card>
-            <Card>
-                <Card.Img variant="top" src="../../Images/productph.png" />
-                <Card.Body>
-                <Card.Title>Title</Card.Title>
-                <Card.Text>Text</Card.Text>
-                </Card.Body>
-                <Card.Footer>
-                <small className="text-muted">
-                    SellerID: Seller
-                </small>
-                </Card.Footer>
-            </Card>
-            <Card>
-                <Card.Img variant="top" src="../../Images/productph.png" />
-                <Card.Body>
-                <Card.Title>Title</Card.Title>
-                <Card.Text>Text</Card.Text>
-                </Card.Body>
-                <Card.Footer>
-                <small className="text-muted">
-                    SellerID: Seller
-                </small>
-                </Card.Footer>
-            </Card>
-            <Card>
-                <Card.Img variant="top" src="../../Images/productph.png" />
-                <Card.Body>
-                <Card.Title>Title</Card.Title>
-                <Card.Text>Text</Card.Text>
-                </Card.Body>
-                <Card.Footer>
-                <small className="text-muted">
-                    SellerID: Seller
-                </small>
-                </Card.Footer>
-            </Card>
+                      );
+                    })
+                    }
         </CardDeck>
     </div>
   );

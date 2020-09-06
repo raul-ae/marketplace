@@ -18,10 +18,10 @@ function ProductDetail({ productName, description, price }) {
                 <div className="col-6">Select: </div>
                 <div className="col-6">
                     <form>
-                        <div class="form-row align-items-right">
-                            <div class="col-auto my-1 align-items-right">
-                                <label class="mr-sm-2 sr-only" for="inlineFormCustomSelect">Preference</label>
-                                <select class="custom-select mr-sm-2" id="inlineFormCustomSelect">
+                        <div className="form-row align-items-right">
+                            <div className="col-auto my-1 align-items-right">
+                                <label className="mr-sm-2 sr-only" for="inlineFormCustomSelect">Preference</label>
+                                <select className="custom-select mr-sm-2" id="inlineFormCustomSelect">
                                     <option selected>Quantity</option>
                                     <option value="1">1</option>
                                     <option value="2">2</option>
@@ -35,8 +35,8 @@ function ProductDetail({ productName, description, price }) {
                                     <option value="10">10</option>
                                 </select>
                             </div>
-                            <div class="col-auto my-1 align-items-right">
-                                <div type="submit" class="add">Add</div>
+                            <div className="col-auto my-1 align-items-right">
+                                <div type="submit" className="add">Add</div>
                             </div>
                         </div>
                     </form>

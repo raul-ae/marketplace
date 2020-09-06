@@ -29,7 +29,7 @@ function PDP() {
           </div>
         </Row>
         <Link
-          to={process.env.PUBLIC_URL + '/check/confirmation'}
+          to={process.env.PUBLIC_URL + '/home/confirmation'}
         >
           <div className="buttonNav col-12">Confirm your purchase</div>
         </Link>

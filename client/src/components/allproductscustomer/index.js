@@ -1,5 +1,6 @@
 import React from "react";
-import CardColumns from 'react-bootstrap/CardColumns';
+// import CardColumns from 'react-bootstrap/CardColumns';
+// import CardDeck from 'react-bootstrap/CardDeck';
 import Card from 'react-bootstrap/Card';
 import { Link } from 'react-router-dom';
 import "./style.css";
@@ -10,10 +11,12 @@ function AllProducts(props) {
       <h1>
         All products
     </h1>
-      <CardColumns >
+      <div class="row row-cols-1 row-cols-md-4">
+        
         {props.products.map(product => {
           return (
-            <Card className="crd-height mb-3">
+            <div class="col mb-4">
+            <div class="card">
               <Card.Img variant="top" src={product.picture} className="crd-img-hgt" />
               <Card.Body>
                 <Card.Title>{product.productName}</Card.Title>
@@ -30,11 +33,13 @@ function AllProducts(props) {
                   SellerID: {product.sellerId}
                 </small>
               </Card.Footer>
-            </Card>
+              </div>
+            </div>
           );
         })
         }
-      </CardColumns>
+      </div>
+      
     </div>
   );
 }

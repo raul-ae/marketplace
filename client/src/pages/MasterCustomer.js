@@ -1,7 +1,7 @@
 import React from "react";
-import NavCustomer from '../components/navcustomer'
-import Categories from '../components/categoriescustomer'
-import Footer from '../components/footercustomer'
+// import NavCustomer from '../components/navcustomer'
+// import Categories from '../components/categoriescustomer'
+// import Footer from '../components/footercustomer'
 import HomeCustomer from './Home.js'
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Wrapper from "../components/Wrapper";
@@ -10,6 +10,7 @@ import LogIn from "./LogIn"
 import ResumeCheckout from "./ResumeCheck"
 import ResumePayment from './ResumePayment'
 import ResumeConfirmation from './ResumeConfirmation'
+import Plp from "./PLPCustomer"
 // import Checkout from "./Checkout"
 
 function MasterCustomer() {
@@ -23,6 +24,7 @@ function MasterCustomer() {
               <Productdp />
             );
           }} />
+          <Route path={process.env.PUBLIC_URL + '/home/productlist'} component={Plp} />
           <Route path={process.env.PUBLIC_URL + '/home/login'} component={LogIn} />
           <Route path={process.env.PUBLIC_URL + '/home/shoppingcart'} component={ResumeCheckout} />
           <Route path={process.env.PUBLIC_URL + '/home/payment'} component={ResumePayment} />
