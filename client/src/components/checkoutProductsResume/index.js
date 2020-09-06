@@ -34,7 +34,7 @@ function ProductsListResume() {
                 </Row>
                 <Row>
                     <Link
-                        to={process.env.PUBLIC_URL + '/check/payment'}
+                        to={process.env.PUBLIC_URL + '/home/payment'}
                     >
                         <div className="buttonNav col-12">Purchase</div>
                     </Link>

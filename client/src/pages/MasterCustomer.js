@@ -1,7 +1,4 @@
 import React from "react";
-import NavCustomer from '../components/navcustomer'
-import Categories from '../components/categoriescustomer'
-import Footer from '../components/footercustomer'
 import HomeCustomer from './Home.js'
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Wrapper from "../components/Wrapper";
