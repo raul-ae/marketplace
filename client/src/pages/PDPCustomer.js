@@ -35,35 +35,35 @@ function PDP() {
 
     useEffect(() => {
         loadProduct(id);
-    }, []);
+    }, [id]);
 
     useEffect(() => {
         loadCategories()
-    }, [])
-    
+    }, [id])
+
     useEffect(() => {
         loadProducts()
-    }, [])
-    
+    }, [id])
+
     function loadCategories() {
         API.getCategories()
-          .then(res => {
-            setCategories(res.data);
-            console.log('loadCategories - res.data: ', res.data);
-          }
-          )
-          .catch(err => console.log(err));
+            .then(res => {
+                setCategories(res.data);
+                console.log('loadCategories - res.data: ', res.data);
+            }
+            )
+            .catch(err => console.log(err));
     };
 
     function loadProducts() {
         API.getProducts()
-          .then(res => {
-            setTop4(res.data);
-            console.log('loadProducts - res.data: ', res.data);
-          }
-          )
-          .catch(err => console.log(err));
-      };
+            .then(res => {
+                setTop4(res.data);
+                console.log('loadProducts - res.data: ', res.data);
+            }
+            )
+            .catch(err => console.log(err));
+    };
 
     const loadProduct = (id) => {
         API.getProduct(id)
@@ -78,21 +78,21 @@ function PDP() {
     function setTop4(array) {
         let top4 = []
         let baseArray = array.slice(0);
-    
+
         for (let i = 0; i < 4; i++) {
-          let index = Math.floor(Math.random() * baseArray.length)
-          top4.push(baseArray[index])
-          baseArray.splice(index, 1);
+            let index = Math.floor(Math.random() * baseArray.length)
+            top4.push(baseArray[index])
+            baseArray.splice(index, 1);
         };
         setTopProducts(top4);
-      }
+    }
 
 
 
     return (
         <>
             <NavCustomer />
-            <Categories categories= {categories}/>
+            <Categories categories={categories} />
             <Container>
                 {product && (
                     <Row>
@@ -121,7 +121,7 @@ function PDP() {
                 <Row>
                     <Col>
                         <h2>Related products</h2>
-                        <Related products={topProducts}/>
+                        <Related products={topProducts} />
                     </Col>
                 </Row>
             </Container>
