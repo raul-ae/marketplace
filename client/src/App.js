@@ -3,6 +3,7 @@ import MasterCustomer from './pages/MasterCustomer'
 import MasterAdmin from './pages/MasterAdmin'
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Wrapper from "./components/Wrapper";
+import MasterCheckout from './pages/MasterCustomerCheckout'
 
 // Add Stripe to your React app
 // Use the Stripe.js and the Stripe Elements UI library to stay PCI compliant by ensuring that card details go directly to Stripe and never reach your server.
@@ -28,18 +29,21 @@ function App() {
   // Initialize Stripe Elements
   // Pass the resulting promise from loadStripe to the Elements provider. This allows the child components to access the Stripe service via the Elements consumer.
   return (
-    <Elements stripe={promise}>
-      <Router>
-        <Wrapper>
-          <Switch>
-            <Route path={process.env.PUBLIC_URL + '/home'} component={MasterCustomer} />
-            <Route path={process.env.PUBLIC_URL + '/admin'} component={MasterAdmin} />
+
+    <Router>
+      <Wrapper>
+        <Switch>
+          <Route exact path={process.env.PUBLIC_URL + '/'} component={MasterCustomer} />
+          <Route path={process.env.PUBLIC_URL + '/home'} component={MasterCustomer} />
+          <Route path={process.env.PUBLIC_URL + '/admin'} component={MasterAdmin} />
+          <Route path={process.env.PUBLIC_URL + '/check'} component={MasterCheckout} />
+          <Elements stripe={promise}>
             <Route path={process.env.PUBLIC_URL + '/checkout'} component={CheckoutForm} />
-            <Route component={MasterCustomer} />
-          </Switch>
-        </Wrapper>
-      </Router>
-    </Elements>
+          </Elements>
+          <Route component={MasterCustomer} />
+        </Switch>
+      </Wrapper>
+    </Router>
   );
 }
 
