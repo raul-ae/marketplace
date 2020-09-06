@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useState, useEffect } from "react";
 // import "./style.css";
 import Card from 'react-bootstrap/Card';
 import Row from 'react-bootstrap/Row';
@@ -7,19 +7,23 @@ import Item from '../checkoutProductsItem';
 
 function ProductsList() {
 
-    let product = {};
+    const [localStorageProducts, setlocalStorageProducts] = useState([]);
+    let localProducts = [];
 
     useEffect(() => {
         getLocalStoragePdts();
-    });
+    }, []);
 
     const getLocalStoragePdts = () => {
         console.log('localStorage.length: ', localStorage.length);
         for (let i = 0; i < localStorage.length; i++) {
             let id = localStorage.key(i);
-            product = JSON.parse(localStorage.getItem(id));
+            let product = JSON.parse(localStorage.getItem(id));
+            localProducts.push(product);
             console.log('productName: ', product.productName);
         }
+        console.log('localProducts: ', localProducts);
+        setlocalStorageProducts(localProducts);
     }
 
     return (
@@ -38,8 +42,11 @@ function ProductsList() {
                     Total
                 </div>
             </Row>
-            <Item />
-            <Item />
+            {localStorageProducts.map((product) => {
+                return (
+                    <Item product={product} />
+                );
+            })}
         </Card>
     )
 }
