@@ -5,7 +5,14 @@ import Row from 'react-bootstrap/Row';
 import "./style.css"
 import { Link } from "react-router-dom";
 
-function ProductsListResume() {
+function ProductsListResume({ localStorageProducts }) {
+
+    let subtototal = 0;
+
+    localStorageProducts.forEach(product => {
+        subtototal += parseFloat(product.price) * parseFloat(product.quantity);
+    });
+
     return (
         // <Row>
         //     <div className="col-7">
@@ -22,7 +29,7 @@ function ProductsListResume() {
             <Card body className="cardRes col-6">
                 <Row>
                     <div className="col-6">Subtotal</div>
-                    <div className="col-6">$2,000 MXN</div>
+                    <div className="col-6">${subtototal} MXN</div>
                 </Row>
                 <Row>
                     <div className="col-6">Shipping</div>
@@ -30,7 +37,7 @@ function ProductsListResume() {
                 </Row>
                 <Row>
                     <div className="col-6">Total</div>
-                    <div className="col-6">$2,100 MXN</div>
+                    <div className="col-6">${subtototal + 100} MXN</div>
                 </Row>
                 <Row>
                     <Link

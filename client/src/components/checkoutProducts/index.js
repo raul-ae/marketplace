@@ -5,26 +5,7 @@ import Row from 'react-bootstrap/Row';
 import "./style.css"
 import Item from '../checkoutProductsItem';
 
-function ProductsList() {
-
-    const [localStorageProducts, setlocalStorageProducts] = useState([]);
-    let localProducts = [];
-
-    useEffect(() => {
-        getLocalStoragePdts();
-    }, []);
-
-    const getLocalStoragePdts = () => {
-        console.log('localStorage.length: ', localStorage.length);
-        for (let i = 0; i < localStorage.length; i++) {
-            let id = localStorage.key(i);
-            let product = JSON.parse(localStorage.getItem(id));
-            localProducts.push(product);
-            console.log('productName: ', product.productName);
-        }
-        console.log('localProducts: ', localProducts);
-        setlocalStorageProducts(localProducts);
-    }
+function ProductsList({ localStorageProducts }) {
 
     return (
         <Card body className="cardRes">
