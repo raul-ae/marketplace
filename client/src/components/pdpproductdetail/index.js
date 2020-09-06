@@ -2,7 +2,7 @@ import React from "react";
 import "./style.css";
 
 
-function ProductDetail({ productId, productName, description, price }) {
+function ProductDetail({ product, productId, productName, description, price }) {
     return (
         <div>
             <div className="productheight">
@@ -37,7 +37,11 @@ function ProductDetail({ productId, productName, description, price }) {
                             </div>
                             <div className="col-auto my-1 align-items-right">
                                 <div type="submit" className="add" onClick={() => {
-                                    localStorage.setItem(productId, document.querySelector('#quantity').value);
+                                    let productAndQuantity = {
+                                        ...product,
+                                        quantity: document.querySelector('#quantity').value
+                                    }
+                                    localStorage.setItem(productId, JSON.stringify(productAndQuantity));
                                 }}>Add</div>
                             </div>
                         </div>
