@@ -2,6 +2,15 @@ import axios from "axios";
 
 export default {
 
+  // ********** LogIn && SignUp **********
+  getUser: function (userName) {
+    console.log("logIn API called")
+    return axios.get("/api/consumers/" + userName);
+  },
+  saveUser: function (userData) {
+    return axios.post("/api/consumers", userData);
+  },
+  
   // ********** Stores **********
   // Gets all 
   getStores: function () {
@@ -74,6 +83,19 @@ export default {
   },
   saveSeller: function (sellerData) {
     return axios.post("/api/sellers", sellerData);
-  }
+  },
+
+  // ********** Customers **********
+  getConsumers: function () {
+    return axios.get("/api/consumers");
+  },
+
+  // ********** Orders **********
+  getOrders: function () {
+    return axios.get("/api/orders");
+  },
+  saveOrder: function (orderData) {
+    return axios.post("/api/orders", orderData);
+  },
 };
 

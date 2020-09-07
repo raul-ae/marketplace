@@ -4,23 +4,33 @@ import Card from 'react-bootstrap/Card';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 
-function ProductsList() {
+function ProductsList({ consumer }) {
+
+    let address = {};
+
+    if (consumer) {
+        // if (consu.length > 0) {
+        address = consumer.consumerAddress;
+        // }
+    }
+
+
     return (
         <Card body className="cardRes">
             <Form>
                 <Form.Group controlId="formBasicEmail">
                     <Form.Label>Address</Form.Label>
-                    <Form.Control type="text" placeholder="Streeet, number" />
+                    <Form.Control type="text" placeholder="Streeet, number" value={address.street} />
                     <Form.Label>Number</Form.Label>
-                    <Form.Control type="text" placeholder="Enter your address number" />
+                    <Form.Control type="text" placeholder="Enter your address number" value={address.number} />
                     <Form.Label>Neighborhood</Form.Label>
-                    <Form.Control type="text" placeholder="Enter your neighborhood  " />
+                    <Form.Control type="text" placeholder="Enter your neighborhood" value={address.neighborhood} />
                     <Form.Label>Zip Code</Form.Label>
-                    <Form.Control type="text" placeholder="Enter your Zip code  " />
+                    <Form.Control type="text" placeholder="Enter your Zip code" value={address.zipCode} />
                 </Form.Group>
                 <Form.Group controlId="exampleForm.ControlSelect1">
                     <Form.Label>Country</Form.Label>
-                    <Form.Control as="select">
+                    <Form.Control as="select" value={address.country} >
                         <option>Select your country</option>
                         <option>Mexico</option>
                         <option>United States</option>
@@ -28,43 +38,43 @@ function ProductsList() {
                 </Form.Group>
                 <Form.Group controlId="exampleForm.ControlSelect1">
                     <Form.Label>State</Form.Label>
-                    <Form.Control as="select">
+                    <Form.Control as="select" value={address.state}>
                         <option>Select your state</option>
-                        <option value="DIF">Ciudad de M&eacute;xico</option>
-                        <option value="AGS">Aguascalientes</option>
-                        <option value="BCN">Baja California</option>
-                        <option value="BCS">Baja California Sur</option>
-                        <option value="CAM">Campeche</option>
-                        <option value="CHP">Chiapas</option>
-                        <option value="CHI">Chihuahua</option>
-                        <option value="COA">Coahuila</option>
-                        <option value="COL">Colima</option>
-                        <option value="DUR">Durango</option>
-                        <option value="GTO">Guanajuato</option>
-                        <option value="GRO">Guerrero</option>
-                        <option value="HGO">Hidalgo</option>
-                        <option value="JAL">Jalisco</option>
-                        <option value="MEX">M&eacute;xico</option>
-                        <option value="MIC">Michoac&aacute;n</option>
-                        <option value="MOR">Morelos</option>
-                        <option value="NAY">Nayarit</option>
-                        <option value="NLE">Nuevo Le&oacute;n</option>
-                        <option value="OAX">Oaxaca</option>
-                        <option value="PUE">Puebla</option>
-                        <option value="QRO">Quer&eacute;taro</option>
-                        <option value="ROO">Quintana Roo</option>
-                        <option value="SLP">San Luis Potos&iacute;</option>
-                        <option value="SIN">Sinaloa</option>
-                        <option value="SON">Sonora</option>
-                        <option value="TAB">Tabasco</option>
-                        <option value="TAM">Tamaulipas</option>
-                        <option value="TLX">Tlaxcala</option>
-                        <option value="VER">Veracruz</option>
-                        <option value="YUC">Yucat&aacute;n</option>
-                        <option value="ZAC">Zacatecas</option>
+                        <option>Ciudad de Mexico</option>
+                        <option>Aguascalientes</option>
+                        <option>Baja California</option>
+                        <option>Baja California Sur</option>
+                        <option>Campeche</option>
+                        <option>Chiapas</option>
+                        <option>Chihuahua</option>
+                        <option>Coahuila</option>
+                        <option>Colima</option>
+                        <option>Durango</option>
+                        <option>Guanajuato</option>
+                        <option>Guerrero</option>
+                        <option>Hidalgo</option>
+                        <option>Jalisco</option>
+                        <option>M&eacute;xico</option>
+                        <option>Michoac&aacute;n</option>
+                        <option>Morelos</option>
+                        <option>Nayarit</option>
+                        <option>Nuevo Le&oacute;n</option>
+                        <option>Oaxaca</option>
+                        <option>Puebla</option>
+                        <option>Quer&eacute;taro</option>
+                        <option>Quintana Roo</option>
+                        <option>San Luis Potos&iacute;</option>
+                        <option>Sinaloa</option>
+                        <option>Sonora</option>
+                        <option>Tabasco</option>
+                        <option>Tamaulipas</option>
+                        <option>Tlaxcala</option>
+                        <option>Veracruz</option>
+                        <option>Yucat&aacute;n</option>
+                        <option>Zacatecas</option>
                     </Form.Control>
                 </Form.Group>
-                <Button variant="primary" type="submit">
+                <Button variant="info" type="submit">
                     Save
                 </Button>
             </Form>
