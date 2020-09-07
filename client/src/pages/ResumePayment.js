@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Container from 'react-bootstrap/Container';
 import PersonalInfoForm from "../components/checkoutperinfo";
 import AddressForm from "../components/checkoutaddress";
@@ -8,8 +8,27 @@ import "./styles.css";
 import { Link } from "react-router-dom";
 import NavCustomer from '../components/navcustomercheckout'
 import Footer from '../components/footercustomercheckout'
+import API from "../utils/API";
 
 function PDP() {
+
+  const [consumer, setConsumer] = useState();
+
+  useEffect(() => {
+    loadConsumers();
+  }, []);
+
+  const loadConsumers = () => {
+    API.getConsumers()
+      .then(res => {
+        // setConsumers(res.data);
+        console.log('loadConsumers - res.data: ', res.data);
+        setConsumer(res.data[0]);
+      }
+      )
+      .catch(err => console.log(err));
+  }
+
   return (
     <>
       <NavCustomer />
@@ -17,22 +36,17 @@ function PDP() {
         <Row>
           <div className="col-4">
             <h1>Personal Information</h1>
-            <PersonalInfoForm />
+            <PersonalInfoForm consumer={consumer} />
           </div>
           <div className="col-4">
             <h1>Address</h1>
-            <AddressForm />
+            <AddressForm consumer={consumer} />
           </div>
           <div className="col-4">
             <h1>Add Payment details</h1>
-            <PaymentForm />
+            <PaymentForm consumer={consumer} />
           </div>
         </Row>
-        <Link
-          to={process.env.PUBLIC_URL + '/home/confirmation'}
-        >
-          <div className="buttonNav col-12">Confirm your purchase</div>
-        </Link>
       </Container>
       <Footer />
     </>

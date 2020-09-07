@@ -44,12 +44,16 @@ function HomeAdmin() {
     seller: "",
     products: [],
   })
+  const [orders, setOrders] = useState([]);
+
 
   useEffect(() => {
     loadProducts()
     loadCategories();
     loadSellers();
     loadStores();
+    loadConsumers();
+    loadOrders();
   }, []);
 
   // ****************************** Stores ******************************
@@ -297,6 +301,29 @@ function HomeAdmin() {
     updateCategory(id, categoryUpdatedName);
   }
 
+  // ****************************** CUSTOMERS ******************************
+
+  const loadConsumers = () => {
+    API.getConsumers()
+      .then(res => {
+        // setConsumers(res.data);
+        console.log('loadConsumers - res.data: ', res.data);
+      }
+      )
+      .catch(err => console.log(err));
+  }
+
+  // ****************************** ORDERS ******************************
+
+  const loadOrders = () => {
+    API.getOrders()
+      .then(res => {
+        setOrders(res.data);
+        console.log('loadOrders - res.data: ', res.data);
+      }
+      )
+      .catch(err => console.log(err));
+  }
 
 
   return (
@@ -335,7 +362,7 @@ function HomeAdmin() {
               />
             </Tab.Pane>
             <Tab.Pane eventKey="second">
-              <OrdersConfig />
+              <OrdersConfig orders={orders} />
             </Tab.Pane>
             <Tab.Pane eventKey="third">
               <CategoriesConfig

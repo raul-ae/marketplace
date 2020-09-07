@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { CardElement, useStripe, useElements } from "@stripe/react-stripe-js";
 import './CheckoutForm.css'
+import API from '../../utils/API';
 
-export default function CheckoutForm() {
+export default function CheckoutForm({ consumer }) {
   // Set up the state
   // Initialize some state to keep track of the payment, show errors, and manage the user interface.
   const [succeeded, setSucceeded] = useState(false);
@@ -10,6 +11,130 @@ export default function CheckoutForm() {
   const [processing, setProcessing] = useState("");
   const [disabled, setDisabled] = useState(true);
   const [clientSecret, setClientSecret] = useState("");
+
+
+  // const [order, setOrder] = useState({});
+
+  let localProducts = [];
+  let stores = [];
+  let storeIDs = [];
+  let shipping = 100;
+
+
+  useEffect(() => {
+    if (succeeded) {
+      getLocalStoragePdts();
+      loadStores();
+    }
+  }, [succeeded]);
+
+  /* useEffect(() => {
+    if (order.length > 0) {
+      console.log('useEffect - order: ', order);
+      saveOrder();
+    }
+  }, [order]); */
+
+  const getLocalStoragePdts = () => {
+    // console.log('localStorage.length: ', localStorage.length);
+    for (let i = 0; i < localStorage.length; i++) {
+      let id = localStorage.key(i);
+      let product = JSON.parse(localStorage.getItem(id));
+      if (typeof (product) === 'object') {
+        localProducts.push(product);
+      }
+      // console.log('productName: ', product.productName);
+    }
+    // console.log('localProducts: ', localProducts);
+    // setlocalStorageProducts(localProducts);
+  }
+
+  const loadStores = () => {
+    API.getStores()
+      .then(res => {
+        // setStores(res.data);
+        stores = [...res.data];
+        // console.log('loadStores - res.data: ', res.data);
+        // console.log('loadStores - stores: ', stores);
+        getStoresIdsAndTotalAmount();
+      })
+      .catch(err => console.log(err));
+  };
+
+  const getStoresIdsAndTotalAmount = () => {
+    // console.log('getMatchedStoresIds()');
+    // console.log('localProducts: ', localProducts);
+    // console.log('stores: ', stores);
+    let totalAmount = 0;
+    localProducts.forEach((product) => {
+      totalAmount += parseFloat(product.quantity) * parseFloat(product.price);
+      stores.forEach((store) => {
+        store.products.forEach((storeProduct) => {
+          // console.log(product._id + ' === ' + storeProduct);
+          if (product._id === storeProduct) {
+            storeIDs.push(store._id);
+          }
+        });
+      });
+    });
+    totalAmount += shipping;
+    // console.log('getMatchedStoresIds - storeIDs: ', storeIDs);
+    let uniqueStoreIDs = storeIDs.filter(onlyUnique);
+    // console.log('getMatchedStoresIds - uniqueStoreIDs: ', uniqueStoreIDs);
+    // console.log('getMatchedStoresIds - totalAmount: ', totalAmount);
+    createOrderObject(uniqueStoreIDs, totalAmount);
+  }
+
+  // Return only unique values of an array
+  // Source: https://stackoverflow.com/questions/1960473/get-all-unique-values-in-a-javascript-array-remove-duplicates
+  // usage example:
+  // var a = ['a', 1, 'a', 2, '1'];
+  // var unique = a.filter(onlyUnique); // returns ['a', 1, 2, '1']
+  function onlyUnique(value, index, self) {
+    return self.indexOf(value) === index;
+  }
+
+
+
+  const createOrderObject = (uniqueStoreIDs, totalAmount) => {
+    let orderObject = {
+      products: localProducts,
+      storeID: uniqueStoreIDs,
+      customerID: consumer._id,
+      orderStatus: 'Payed',
+      totalAmount: totalAmount,
+      deliveryAddress: consumer.consumerAddress
+    }
+    // setOrder(orderObject);
+    console.log('createOrderObject - orderObject: ', orderObject);
+    // console.log('createOrderObject - order: ', order);
+    saveOrder(orderObject);
+  }
+
+  const saveOrder = (orderObject) => {
+    // console.log('saveOrder - order: ', order);
+    API.saveOrder(orderObject)
+      .then(res => {
+        console.log('Order saved - res.data: ', res.data);
+        loadOrders();
+        setTimeout(() => {
+          window.location.pathname = 'home/confirmation';
+        }, 3000);
+      })
+      .catch(err => console.log(err));
+  }
+
+  const loadOrders = () => {
+    API.getOrders()
+      .then(res => {
+        // setOrders(res.data);
+        console.log('loadOrders - res.data: ', res.data);
+      }
+      )
+      .catch(err => console.log(err));
+  }
+
+
 
   // Store a reference to Stripe
   // Access the Stripe library in your CheckoutForm component by using the useStripe() and useElements() hooks. If you need to access Elements via a class component, use the ElementsConsumer instead.

@@ -8,7 +8,7 @@ import { Elements } from "@stripe/react-stripe-js";
 
 const promise = loadStripe("pk_test_51HLY6nIsyYjySygOXa1LA85XDeyEmpELSHi6IGah9ECVTI6zod8Hk5Z7IEFDlNLIjTFLJB5SOTnpI6R5szjarang00wQanVBJ7");
 
-function ProductsList() {
+function ProductsList({ consumer }) {
 
 
     return (
@@ -16,7 +16,7 @@ function ProductsList() {
             <Form>
                 Payment Form
                  <Elements stripe={promise}>
-                    <CheckoutForm />
+                    <CheckoutForm consumer={consumer} />
                 </Elements>
             </Form>
         </Card>
