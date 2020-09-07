@@ -253,7 +253,15 @@ const orderSeed = [
     customerID: "5f542e6939eb3f321f9f9c4c",
     orderStatus: 'Payed',
     totalAmount: 5000,
-    Date: "2020-09-07T14:53:44.296Z"
+    Date: "2020-09-07T14:53:44.296Z",
+    deliveryAddress: {
+      street: 'Consulado',
+      number: '25',
+      neighborhood: 'Emiliano Zapata',
+      zipCode: '02080',
+      country: 'Mexico',
+      state: 'Ciudad de México'
+    },
   },
   {
     products: [
@@ -287,7 +295,15 @@ const orderSeed = [
     customerID: "5f542e6939eb3f321f9f9c4d",
     orderStatus: 'Delivered',
     totalAmount: 10000,
-    Date: "2020-09-07T14:53:44.296Z"
+    Date: "2020-09-07T14:53:44.296Z",
+    deliveryAddress: {
+      street: 'Ajusco',
+      number: '72',
+      neighborhood: 'Copilco',
+      zipCode: '03112',
+      country: 'Mexico',
+      state: 'Ciudad de México'
+    },
   },
   {
     products: [
@@ -345,7 +361,15 @@ const orderSeed = [
     customerID: "5f542e6939eb3f321f9f9c4e",
     orderStatus: 'Payed',
     totalAmount: 25000,
-    Date: "2020-09-07T14:53:44.296Z"
+    Date: "2020-09-07T14:53:44.296Z",
+    deliveryAddress: {
+      street: 'Durango',
+      number: '15',
+      neighborhood: 'Chimalistac',
+      zipCode: '03333',
+      country: 'Mexico',
+      state: 'Ciudad de México'
+    }
   },
 ];
 
