@@ -10,56 +10,77 @@ mongoose.connect(
   process.env.MONGODB_URI || "mongodb://localhost/reactreadinglist"
 );
 
-// const consumerSeed = [
-//   {
-//     userName: "Consumer01",
-//     firstName: "Jorge",
-//     lastName: "Guzman",
-//     password: "12345678",
-//     consumerAddress: "Estonia 1234, Europe",
-//     email: "jorge@bootcamp.com",
-//     mobile: "5555555555",
-//     picture: "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTMXpPVKw1sysj69NToCVHwWuu_1XJdZjsjeA&usqp=CAU",
-//     paymentMethod: "Credit Card",
-//     memberSince: new Date(Date.now())
-//   },
-//   {
-//     userName: "Consumer02",
-//     firstName: "Rodrigo",
-//     lastName: "Rosas",
-//     password: "12345678",
-//     consumerAddress: "Mexico City 1234, Mexico",
-//     email: "rodrigo@bootcamp.com",
-//     mobile: "5555555555",
-//     picture: "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTMXpPVKw1sysj69NToCVHwWuu_1XJdZjsjeA&usqp=CAU",
-//     paymentMethod: "Credit Card",
-//     memberSince: new Date(Date.now())
-//   },
-//   {
-//     userName: "Consumer03",
-//     firstName: "Raul",
-//     lastName: "Alarcon",
-//     password: "12345678",
-//     consumerAddress: "Puebla 1234, Mexico",
-//     email: "raul@bootcamp.com",
-//     mobile: "5555555555",
-//     picture: "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTMXpPVKw1sysj69NToCVHwWuu_1XJdZjsjeA&usqp=CAU",
-//     paymentMethod: "Credit Card",
-//     memberSince: new Date(Date.now())
-//   },
-// ];
+const consumerSeed = [
+  {
+    userName: "Consumer01",
+    firstName: "Jorge",
+    lastName: "Guzman",
+    password: "12345678",
+    consumerAddress: {
+      street: 'Consulado',
+      number: '25',
+      neighborhood: 'Emiliano Zapata',
+      zipCode: '02080',
+      country: 'Mexico',
+      state: 'Ciudad de México'
+    },
+    email: "jorge@bootcamp.com",
+    mobile: "5555555555",
+    picture: "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTMXpPVKw1sysj69NToCVHwWuu_1XJdZjsjeA&usqp=CAU",
+    paymentMethod: "Credit Card",
+    memberSince: new Date(Date.now())
+  },
+  {
+    userName: "Consumer02",
+    firstName: "Rodrigo",
+    lastName: "Rosas",
+    password: "12345678",
+    consumerAddress: {
+      street: 'Ajusco',
+      number: '72',
+      neighborhood: 'Copilco',
+      zipCode: '03112',
+      country: 'Mexico',
+      state: 'Ciudad de México'
+    },
+    email: "rodrigo@bootcamp.com",
+    mobile: "5555555555",
+    picture: "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTMXpPVKw1sysj69NToCVHwWuu_1XJdZjsjeA&usqp=CAU",
+    paymentMethod: "Credit Card",
+    memberSince: new Date(Date.now())
+  },
+  {
+    userName: "Consumer03",
+    firstName: "Raul",
+    lastName: "Alarcon",
+    password: "12345678",
+    consumerAddress: {
+      street: 'Puebla',
+      number: '123',
+      neighborhood: 'Chimalistac',
+      zipCode: '03333',
+      country: 'Mexico',
+      state: 'Ciudad de México'
+    },
+    email: "raul@bootcamp.com",
+    mobile: "5555555555",
+    picture: "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTMXpPVKw1sysj69NToCVHwWuu_1XJdZjsjeA&usqp=CAU",
+    paymentMethod: "Credit Card",
+    memberSince: new Date(Date.now())
+  },
+];
 
-// db.Consumer
-//   .remove({})
-//   .then(() => db.Consumer.collection.insertMany(consumerSeed))
-//   .then(data => {
-//     console.log(data.result.n + " records inserted!");
-//     process.exit(0);
-//   })
-//   .catch(err => {
-//     console.error(err);
-//     process.exit(1);
-//   });
+db.Consumer
+  .remove({})
+  .then(() => db.Consumer.collection.insertMany(consumerSeed))
+  .then(data => {
+    console.log(data.result.n + " records inserted!");
+    process.exit(0);
+  })
+  .catch(err => {
+    console.error(err);
+    process.exit(1);
+  });
 
 // const productSeed = [
 //   {
@@ -220,170 +241,170 @@ mongoose.connect(
 //     process.exit(1);
 //   });
 
-const orderSeed = [
-  {
-    products: [
-      {
-        categoryName: "Sports",
-        description: "Yankees Sweater",
-        picture: "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRBpLANJQep1g1BRPAhWoEPWsavA-pfSwOiR9eB5ZfgT5bdEzweA4tyFIsa8kY&usqp=CAc",
-        picture2: "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRBpLANJQep1g1BRPAhWoEPWsavA-pfSwOiR9eB5ZfgT5bdEzweA4tyFIsa8kY&usqp=CAc",
-        picture3: "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRBpLANJQep1g1BRPAhWoEPWsavA-pfSwOiR9eB5ZfgT5bdEzweA4tyFIsa8kY&usqp=CAc",
-        price: 1789,
-        productName: "NY Yankees Sweater",
-        quantity: "1",
-        sku: "1029455",
-        stock: 22,
-        _id: "5f54e130e99f9e7ff69bce4d"
-      }, {
-        categoryName: "Sports",
-        description: "Basketball profesional",
-        picture: "https://images-na.ssl-images-amazon.com/images/I/71GCU0ansNL._AC_SL1001_.jpg",
-        picture2: "https://images-na.ssl-images-amazon.com/images/I/71GCU0ansNL._AC_SL1001_.jpg",
-        picture3: "https://images-na.ssl-images-amazon.com/images/I/71GCU0ansNL._AC_SL1001_.jpg",
-        price: 205,
-        productName: "Balon Basketball",
-        quantity: "5",
-        sku: "293853",
-        stock: 29,
-        _id: "5f54e130e99f9e7ff69bce4b",
-      },
-    ],
-    storeID: "5f542e6a39eb3f321f9f9c51",
-    customerID: "5f542e6939eb3f321f9f9c4c",
-    orderStatus: 'Payed',
-    totalAmount: 5000,
-    Date: "2020-09-07T14:53:44.296Z",
-    deliveryAddress: {
-      street: 'Consulado',
-      number: '25',
-      neighborhood: 'Emiliano Zapata',
-      zipCode: '02080',
-      country: 'Mexico',
-      state: 'Ciudad de México'
-    },
-  },
-  {
-    products: [
-      {
-        categoryName: "Technology",
-        description: "iPhone 11 64 GB",
-        picture: "https://images-na.ssl-images-amazon.com/images/I/51GUjMAFDbL._AC_SL1382_.jpg",
-        picture2: "https://images-na.ssl-images-amazon.com/images/I/51GUjMAFDbL._AC_SL1382_.jpg",
-        picture3: "https://images-na.ssl-images-amazon.com/images/I/51GUjMAFDbL._AC_SL1382_.jpg",
-        price: 17000,
-        productName: "Apple iPhone 11 64GB",
-        quantity: "1",
-        sku: "22123",
-        stock: 20,
-        _id: "5f55a5124dc33c7574e9936c"
-      }, {
-        categoryName: "Sports",
-        description: "2 ruedas con canastilla",
-        picture: "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcSJuqN7wizjg97CwznHFpOAwXk77TQfoPSCCw&usqp=CAU",
-        picture2: "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcSJuqN7wizjg97CwznHFpOAwXk77TQfoPSCCw&usqp=CAU",
-        picture3: "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcSJuqN7wizjg97CwznHFpOAwXk77TQfoPSCCw&usqp=CAU",
-        price: 20500,
-        productName: "Bicicleta",
-        quantity: "2",
-        sku: "293847",
-        stock: 9,
-        _id: "5f54e130e99f9e7ff69bce49"
-      },
-    ],
-    storeID: "5f542e6a39eb3f321f9f9c52",
-    customerID: "5f542e6939eb3f321f9f9c4d",
-    orderStatus: 'Delivered',
-    totalAmount: 10000,
-    Date: "2020-09-07T14:53:44.296Z",
-    deliveryAddress: {
-      street: 'Ajusco',
-      number: '72',
-      neighborhood: 'Copilco',
-      zipCode: '03112',
-      country: 'Mexico',
-      state: 'Ciudad de México'
-    },
-  },
-  {
-    products: [
-      {
-        categoryName: "Sports",
-        description: "de futbol profesional",
-        picture: "https://images-na.ssl-images-amazon.com/images/I/71dBeCPtMmL._AC_SL1500_.jpg",
-        picture2: "https://images-na.ssl-images-amazon.com/images/I/71dBeCPtMmL._AC_SL1500_.jpg",
-        picture3: "https://images-na.ssl-images-amazon.com/images/I/71dBeCPtMmL._AC_SL1500_.jpg",
-        price: 444,
-        productName: "Balon Adidas Telstar",
-        quantity: "1",
-        sku: "293444",
-        stock: 44,
-        _id: "5f54e130e99f9e7ff69bce4c"
-      }, {
-        categoryName: "Office",
-        description: "de piel vacuno, color negro",
-        picture: "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQEa5U5J5af8aROIP9s6uH9QeeNoVZQnYVwyA&usqp=CAU",
-        picture2: "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQEa5U5J5af8aROIP9s6uH9QeeNoVZQnYVwyA&usqp=CAU",
-        picture3: "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQEa5U5J5af8aROIP9s6uH9QeeNoVZQnYVwyA&usqp=CAU",
-        price: 1300,
-        productName: "portafolios",
-        quantity: "3",
-        sku: "293850",
-        stock: 4,
-        _id: "5f54e130e99f9e7ff69bce4a"
-      }, {
-        categoryName: "Sports",
-        description: "NY Yankees jersey for adults",
-        picture: "https://fanatics.frgimages.com/FFImage/thumb.aspx?i=/productimages/_3811000/altimages/ff_3811588-f42e9430f73c9faccba0alt1_full.jpg&w=900",
-        picture2: "https://fanatics.frgimages.com/FFImage/thumb.aspx?i=/productimages/_3811000/altimages/ff_3811588-f42e9430f73c9faccba0alt1_full.jpg&w=900",
-        picture3: "https://fanatics.frgimages.com/FFImage/thumb.aspx?i=/productimages/_3811000/altimages/ff_3811588-f42e9430f73c9faccba0alt1_full.jpg&w=900",
-        price: 1234,
-        productName: "Yankees Jersey",
-        quantity: "5",
-        sku: "6436657",
-        stock: 34,
-        _id: "5f54e130e99f9e7ff69bce4f"
-      }, {
-        categoryName: "Sports",
-        description: "NY Yankees hat for adults",
-        picture: "https://images-na.ssl-images-amazon.com/images/I/71vPr8QApwL._AC_SL1500_.jpg",
-        picture2: "https://images-na.ssl-images-amazon.com/images/I/71vPr8QApwL._AC_SL1500_.jpg",
-        picture3: "https://images-na.ssl-images-amazon.com/images/I/71vPr8QApwL._AC_SL1500_.jpg",
-        price: 564,
-        productName: "Yankees Hat",
-        quantity: "1",
-        sku: "6473892",
-        stock: 56,
-        _id: "5f54e130e99f9e7ff69bce4e"
-      }
-    ],
-    storeID: "5f55b87a4199e05b7ff2043d",
-    customerID: "5f542e6939eb3f321f9f9c4e",
-    orderStatus: 'Payed',
-    totalAmount: 25000,
-    Date: "2020-09-07T14:53:44.296Z",
-    deliveryAddress: {
-      street: 'Durango',
-      number: '15',
-      neighborhood: 'Chimalistac',
-      zipCode: '03333',
-      country: 'Mexico',
-      state: 'Ciudad de México'
-    }
-  },
-];
+// const orderSeed = [
+//   {
+//     products: [
+//       {
+//         categoryName: "Sports",
+//         description: "Yankees Sweater",
+//         picture: "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRBpLANJQep1g1BRPAhWoEPWsavA-pfSwOiR9eB5ZfgT5bdEzweA4tyFIsa8kY&usqp=CAc",
+//         picture2: "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRBpLANJQep1g1BRPAhWoEPWsavA-pfSwOiR9eB5ZfgT5bdEzweA4tyFIsa8kY&usqp=CAc",
+//         picture3: "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRBpLANJQep1g1BRPAhWoEPWsavA-pfSwOiR9eB5ZfgT5bdEzweA4tyFIsa8kY&usqp=CAc",
+//         price: 1789,
+//         productName: "NY Yankees Sweater",
+//         quantity: "1",
+//         sku: "1029455",
+//         stock: 22,
+//         _id: "5f54e130e99f9e7ff69bce4d"
+//       }, {
+//         categoryName: "Sports",
+//         description: "Basketball profesional",
+//         picture: "https://images-na.ssl-images-amazon.com/images/I/71GCU0ansNL._AC_SL1001_.jpg",
+//         picture2: "https://images-na.ssl-images-amazon.com/images/I/71GCU0ansNL._AC_SL1001_.jpg",
+//         picture3: "https://images-na.ssl-images-amazon.com/images/I/71GCU0ansNL._AC_SL1001_.jpg",
+//         price: 205,
+//         productName: "Balon Basketball",
+//         quantity: "5",
+//         sku: "293853",
+//         stock: 29,
+//         _id: "5f54e130e99f9e7ff69bce4b",
+//       },
+//     ],
+//     storeID: "5f542e6a39eb3f321f9f9c51",
+//     customerID: "5f542e6939eb3f321f9f9c4c",
+//     orderStatus: 'Payed',
+//     totalAmount: 5000,
+//     Date: "2020-09-07T14:53:44.296Z",
+//     deliveryAddress: {
+//       street: 'Consulado',
+//       number: '25',
+//       neighborhood: 'Emiliano Zapata',
+//       zipCode: '02080',
+//       country: 'Mexico',
+//       state: 'Ciudad de México'
+//     },
+//   },
+//   {
+//     products: [
+//       {
+//         categoryName: "Technology",
+//         description: "iPhone 11 64 GB",
+//         picture: "https://images-na.ssl-images-amazon.com/images/I/51GUjMAFDbL._AC_SL1382_.jpg",
+//         picture2: "https://images-na.ssl-images-amazon.com/images/I/51GUjMAFDbL._AC_SL1382_.jpg",
+//         picture3: "https://images-na.ssl-images-amazon.com/images/I/51GUjMAFDbL._AC_SL1382_.jpg",
+//         price: 17000,
+//         productName: "Apple iPhone 11 64GB",
+//         quantity: "1",
+//         sku: "22123",
+//         stock: 20,
+//         _id: "5f55a5124dc33c7574e9936c"
+//       }, {
+//         categoryName: "Sports",
+//         description: "2 ruedas con canastilla",
+//         picture: "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcSJuqN7wizjg97CwznHFpOAwXk77TQfoPSCCw&usqp=CAU",
+//         picture2: "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcSJuqN7wizjg97CwznHFpOAwXk77TQfoPSCCw&usqp=CAU",
+//         picture3: "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcSJuqN7wizjg97CwznHFpOAwXk77TQfoPSCCw&usqp=CAU",
+//         price: 20500,
+//         productName: "Bicicleta",
+//         quantity: "2",
+//         sku: "293847",
+//         stock: 9,
+//         _id: "5f54e130e99f9e7ff69bce49"
+//       },
+//     ],
+//     storeID: "5f542e6a39eb3f321f9f9c52",
+//     customerID: "5f542e6939eb3f321f9f9c4d",
+//     orderStatus: 'Delivered',
+//     totalAmount: 10000,
+//     Date: "2020-09-07T14:53:44.296Z",
+//     deliveryAddress: {
+//       street: 'Ajusco',
+//       number: '72',
+//       neighborhood: 'Copilco',
+//       zipCode: '03112',
+//       country: 'Mexico',
+//       state: 'Ciudad de México'
+//     },
+//   },
+//   {
+//     products: [
+//       {
+//         categoryName: "Sports",
+//         description: "de futbol profesional",
+//         picture: "https://images-na.ssl-images-amazon.com/images/I/71dBeCPtMmL._AC_SL1500_.jpg",
+//         picture2: "https://images-na.ssl-images-amazon.com/images/I/71dBeCPtMmL._AC_SL1500_.jpg",
+//         picture3: "https://images-na.ssl-images-amazon.com/images/I/71dBeCPtMmL._AC_SL1500_.jpg",
+//         price: 444,
+//         productName: "Balon Adidas Telstar",
+//         quantity: "1",
+//         sku: "293444",
+//         stock: 44,
+//         _id: "5f54e130e99f9e7ff69bce4c"
+//       }, {
+//         categoryName: "Office",
+//         description: "de piel vacuno, color negro",
+//         picture: "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQEa5U5J5af8aROIP9s6uH9QeeNoVZQnYVwyA&usqp=CAU",
+//         picture2: "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQEa5U5J5af8aROIP9s6uH9QeeNoVZQnYVwyA&usqp=CAU",
+//         picture3: "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQEa5U5J5af8aROIP9s6uH9QeeNoVZQnYVwyA&usqp=CAU",
+//         price: 1300,
+//         productName: "portafolios",
+//         quantity: "3",
+//         sku: "293850",
+//         stock: 4,
+//         _id: "5f54e130e99f9e7ff69bce4a"
+//       }, {
+//         categoryName: "Sports",
+//         description: "NY Yankees jersey for adults",
+//         picture: "https://fanatics.frgimages.com/FFImage/thumb.aspx?i=/productimages/_3811000/altimages/ff_3811588-f42e9430f73c9faccba0alt1_full.jpg&w=900",
+//         picture2: "https://fanatics.frgimages.com/FFImage/thumb.aspx?i=/productimages/_3811000/altimages/ff_3811588-f42e9430f73c9faccba0alt1_full.jpg&w=900",
+//         picture3: "https://fanatics.frgimages.com/FFImage/thumb.aspx?i=/productimages/_3811000/altimages/ff_3811588-f42e9430f73c9faccba0alt1_full.jpg&w=900",
+//         price: 1234,
+//         productName: "Yankees Jersey",
+//         quantity: "5",
+//         sku: "6436657",
+//         stock: 34,
+//         _id: "5f54e130e99f9e7ff69bce4f"
+//       }, {
+//         categoryName: "Sports",
+//         description: "NY Yankees hat for adults",
+//         picture: "https://images-na.ssl-images-amazon.com/images/I/71vPr8QApwL._AC_SL1500_.jpg",
+//         picture2: "https://images-na.ssl-images-amazon.com/images/I/71vPr8QApwL._AC_SL1500_.jpg",
+//         picture3: "https://images-na.ssl-images-amazon.com/images/I/71vPr8QApwL._AC_SL1500_.jpg",
+//         price: 564,
+//         productName: "Yankees Hat",
+//         quantity: "1",
+//         sku: "6473892",
+//         stock: 56,
+//         _id: "5f54e130e99f9e7ff69bce4e"
+//       }
+//     ],
+//     storeID: "5f55b87a4199e05b7ff2043d",
+//     customerID: "5f542e6939eb3f321f9f9c4e",
+//     orderStatus: 'Payed',
+//     totalAmount: 25000,
+//     Date: "2020-09-07T14:53:44.296Z",
+//     deliveryAddress: {
+//       street: 'Durango',
+//       number: '15',
+//       neighborhood: 'Chimalistac',
+//       zipCode: '03333',
+//       country: 'Mexico',
+//       state: 'Ciudad de México'
+//     }
+//   },
+// ];
 
-db.Order
-  .remove({})
-  .then(() => db.Order.collection.insertMany(orderSeed))
-  .then(data => {
-    console.log(data.result.n + " records inserted!");
-    process.exit(0);
-  })
-  .catch(err => {
-    console.error(err);
-    process.exit(1);
-  });
+// db.Order
+//   .remove({})
+//   .then(() => db.Order.collection.insertMany(orderSeed))
+//   .then(data => {
+//     console.log(data.result.n + " records inserted!");
+//     process.exit(0);
+//   })
+//   .catch(err => {
+//     console.error(err);
+//     process.exit(1);
+//   });
 
 // const categorySeed = [
 //   {
