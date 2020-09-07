@@ -29,7 +29,7 @@ function PDP() {
           <div className="col-12">
             <Card>
               <h3>Your Products</h3>
-              <Item />
+              {/* <Item /> */}
             </Card>
           </div>
         </Row>

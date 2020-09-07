@@ -11,6 +11,14 @@ export default function CheckoutForm() {
   const [disabled, setDisabled] = useState(true);
   const [clientSecret, setClientSecret] = useState("");
 
+  useEffect(() => {
+    if (succeeded) {
+      setTimeout(() => {
+        window.location.pathname = 'home/confirmation';
+      }, 3000);
+    }
+  }, [succeeded]);
+
   // Store a reference to Stripe
   // Access the Stripe library in your CheckoutForm component by using the useStripe() and useElements() hooks. If you need to access Elements via a class component, use the ElementsConsumer instead.
   const stripe = useStripe();
