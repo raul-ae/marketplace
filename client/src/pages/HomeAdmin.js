@@ -44,6 +44,8 @@ function HomeAdmin() {
     seller: "",
     products: [],
   })
+  const [orders, setOrders] = useState([]);
+
 
   useEffect(() => {
     loadProducts()
@@ -304,7 +306,7 @@ function HomeAdmin() {
   const loadConsumers = () => {
     API.getConsumers()
       .then(res => {
-        setCategories(res.data);
+        // setConsumers(res.data);
         console.log('loadConsumers - res.data: ', res.data);
       }
       )
@@ -316,7 +318,7 @@ function HomeAdmin() {
   const loadOrders = () => {
     API.getOrders()
       .then(res => {
-        setCategories(res.data);
+        setOrders(res.data);
         console.log('loadOrders - res.data: ', res.data);
       }
       )
@@ -360,7 +362,7 @@ function HomeAdmin() {
               />
             </Tab.Pane>
             <Tab.Pane eventKey="second">
-              <OrdersConfig />
+              <OrdersConfig orders={orders} />
             </Tab.Pane>
             <Tab.Pane eventKey="third">
               <CategoriesConfig
