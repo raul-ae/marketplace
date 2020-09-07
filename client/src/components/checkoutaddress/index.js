@@ -4,7 +4,7 @@ import Card from 'react-bootstrap/Card';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 
-function ProductsList() {
+function ProductsList({ consumer }) {
     return (
         <Card body className="cardRes">
             <Form>
@@ -64,7 +64,7 @@ function ProductsList() {
                         <option value="ZAC">Zacatecas</option>
                     </Form.Control>
                 </Form.Group>
-                <Button variant="primary" type="submit">
+                <Button variant="info" type="submit">
                     Save
                 </Button>
             </Form>
