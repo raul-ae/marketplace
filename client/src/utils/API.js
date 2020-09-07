@@ -2,6 +2,15 @@ import axios from "axios";
 
 export default {
 
+  // ********** LogIn && SignUp **********
+  getUser: function (userName) {
+    console.log("logIn API called")
+    return axios.get("/api/consumers/" + userName);
+  },
+  saveUser: function (userData) {
+    return axios.post("/api/consumers", userData);
+  },
+  
   // ********** Stores **********
   // Gets all 
   getStores: function () {

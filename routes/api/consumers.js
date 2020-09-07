@@ -13,4 +13,11 @@ router
   .put(consumersController.update)
   .delete(consumersController.remove);
 
+  // Matches with "/api/consumers/:email"
+  router
+  .route("/:email")
+  .get(consumersController.findByEmail)
+  .put(consumersController.update)
+  .delete(consumersController.remove);
+
 module.exports = router;
