@@ -8,7 +8,7 @@ function carousel() {
       <Carousel.Item>
         <img
           className="d-block w-100"
-          src="https://themarket.s3.us-east-2.amazonaws.com/Banners/carouselph2.png"
+          src="https://themarket.s3.us-east-2.amazonaws.com/Banners/bannerthemarket.jpg"
           alt="First slide"
         />
         <Carousel.Caption>
@@ -17,7 +17,7 @@ function carousel() {
       <Carousel.Item>
         <img
           className="d-block w-100"
-          src="../../Images/carouselph.png"
+          src="https://themarket.s3.us-east-2.amazonaws.com/Banners/carouselph2.png"
           alt="Third slide"
         />
 
@@ -29,7 +29,7 @@ function carousel() {
       <Carousel.Item>
         <img
           className="d-block w-100"
-          src="../../Images/carouselph.png"
+          src="https://themarket.s3.us-east-2.amazonaws.com/Banners/carouselph2.png"
           alt="Third slide"
         />
 

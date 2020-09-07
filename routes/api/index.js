@@ -6,6 +6,7 @@ const storeRoutes = require("./stores");
 const productRoutes = require("./products");
 const categoryRoutes = require("./categories");
 const orderRoutes = require("./orders");
+const productRoutesCat = require("./productsByCat");
 
 
 // Book routes
@@ -24,6 +25,9 @@ router.use("/stores", storeRoutes);
 
 // Product routes
 router.use("/products", productRoutes);
+
+//Product Categories routs
+router.use("/productscat", productRoutesCat);
 
 // Categories routes
 router.use("/categories", categoryRoutes);

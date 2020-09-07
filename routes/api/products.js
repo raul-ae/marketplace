@@ -13,4 +13,9 @@ router
   .put(productsController.update)
   .delete(productsController.remove);
 
+// Matches with "/api/productscat/category/:param"
+router
+  .route("/:categoryName")
+  .get(productsController.findByCategory)
+
 module.exports = router;
