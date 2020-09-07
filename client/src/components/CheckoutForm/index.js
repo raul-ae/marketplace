@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { CardElement, useStripe, useElements } from "@stripe/react-stripe-js";
 import './CheckoutForm.css'
+import API from '../../utils/API';
 
-export default function CheckoutForm() {
+export default function CheckoutForm({ consumer }) {
   // Set up the state
   // Initialize some state to keep track of the payment, show errors, and manage the user interface.
   const [succeeded, setSucceeded] = useState(false);
@@ -11,13 +12,83 @@ export default function CheckoutForm() {
   const [disabled, setDisabled] = useState(true);
   const [clientSecret, setClientSecret] = useState("");
 
+
+  const [order, setOrder] = useState({});
+  let localProducts = [];
+  let stores = [];
+
+
   useEffect(() => {
     if (succeeded) {
-      setTimeout(() => {
+      getLocalStoragePdts();
+      loadStores();
+      // createOrder();
+      // saveOrder(order);
+      /* setTimeout(() => {
         window.location.pathname = 'home/confirmation';
-      }, 3000);
+      }, 3000); */
     }
   }, [succeeded]);
+
+  const getLocalStoragePdts = () => {
+    // console.log('localStorage.length: ', localStorage.length);
+    for (let i = 0; i < localStorage.length; i++) {
+      let id = localStorage.key(i);
+      let product = JSON.parse(localStorage.getItem(id));
+      localProducts.push(product);
+      // console.log('productName: ', product.productName);
+    }
+    // console.log('localProducts: ', localProducts);
+    // setlocalStorageProducts(localProducts);
+  }
+
+  function loadStores() {
+    API.getStores()
+      .then(res => {
+        // setStores(res.data);
+        stores = [...res.data];
+        console.log('loadStores - res.data: ', res.data);
+        console.log('loadStores - stores: ', stores);
+      })
+      .catch(err => console.log(err));
+  };
+
+  const createOrder = () => {
+    setOrder({
+      products: localProducts,
+      /* storeID: {
+        type: Schema.Types.ObjectId,
+        ref: "store"
+      }, */
+      customerID: consumer._id,
+      orderStatus: 'Payed',
+      totalAmount: { type: Number, required: true },
+      Date: Date.now,
+      deliveryAddress: consumer.consumerAddress
+    });
+  }
+
+  const saveOrder = (order) => {
+    // console.log('saveOrder - order: ', order);
+    API.saveSeller(order)
+      .then(res => {
+        console.log('Order saved - res.data: ', res.data);
+        loadOrders();
+      })
+      .catch(err => console.log(err));
+  }
+
+  const loadOrders = () => {
+    API.getOrders()
+      .then(res => {
+        // setOrders(res.data);
+        console.log('loadOrders - res.data: ', res.data);
+      }
+      )
+      .catch(err => console.log(err));
+  }
+
+
 
   // Store a reference to Stripe
   // Access the Stripe library in your CheckoutForm component by using the useStripe() and useElements() hooks. If you need to access Elements via a class component, use the ElementsConsumer instead.

@@ -46,7 +46,12 @@ function OrdersConfig({ orders }) {
                         <Row>
                             <Col>
                                 <p className='text-muted py-0 my-0'>Date: {order.Date} </p>
-                                <p className='text-muted py-0 my-0'>Store id: {order.storeID} </p>
+                                <p className='text-muted py-0 my-0'>Store ids: {
+                                    order.storeID.map((storeID) => {
+                                        return (
+                                            <p className='py-0 my-0'>{storeID}</p>);
+                                    })
+                                } </p>
                                 <p className='text-muted py-0 my-0'>Customer id: {order.customerID} </p>
                                 <p className='text-muted py-0 my-0'>Total amount: {order.totalAmount} </p>
                                 <p className='text-muted py-0 my-0'>Order status: {order.orderStatus} </p>
