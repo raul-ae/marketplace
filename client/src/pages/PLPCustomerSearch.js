@@ -47,7 +47,7 @@ function PLP() {
         <>
             <NavCustomer />
             <Categories categories= {categories}/>
-            <Container>
+            <Container className="productspage">
               <h1>Products for: {id}</h1>
               <div class="row row-cols-1 row-cols-md-4">
                 {product.filter(prod=>prod.productName.toUpperCase().includes(id.toUpperCase())||prod.description.toUpperCase().includes(id.toUpperCase())||prod.categoryName.toUpperCase().includes(id.toUpperCase()) ).map(filteredProd =>(
