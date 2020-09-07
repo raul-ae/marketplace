@@ -50,6 +50,8 @@ function HomeAdmin() {
     loadCategories();
     loadSellers();
     loadStores();
+    loadConsumers();
+    loadOrders();
   }, []);
 
   // ****************************** Stores ******************************
@@ -297,6 +299,29 @@ function HomeAdmin() {
     updateCategory(id, categoryUpdatedName);
   }
 
+  // ****************************** CUSTOMERS ******************************
+
+  const loadConsumers = () => {
+    API.getConsumers()
+      .then(res => {
+        setCategories(res.data);
+        console.log('loadConsumers - res.data: ', res.data);
+      }
+      )
+      .catch(err => console.log(err));
+  }
+
+  // ****************************** ORDERS ******************************
+
+  const loadOrders = () => {
+    API.getOrders()
+      .then(res => {
+        setCategories(res.data);
+        console.log('loadOrders - res.data: ', res.data);
+      }
+      )
+      .catch(err => console.log(err));
+  }
 
 
   return (

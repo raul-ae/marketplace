@@ -74,6 +74,16 @@ export default {
   },
   saveSeller: function (sellerData) {
     return axios.post("/api/sellers", sellerData);
-  }
+  },
+
+  // ********** Customers **********
+  getConsumers: function () {
+    return axios.get("/api/consumers");
+  },
+
+  // ********** Orders **********
+  getOrders: function () {
+    return axios.get("/api/orders");
+  },
 };
 
