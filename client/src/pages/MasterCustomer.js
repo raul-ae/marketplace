@@ -11,6 +11,7 @@ import ResumeCheckout from "./ResumeCheck"
 import ResumePayment from './ResumePayment'
 import ResumeConfirmation from './ResumeConfirmation'
 import Plp from "./PLPCustomer"
+import PlpSearch from "./PLPCustomerSearch"
 // import Checkout from "./Checkout"
 
 function MasterCustomer() {
@@ -25,6 +26,7 @@ function MasterCustomer() {
             );
           }} />
           <Route path={process.env.PUBLIC_URL + '/home/productlist'} component={Plp} />
+          <Route path={process.env.PUBLIC_URL + '/home/productsearch'} component={PlpSearch} />
           <Route path={process.env.PUBLIC_URL + '/home/login'} component={LogIn} />
           <Route path={process.env.PUBLIC_URL + '/home/shoppingcart'} component={ResumeCheckout} />
           <Route path={process.env.PUBLIC_URL + '/home/payment'} component={ResumePayment} />

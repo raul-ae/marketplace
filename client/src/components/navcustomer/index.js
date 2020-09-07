@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Navbar from 'react-bootstrap/Navbar';
 import Nav from 'react-bootstrap/Nav';
 import Form from 'react-bootstrap/Form';
@@ -8,6 +8,14 @@ import "./style.css";
 
 
 function NavCustomer() {
+    const [search, setSearch] = useState([])
+
+    const handleSearchChange = (e) => {
+        let value = e.target.value;
+        setSearch(value);
+        console.log("search bar", value)
+      }
+
     return (
         <Navbar bg="light" expand="lg">
             <Navbar.Brand>
@@ -26,8 +34,13 @@ function NavCustomer() {
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
             <Navbar.Collapse id="basic-navbar-nav">
                 <Form inline className="col-10">
-                    <FormControl type="text" placeholder="Search" className="col-10" />
-                    <div className="buttonNav">Search</div>
+                    <FormControl type="search" placeholder="Search" className="col-10"
+                        onChange={handleSearchChange}
+                    >
+                    </FormControl>
+                    <Link to={process.env.PUBLIC_URL + '/home/productsearch/'+search}>
+                        <div className="buttonNav">Search</div>
+                    </Link>
                 </Form>
                 <Nav className="col-2">
                     <Link

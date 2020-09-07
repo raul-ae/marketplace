@@ -7,9 +7,9 @@ function carousel({ picture, picture2, picture3 }) {
 
   return (
     <Carousel className="carousel">
-      <Carousel.Item>
+      <Carousel.Item className="">
         <img
-          className="d-block w-100"
+          className="ht"
           src={picture}
           alt="First slide"
         />
@@ -18,7 +18,7 @@ function carousel({ picture, picture2, picture3 }) {
       </Carousel.Item>
       <Carousel.Item>
         <img
-          className="d-block w-100"
+          className="ht"
           src={picture2}
           alt="Third slide"
         />
@@ -28,7 +28,7 @@ function carousel({ picture, picture2, picture3 }) {
       </Carousel.Item>
       <Carousel.Item>
         <img
-          className="d-block w-100"
+          className="ht"
           src={picture3}
           alt="Third slide"
         />

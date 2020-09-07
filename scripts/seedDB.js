@@ -74,15 +74,15 @@ const productSeed = [
     picture3: "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcSJuqN7wizjg97CwznHFpOAwXk77TQfoPSCCw&usqp=CAU"
   },
   {
-    sku: "293850",
-    productName: "portafolios",
-    categoryName: "Office",
-    price: 1300,
-    stock: 4,
-    description: "de piel vacuno, color negro",
-    picture: "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQEa5U5J5af8aROIP9s6uH9QeeNoVZQnYVwyA&usqp=CAU",
-    picture2: "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQEa5U5J5af8aROIP9s6uH9QeeNoVZQnYVwyA&usqp=CAU",
-    picture3: "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQEa5U5J5af8aROIP9s6uH9QeeNoVZQnYVwyA&usqp=CAU"
+    "sku": "223412",
+    "productName": "Samsung Galaxy Note 20 256GB",
+    "categoryName": "Technology",
+    "price": 23000,
+    "stock": 20,
+    "description": "SAMSUNG Galaxy Note 20 256GB 8GB RAM SM-N980F/DS 6.7 64MP Mystic Gray (Gris)",
+    "picture": "https://images-na.ssl-images-amazon.com/images/I/61wOlKW64mL._AC_SL1040_.jpg",
+    "picture2": "https://images-na.ssl-images-amazon.com/images/I/61wOlKW64mL._AC_SL1040_.jpg",
+    "picture3": "https://images-na.ssl-images-amazon.com/images/I/61wOlKW64mL._AC_SL1040_.jpg"
   },
   {
     sku: "293853",
