@@ -13,67 +13,113 @@ export default function CheckoutForm({ consumer }) {
   const [clientSecret, setClientSecret] = useState("");
 
 
-  const [order, setOrder] = useState({});
+  // const [order, setOrder] = useState({});
+
   let localProducts = [];
   let stores = [];
+  let storeIDs = [];
+  let shipping = 100;
 
 
   useEffect(() => {
     if (succeeded) {
       getLocalStoragePdts();
       loadStores();
-      // createOrder();
-      // saveOrder(order);
-      /* setTimeout(() => {
-        window.location.pathname = 'home/confirmation';
-      }, 3000); */
     }
   }, [succeeded]);
+
+  /* useEffect(() => {
+    if (order.length > 0) {
+      console.log('useEffect - order: ', order);
+      saveOrder();
+    }
+  }, [order]); */
 
   const getLocalStoragePdts = () => {
     // console.log('localStorage.length: ', localStorage.length);
     for (let i = 0; i < localStorage.length; i++) {
       let id = localStorage.key(i);
       let product = JSON.parse(localStorage.getItem(id));
-      localProducts.push(product);
+      if (typeof (product) === 'object') {
+        localProducts.push(product);
+      }
       // console.log('productName: ', product.productName);
     }
     // console.log('localProducts: ', localProducts);
     // setlocalStorageProducts(localProducts);
   }
 
-  function loadStores() {
+  const loadStores = () => {
     API.getStores()
       .then(res => {
         // setStores(res.data);
         stores = [...res.data];
-        console.log('loadStores - res.data: ', res.data);
-        console.log('loadStores - stores: ', stores);
+        // console.log('loadStores - res.data: ', res.data);
+        // console.log('loadStores - stores: ', stores);
+        getStoresIdsAndTotalAmount();
       })
       .catch(err => console.log(err));
   };
 
-  const createOrder = () => {
-    setOrder({
-      products: localProducts,
-      /* storeID: {
-        type: Schema.Types.ObjectId,
-        ref: "store"
-      }, */
-      customerID: consumer._id,
-      orderStatus: 'Payed',
-      totalAmount: { type: Number, required: true },
-      Date: Date.now,
-      deliveryAddress: consumer.consumerAddress
+  const getStoresIdsAndTotalAmount = () => {
+    // console.log('getMatchedStoresIds()');
+    // console.log('localProducts: ', localProducts);
+    // console.log('stores: ', stores);
+    let totalAmount = 0;
+    localProducts.forEach((product) => {
+      totalAmount += parseFloat(product.quantity) * parseFloat(product.price);
+      stores.forEach((store) => {
+        store.products.forEach((storeProduct) => {
+          // console.log(product._id + ' === ' + storeProduct);
+          if (product._id === storeProduct) {
+            storeIDs.push(store._id);
+          }
+        });
+      });
     });
+    totalAmount += shipping;
+    // console.log('getMatchedStoresIds - storeIDs: ', storeIDs);
+    let uniqueStoreIDs = storeIDs.filter(onlyUnique);
+    // console.log('getMatchedStoresIds - uniqueStoreIDs: ', uniqueStoreIDs);
+    // console.log('getMatchedStoresIds - totalAmount: ', totalAmount);
+    createOrderObject(uniqueStoreIDs, totalAmount);
   }
 
-  const saveOrder = (order) => {
+  // Return only unique values of an array
+  // Source: https://stackoverflow.com/questions/1960473/get-all-unique-values-in-a-javascript-array-remove-duplicates
+  // usage example:
+  // var a = ['a', 1, 'a', 2, '1'];
+  // var unique = a.filter(onlyUnique); // returns ['a', 1, 2, '1']
+  function onlyUnique(value, index, self) {
+    return self.indexOf(value) === index;
+  }
+
+
+
+  const createOrderObject = (uniqueStoreIDs, totalAmount) => {
+    let orderObject = {
+      products: localProducts,
+      storeID: uniqueStoreIDs,
+      customerID: consumer._id,
+      orderStatus: 'Payed',
+      totalAmount: totalAmount,
+      deliveryAddress: consumer.consumerAddress
+    }
+    // setOrder(orderObject);
+    console.log('createOrderObject - orderObject: ', orderObject);
+    // console.log('createOrderObject - order: ', order);
+    saveOrder(orderObject);
+  }
+
+  const saveOrder = (orderObject) => {
     // console.log('saveOrder - order: ', order);
-    API.saveSeller(order)
+    API.saveOrder(orderObject)
       .then(res => {
         console.log('Order saved - res.data: ', res.data);
         loadOrders();
+        setTimeout(() => {
+          window.location.pathname = 'home/confirmation';
+        }, 3000);
       })
       .catch(err => console.log(err));
   }

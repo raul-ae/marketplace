@@ -85,5 +85,8 @@ export default {
   getOrders: function () {
     return axios.get("/api/orders");
   },
+  saveOrder: function (orderData) {
+    return axios.post("/api/orders", orderData);
+  },
 };
 
