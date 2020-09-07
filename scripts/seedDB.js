@@ -22,7 +22,7 @@ const consumerSeed = [
       neighborhood: 'Emiliano Zapata',
       zipCode: '02080',
       country: 'Mexico',
-      state: 'Ciudad de México'
+      state: 'Ciudad de Mexico'
     },
     email: "jorge@bootcamp.com",
     mobile: "5555555555",
@@ -41,7 +41,7 @@ const consumerSeed = [
       neighborhood: 'Copilco',
       zipCode: '03112',
       country: 'Mexico',
-      state: 'Ciudad de México'
+      state: 'Ciudad de Mexico'
     },
     email: "rodrigo@bootcamp.com",
     mobile: "5555555555",
@@ -60,7 +60,7 @@ const consumerSeed = [
       neighborhood: 'Chimalistac',
       zipCode: '03333',
       country: 'Mexico',
-      state: 'Ciudad de México'
+      state: 'Ciudad de Mexico'
     },
     email: "raul@bootcamp.com",
     mobile: "5555555555",
