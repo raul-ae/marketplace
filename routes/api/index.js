@@ -7,7 +7,7 @@ const productRoutes = require("./products");
 const categoryRoutes = require("./categories");
 const orderRoutes = require("./orders");
 const productRoutesCat = require("./productsByCat");
-
+const loginRoutes = require("./login");
 
 // Book routes
 router.use("/books", bookRoutes);
@@ -16,6 +16,7 @@ router.use("/books", bookRoutes);
 
 // Consumer routes
 router.use("/consumers", consumerRoutes);
+
 
 // Seller routes
 router.use("/sellers", sellerRoutes);
@@ -34,6 +35,9 @@ router.use("/categories", categoryRoutes);
 
 // Order routes
 router.use("/orders", orderRoutes);
+
+// Log In routes
+router.use("/login", loginRoutes);
 
 module.exports = router;
 

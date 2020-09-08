@@ -8,8 +8,10 @@ import "./styles.css";
 import NavCustomer from "../components/navcustomer";
 import Footer from "../components/footercustomercheckout";
 import API from "../utils/API";
+import HomeCustomer from './Home.js'
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
-function SignIn() {
+function SignIn({handleLogInSuccess}) {
   const [logIn, setLogIn] = useState({
     email: "",
     password: "",
@@ -46,8 +48,23 @@ const [address, setAddress]=useState({
     API.getUser(logIn)
       .then((res) => {
         console.log("logIn response:  ", res.data);
+        if (res.data!=="Wrong User or Password"){
+          // handleLogInSuccess(res.data)
+          if (res.data.userType==="Customer"){
+            return (
+              window.location = "/home"
+              )
+            } else {
+              return (
+                window.location = "/admin"
+                )
+            }
+        }else{alert("Wrong user or password")}
       })
-      .catch((err) => console.log(err));
+      .catch((err) => {
+        console.log(err)
+        alert("Wrong user or password")
+      });
   };
 
   const handleLogInInputOnChange = (e) => {
@@ -85,7 +102,7 @@ const [address, setAddress]=useState({
   };
 
   const submitSignUp = () => {
-    console.log("submit LogIn as: ", signUp);
+    console.log("submit signUp as: ", signUp);
     API.saveUser(signUp)
       .then((res) => {
         console.log("signUp response:  ", res.data);
@@ -101,7 +118,6 @@ const [address, setAddress]=useState({
           <Card className="col-6 marg">
             <h3>Log In</h3>
             <Form>
-              <h3>Log In</h3>
               <Form.Group controlId="formBasicEmail.user">
                 <Form.Label>Email address</Form.Label>
                 <Form.Control
