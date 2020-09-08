@@ -11,22 +11,28 @@ import API from '../utils/API'
 function PDP() {
 
   const [order, setOrder] = useState({});
+  const [orderProducts, setOrderProducts] = useState([]);
 
-  let orderProducts = [];
+  // let orderProducts = [];
   // let orderAddress = '';
   // let orderPayment = '';
-
-  console.log('orderProducts: ', orderProducts);
-
-  if (orderProducts.length > 0) {
-    orderProducts = [...order.products];
-    console.log('orderProducts.length - orderProducts: ', orderProducts);
-  }
 
 
   useEffect(() => {
     loadOrders();
   }, []);
+
+  useEffect(() => {
+    console.log('IN USEEFFECT OF ORDER - order: ', order);
+    if (order.products) {
+      if (order.products.length > 0) {
+        console.log('in if');
+        // orderProducts = [...order.products];
+        setOrderProducts(order.products);
+        console.log('orderProducts.length - orderProducts: ', orderProducts);
+      }
+    }
+  }, [order]);
 
 
 
@@ -70,8 +76,8 @@ function PDP() {
               {orderProducts.map((product) => {
                 return (
                   <Item
-                    products={order.products}
                     product={product}
+                    hideDeleteBtn={false}
                   />
                 );
               })}
