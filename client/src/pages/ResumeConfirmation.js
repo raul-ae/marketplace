@@ -58,10 +58,12 @@ function PDP() {
       <Container className="marg minht" fluid>
         <Row>
           <div className="col-12 d-flex justify-content-center">
-            <h1>
-              Your ordern has been confirmed!<br></br>
-                Confirmation number: #
-            </h1>
+            {order._id &&
+              <h1>
+                Your ordern has been confirmed!<br></br>
+                Confirmation number: {order._id}
+              </h1>
+            }
           </div>
         </Row>
         <Row>
@@ -102,6 +104,12 @@ function PDP() {
           <div className="col-6">
             <Card>
               <h3>Payment</h3>
+              {order.totalAmount != undefined &&
+                <>
+                  <p className='mt-4'>Total amount: ${order.totalAmount} MXN</p>
+                  <p>Payment status: Payed</p>
+                </>
+              }
             </Card>
           </div>
         </Row>
