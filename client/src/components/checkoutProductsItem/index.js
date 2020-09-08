@@ -3,7 +3,12 @@ import React from "react";
 import Row from 'react-bootstrap/Row';
 import "./style.css"
 
-function ProductsListItem({ product, handleDeleteBtn }) {
+function ProductsListItem({ product, handleDeleteBtn, hideDeleteBtn }) {
+
+    if (hideDeleteBtn === undefined) {
+        hideDeleteBtn = true;
+    }
+
     return (
         <Row className="rowmar">
             <div className="col-1">
@@ -21,12 +26,14 @@ function ProductsListItem({ product, handleDeleteBtn }) {
             <div className="col-2">
                 ${parseFloat(product.price) * parseFloat(product.quantity)} MXN
                 </div>
-            <div className="col-1">
-                <i
-                    className="fas fa-trash"
-                    productId={product._id}
-                    onClick={handleDeleteBtn}
-                ></i>
+            <div
+                className="col-1">
+                {hideDeleteBtn &&
+                    <i
+                        className="fas fa-trash"
+                        productId={product._id}
+                        onClick={handleDeleteBtn}
+                    ></i>}
             </div>
         </Row>
     )
