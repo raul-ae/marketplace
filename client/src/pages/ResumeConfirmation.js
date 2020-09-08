@@ -60,7 +60,7 @@ function PDP() {
           <div className="col-12 d-flex justify-content-center">
             {order._id &&
               <h1>
-                Your ordern has been confirmed!<br></br>
+                Your order has been confirmed!<br></br>
                 Confirmation number: {order._id}
               </h1>
             }
