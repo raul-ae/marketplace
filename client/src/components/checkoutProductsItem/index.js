@@ -3,7 +3,7 @@ import React from "react";
 import Row from 'react-bootstrap/Row';
 import "./style.css"
 
-function ProductsListItem({ product, handleDeleteBtn }) {
+function ProductsListItem({ product, products, handleDeleteBtn }) {
     return (
         <Row className="rowmar">
             <div className="col-1">
@@ -25,7 +25,7 @@ function ProductsListItem({ product, handleDeleteBtn }) {
                 <i
                     className="fas fa-trash"
                     productId={product._id}
-                    onClick={handleDeleteBtn}
+                // onClick={handleDeleteBtn}
                 ></i>
             </div>
         </Row>

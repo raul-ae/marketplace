@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import Container from 'react-bootstrap/Container';
 import "./styles.css";
 import Row from 'react-bootstrap/Row';
@@ -10,9 +10,26 @@ import API from '../utils/API'
 
 function PDP() {
 
+  const [order, setOrder] = useState({});
+
+  let orderProducts = [];
+  // let orderAddress = '';
+  // let orderPayment = '';
+
+  console.log('orderProducts: ', orderProducts);
+
+  if (orderProducts.length > 0) {
+    orderProducts = [...order.products];
+    console.log('orderProducts.length - orderProducts: ', orderProducts);
+  }
+
+
   useEffect(() => {
     loadOrders();
   }, []);
+
+
+
 
   const loadOrders = () => {
     API.getOrders()
@@ -21,8 +38,11 @@ function PDP() {
         console.log('loadOrders - res.data: ', res.data);
         localStorage.clear();
         console.log('localStorage cleared');
-      }
-      )
+        let orders = [...res.data];
+        let lastOrder = orders[orders.length - 1];
+        console.log('lastOrder: ', lastOrder);
+        setOrder(lastOrder);
+      })
       .catch(err => console.log(err));
   }
 
@@ -47,7 +67,14 @@ function PDP() {
           <div className="col-12">
             <Card>
               <h3>Your Products</h3>
-              {/* <Item /> */}
+              {orderProducts.map((product) => {
+                return (
+                  <Item
+                    products={order.products}
+                    product={product}
+                  />
+                );
+              })}
             </Card>
           </div>
         </Row>
