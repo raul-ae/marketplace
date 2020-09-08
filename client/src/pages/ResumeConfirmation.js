@@ -1,13 +1,31 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Container from 'react-bootstrap/Container';
 import "./styles.css";
 import Row from 'react-bootstrap/Row';
 import Item from '../components/checkoutProductsItem';
 import Card from 'react-bootstrap/Card';
-import NavCustomer from '../components/navcustomercheckout'
-import Footer from '../components/footercustomercheckout'
+import NavCustomer from '../components/navcustomercheckout';
+import Footer from '../components/footercustomercheckout';
+import API from '../utils/API'
 
 function PDP() {
+
+  useEffect(() => {
+    loadOrders();
+  }, []);
+
+  const loadOrders = () => {
+    API.getOrders()
+      .then(res => {
+        // setOrders(res.data);
+        console.log('loadOrders - res.data: ', res.data);
+        localStorage.clear();
+        console.log('localStorage cleared');
+      }
+      )
+      .catch(err => console.log(err));
+  }
+
   return (
     <>
       <NavCustomer />
