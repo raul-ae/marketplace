@@ -7,14 +7,14 @@ router.route("/")
   .post(consumersController.create);
 
 // Matches with "/api/consumers/:id"
-router
-  .route("/:id")
-  .get(consumersController.findById)
-  .put(consumersController.update)
-  .delete(consumersController.remove);
+// router
+//   .route("/:id")
+//   .get(consumersController.findById)
+//   .put(consumersController.update)
+//   .delete(consumersController.remove);
 
-  // Matches with "/api/consumers/:email"
-  router
+// Matches with "/api/consumers/:email"
+router
   .route("/:email")
   .get(consumersController.findByEmail)
   .put(consumersController.update)

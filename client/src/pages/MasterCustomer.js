@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 // import NavCustomer from '../components/navcustomer'
 // import Categories from '../components/categoriescustomer'
 // import Footer from '../components/footercustomer'
@@ -15,7 +15,16 @@ import PlpSearch from "./PLPCustomerSearch"
 // import Checkout from "./Checkout"
 
 function MasterCustomer() {
+
+const [user, setUser]=useState({})
+
+const handleLogInSuccess = (userData) => {
+  setUser(userData)
+}
+
   return (
+
+    
     <Router>
       <Wrapper>
         <Switch>
@@ -35,6 +44,10 @@ function MasterCustomer() {
         </Switch>
       </Wrapper>
     </Router>
+
+          // <LogIn
+          // handleLogInSuccess ={handleLogInSuccess}
+          // />
   );
 }
 
