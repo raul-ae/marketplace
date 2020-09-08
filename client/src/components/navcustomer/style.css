@@ -13,3 +13,20 @@
     background-color: #424242;
     color:white;
 }
+.cart-counter {
+    padding: 0 4px;
+    height: 20px;
+    border-radius: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color:white;
+    position: absolute;
+    top: 50%;
+    left: 40%;
+    transform: translate(0%, -50%);
+    font-size: 14px;
+    font-weight: bold;
+    font-family: sans-serif;
+    background-color: red;
+  }

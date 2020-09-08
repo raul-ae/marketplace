@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 
 function footer() {
     return (
-        <footer className="pt-4 pt-md-5 border-top ftr">
+        <footer className="pt-4 pt-md-5 ftr">
             <div className="row">
                 <div className="col-3 text-center float">
                     <img className="" src="../../Images/logo_small_icon_only_inverted.png" alt="" width="50" height="50"></img>

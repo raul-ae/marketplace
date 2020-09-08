@@ -1,24 +1,58 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Navbar from 'react-bootstrap/Navbar';
 import Nav from 'react-bootstrap/Nav';
 import Form from 'react-bootstrap/Form';
 import FormControl from 'react-bootstrap/FormControl';
 import { Link } from "react-router-dom";
+//import { useHistory } from 'react-router-dom';
 import "./style.css";
 
 
 function NavCustomer() {
     const [search, setSearch] = useState([])
 
+    const [localStorageProducts, setlocalStorageProducts] = useState([]);
+    let localProducts = [];
+    //console.log("nononono",localStorageProducts);
+    const [counter, setCounter] = useState([]);
+
+
+
+    useEffect(() => {
+        getLocalStoragePdts();
+      }, []);
+
+    // useEffect(() =>{
+    //     window.
+    // })
+    
+    const getLocalStoragePdts = () => {
+        let count=0;
+        for (let i = 0; i < localStorage.length; i++) {
+            let id = localStorage.key(i);
+ 
+            if(id!="total"){
+                let prodTemp= JSON.parse(localStorage.getItem(id));
+                let quantTemp=parseInt(prodTemp.quantity)
+                count=count+quantTemp;
+                //console.log(count);
+                setCounter(count);
+            }
+            let product = JSON.parse(localStorage.getItem(id));
+            localProducts.push(product);
+        }
+        setlocalStorageProducts(localProducts);
+    }
+
     const handleSearchChange = (e) => {
         let value = e.target.value;
         setSearch(value);
-        console.log("search bar", value)
+        //console.log("search bar", value)
       }
 
     return (
-        <Navbar bg="light" expand="lg">
-            <Navbar.Brand>
+        <Navbar bg="light" expand="lg" className="row">
+            <Navbar.Brand className="col-sm-12 col-lg-2">
                 <Link
                     to={process.env.PUBLIC_URL + '/'}
                 >
@@ -31,30 +65,34 @@ function NavCustomer() {
                     />
                 </Link>
             </Navbar.Brand>
-            <Navbar.Toggle aria-controls="basic-navbar-nav" />
-            <Navbar.Collapse id="basic-navbar-nav">
-                <Form inline className="col-10">
-                    <FormControl type="search" placeholder="Search" className="col-10"
-                        onChange={handleSearchChange}
-                    >
-                    </FormControl>
-                    <Link to={process.env.PUBLIC_URL + '/home/productsearch/'+search}>
-                        <div className="buttonNav">Search</div>
-                    </Link>
-                </Form>
-                <Nav className="col-2">
-                    <Link
-                        to={process.env.PUBLIC_URL + '/home/login'}
-                    >
-                        <Nav.Link href="/home/login">Log In </Nav.Link>
-                    </Link>
-                    <Link
-                        to={process.env.PUBLIC_URL + '/home/shoppingcart'}
-                    >
-                        <Nav.Link href="/home/shoppingcart"><i className="fas fa-shopping-cart"></i>Shopping Cart</Nav.Link>
-                    </Link>
-                </Nav>
-            </Navbar.Collapse>
+            <Navbar id="basic-navbar-nav" className="col-sm-12 col-lg-10">
+                    <div className="col-sm-12 col-lg-10">
+                        <Form inline>
+                            <FormControl type="search" placeholder="Search" className="col-sm-10 col-lg-10"
+                                onChange={handleSearchChange}
+                            >
+                            </FormControl>
+                            <Link to={process.env.PUBLIC_URL + '/home/productsearch/'+search} className="col-sm-2 col-lg-2">
+                                <div className="buttonNav">Search</div>
+                            </Link>
+                        </Form>
+                    </div>
+                    <div className="col-sm-12 col-lg-2">
+                        <Nav>
+                            <Link
+                                to={process.env.PUBLIC_URL + '/home/login'}
+                            >
+                                <Nav.Link href="/home/login">Log In</Nav.Link>
+                            </Link>
+                            <Link
+                                to={process.env.PUBLIC_URL + '/home/shoppingcart'}
+                            >
+                                <Nav.Link href="/home/shoppingcart"><i className="fas fa-shopping-cart"></i><div className="cart-counter">{counter}</div></Nav.Link>
+                            </Link>
+                        </Nav>
+                    </div>
+                
+            </Navbar>
         </Navbar>
     );
 }

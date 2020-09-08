@@ -32,17 +32,17 @@ function PDP() {
   return (
     <>
       <NavCustomer />
-      <Container className="marg" fluid>
+      <Container className="marg minht" fluid>
         <Row>
-          <div className="col-4">
+          <div className="col-lg-4 col-sm-12">
             <h1>Personal Information</h1>
             <PersonalInfoForm consumer={consumer} />
           </div>
-          <div className="col-4">
+          <div className="col-lg-4 col-sm-12">
             <h1>Address</h1>
             <AddressForm consumer={consumer} />
           </div>
-          <div className="col-4">
+          <div className="col-lg-4 col-sm-12">
             <h1>Add Payment details</h1>
             <PaymentForm consumer={consumer} />
           </div>

@@ -27,7 +27,7 @@ function HomeCustomer() {
       .then(res => {
         setProducts(res.data);
         setTop4(res.data);
-        console.log('loadProducts - res.data: ', res.data);
+        //console.log('loadProducts - res.data: ', res.data);
       }
       )
       .catch(err => console.log(err));
@@ -37,7 +37,7 @@ function HomeCustomer() {
     API.getCategories()
       .then(res => {
         setCategories(res.data);
-        console.log('loadCategories - res.data: ', res.data);
+        //console.log('loadCategories - res.data: ', res.data);
       }
       )
       .catch(err => console.log(err));
@@ -60,7 +60,7 @@ function HomeCustomer() {
     <>
       <NavCustomer />
       <Categories categories= {categories}/>
-      <Container>
+      <Container className="minht">
         <Carousel />
         <Mainproducts products={topProducts} />
         <Allproducts products={products} />

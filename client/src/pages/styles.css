@@ -22,3 +22,18 @@
   padding: 20px;
   margin: 20px;
 }
+.productspage{
+  margin-bottom:20px;
+}
+.minht{
+  min-height: 75vh;
+}
+.minCar{
+  min-height: 100px;
+}
+.pdpm{
+  margin-left:5px;
+  margin-right: 5px;
+  padding-left: 5px;
+  padding-right: 5px;
+}

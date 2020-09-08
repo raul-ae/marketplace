@@ -1,11 +1,12 @@
 import React from "react";
 import Carousel from 'react-bootstrap/Carousel';
+import "./style.css";
 
 
 function carousel() {
   return (
-    <Carousel>
-      <Carousel.Item>
+    <Carousel className="minCar">
+      <Carousel.Item className="minCar">
         <img
           className="d-block w-100"
           src="https://themarket.s3.us-east-2.amazonaws.com/Banners/bannerthemarket.jpg"
@@ -14,7 +15,7 @@ function carousel() {
         <Carousel.Caption>
         </Carousel.Caption>
       </Carousel.Item>
-      <Carousel.Item>
+      <Carousel.Item className="minCar">
         <img
           className="d-block w-100"
           src="https://themarket.s3.us-east-2.amazonaws.com/Banners/carouselph2.png"
@@ -26,7 +27,7 @@ function carousel() {
           <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
         </Carousel.Caption>
       </Carousel.Item>
-      <Carousel.Item>
+      <Carousel.Item className="minCar">
         <img
           className="d-block w-100"
           src="https://themarket.s3.us-east-2.amazonaws.com/Banners/carouselph2.png"

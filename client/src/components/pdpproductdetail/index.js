@@ -22,10 +22,10 @@ function ProductDetail({ product, productId, productName, description, price }) 
             </div>
             <div className="align">
                 <Row>
-                    <div className="col-2">
+                    <div className="col-lg-2 col-sm-12">
                         <h3>Select:</h3>
                     </div>
-                    <div className="col-10">
+                    <div className="col-lg-10 col-sm-12">
                         <form>
                             <div className="form-row align-items-right">
                                 <div className="col-auto my-1 align-items-right">
@@ -52,6 +52,7 @@ function ProductDetail({ product, productId, productName, description, price }) 
                                                 quantity: document.querySelector('#quantity').value
                                             }
                                             localStorage.setItem(productId, JSON.stringify(productAndQuantity));
+                                            alert("Product added to your cart");
                                         }else{
                                             alert("You must select at least one item");
                                         }
