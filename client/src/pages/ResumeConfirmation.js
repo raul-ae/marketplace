@@ -14,7 +14,7 @@ function PDP() {
   const [orderProducts, setOrderProducts] = useState([]);
 
   // let orderProducts = [];
-  // let orderAddress = '';
+  // let address = '';
   // let orderPayment = '';
 
 
@@ -26,10 +26,10 @@ function PDP() {
     console.log('IN USEEFFECT OF ORDER - order: ', order);
     if (order.products) {
       if (order.products.length > 0) {
-        console.log('in if');
+        // console.log('in if');
         // orderProducts = [...order.products];
         setOrderProducts(order.products);
-        console.log('orderProducts.length - orderProducts: ', orderProducts);
+        console.log('useEffect - orderProducts: ', orderProducts);
       }
     }
   }, [order]);
@@ -41,12 +41,12 @@ function PDP() {
     API.getOrders()
       .then(res => {
         // setOrders(res.data);
-        console.log('loadOrders - res.data: ', res.data);
+        // console.log('loadOrders - res.data: ', res.data);
         localStorage.clear();
-        console.log('localStorage cleared');
+        // console.log('localStorage cleared');
         let orders = [...res.data];
         let lastOrder = orders[orders.length - 1];
-        console.log('lastOrder: ', lastOrder);
+        // console.log('lastOrder: ', lastOrder);
         setOrder(lastOrder);
       })
       .catch(err => console.log(err));
@@ -88,6 +88,15 @@ function PDP() {
           <div className="col-6">
             <Card>
               <h3>Address</h3>
+              {order.deliveryAddress !== undefined &&
+                <>
+                  <p className='mt-4'>{order.deliveryAddress.street} {order.deliveryAddress.number}</p>
+                  <p>{order.deliveryAddress.neighborhood}</p>
+                  <p>{order.deliveryAddress.zipCode}</p>
+                  <p>{order.deliveryAddress.state}</p>
+                  <p>{order.deliveryAddress.country}</p>
+                </>
+              }
             </Card>
           </div>
           <div className="col-6">

@@ -5,6 +5,10 @@ import "./style.css"
 
 function ProductsListItem({ product, handleDeleteBtn, hideDeleteBtn }) {
 
+    if (hideDeleteBtn === undefined) {
+        hideDeleteBtn = true;
+    }
+
     return (
         <Row className="rowmar">
             <div className="col-1">
