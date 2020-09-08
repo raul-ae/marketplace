@@ -49,7 +49,7 @@ function PDP() {
         API.getCategories()
             .then(res => {
                 setCategories(res.data);
-                console.log('loadCategories - res.data: ', res.data);
+                //console.log('loadCategories - res.data: ', res.data);
             }
             )
             .catch(err => console.log(err));
@@ -59,7 +59,7 @@ function PDP() {
         API.getProducts()
             .then(res => {
                 setTop4(res.data);
-                console.log('loadProducts - res.data: ', res.data);
+                //console.log('loadProducts - res.data: ', res.data);
             }
             )
             .catch(err => console.log(err));
@@ -69,7 +69,7 @@ function PDP() {
         API.getProduct(id)
             .then(res => {
                 setProduct(res.data);
-                console.log('loadProduct - res.data: ', res.data);
+                //console.log('loadProduct - res.data: ', res.data);
             }
             )
             .catch(err => console.log(err));
@@ -93,17 +93,17 @@ function PDP() {
         <>
             <NavCustomer />
             <Categories categories={categories} />
-            <Container>
+            <Container className="minht">
                 {product && (
                     <Row>
-                        <Col>
+                        <div className="col-lg-6 col-sm-12">
                             <Carousel
                                 picture={product.picture}
                                 picture2={product.picture2}
                                 picture3={product.picture3}
                             />
-                        </Col>
-                        <Col>
+                        </div>
+                        <div className="col-lg-6 col-sm-12">
                             <ProductDetail
                                 product={product}
                                 productId={product._id}
@@ -111,7 +111,7 @@ function PDP() {
                                 description={product.description}
                                 price={product.price}
                             />
-                        </Col>
+                        </div>
                     </Row>
                 )}
                 <Row>

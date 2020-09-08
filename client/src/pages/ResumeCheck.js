@@ -30,14 +30,14 @@ function PDP() {
       localProducts.push(product);
       // console.log('productName: ', product.productName);
     }
-    // console.log('localProducts: ', localProducts);
+    console.log('localProducts: ', localProducts);
     setlocalStorageProducts(localProducts);
   }
 
   return (
     <>
       <NavCustomer />
-      <Container fluid>
+      <Container fluid className="minht">
         <h2>Review your shopping cart: </h2>
         <ProductList
           localStorageProducts={localStorageProducts}

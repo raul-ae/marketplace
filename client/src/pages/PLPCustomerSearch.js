@@ -47,16 +47,16 @@ function PLP() {
         <>
             <NavCustomer />
             <Categories categories= {categories}/>
-            <Container className="productspage">
+            <Container className="productspage minht">
               <h1>Products for: {id}</h1>
-              <div class="row row-cols-1 row-cols-md-4">
+              <div className="row row-cols-1 row-cols-md-4">
                 {product.filter(prod=>prod.productName.toUpperCase().includes(id.toUpperCase())||prod.description.toUpperCase().includes(id.toUpperCase())||prod.categoryName.toUpperCase().includes(id.toUpperCase()) ).map(filteredProd =>(
-                  <div class="col mb-4">
-                    <div class="card card-hgt">
-                        <img src={filteredProd.picture} class="card-img-top img-hgt" alt={product.productName}></img>
-                        <div class="card-body">
-                            <h5 class="card-title prd-tle">{filteredProd.productName}</h5>
-                            <p class="card-text sub-crd-height">{filteredProd.description}</p>
+                  <div className="col mb-4">
+                    <div className="card card-hgt">
+                        <img src={filteredProd.picture} className="card-img-top img-hgt" alt={product.productName}></img>
+                        <div className="card-body">
+                            <h5 className="card-title prd-tle">{filteredProd.productName}</h5>
+                            <p className="card-text sub-crd-height">{filteredProd.description}</p>
                             <div className="smll-height"><small className="text-muted">Sold by: {filteredProd.sellerId}</small></div>
                             <div className="col-12 price">$ {filteredProd.price} MXN</div>
                             <Link

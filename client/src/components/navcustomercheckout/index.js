@@ -8,7 +8,7 @@ import "./style.css";
 function NavCustomerCheckout() {
     return (
         <Navbar bg="light" expand="lg">
-            <Navbar.Brand href="#home" className="col-6">
+            <Navbar.Brand className="col-lg-9 col-sm-12">
                 <Link
                     to={process.env.PUBLIC_URL + '/'}
                 >
@@ -21,14 +21,11 @@ function NavCustomerCheckout() {
                     />
                 </Link>
             </Navbar.Brand>
-            <Navbar.Toggle aria-controls="basic-navbar-nav" />
-            <Navbar.Collapse id="basic-navbar-nav">
-                <Nav className="col-6">
+                <Nav className="col-lg-3 col-sm-12">
                     <Nav.Link>1.Review</Nav.Link>
                     <Nav.Link>2.Shippment & Payment</Nav.Link>
                     <Nav.Link>3.Confirmation</Nav.Link>
                 </Nav>
-            </Navbar.Collapse>
         </Navbar>
     );
 }

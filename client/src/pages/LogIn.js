@@ -6,7 +6,7 @@ import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import "./styles.css";
 import NavCustomer from "../components/navcustomer";
-import Footer from "../components/footercustomercheckout";
+import Footer from "../components/footercustomer";
 import API from "../utils/API";
 
 function SignIn() {
@@ -96,12 +96,11 @@ const [address, setAddress]=useState({
   return (
     <>
       <NavCustomer />
-      <Container>
+      <Container className="minht">
         <Row className="logCard">
-          <Card className="col-6 marg">
+          <Card className="col-sm-12 col-lg-6 marg">
             <h3>Log In</h3>
             <Form>
-              <h3>Log In</h3>
               <Form.Group controlId="formBasicEmail.user">
                 <Form.Label>Email address</Form.Label>
                 <Form.Control
@@ -130,7 +129,7 @@ const [address, setAddress]=useState({
               </Button>
             </Form>
           </Card>
-          <Card className="col-6 marg">
+          <Card className="col-sm-12 col-lg-6 marg">
             <h3>Sign Up</h3>
             <Form>
               <Form.Group>

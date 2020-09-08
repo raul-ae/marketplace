@@ -47,7 +47,7 @@ function PLP() {
         <>
             <NavCustomer />
             <Categories categories= {categories}/>
-            <Container className="productspage">
+            <Container className="productspage minht">
             <Productlist products={productByCategory}/>
             </Container>
             <Footer />

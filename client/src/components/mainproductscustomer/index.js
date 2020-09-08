@@ -6,19 +6,19 @@ import "./style.css";
 // import Productdp from '../../pages/PDPCustomer';
 
 function Mainproducts({ products }) {
-
   return (
     <div>
-      <h1>
-        Most popular products
+    <h1>
+      Most popular products
     </h1>
-      <CardDeck className="row-cols-3 deckhg">
+      <div className="row row-cols-1 row-cols-md-4">
         {products.map(product => {
           return (
-            <Card className="card-hgt mb-3">
+            <div className="col mb-4">
+            <div className="card card-hgt">
               <Card.Img src={product.picture} className="img-hgt" />
               <Card.Body>
-                <h5 class="card-title prd-tle">{product.productName}</h5>
+                <h5 className="card-title prd-tle">{product.productName}</h5>
                 <Card.Text className="sub-crd-height">{product.description}</Card.Text>
                 <div className="smll-height"><small className="text-muted">Sold by: {product.sellerId}</small></div>
                 <div className="col-12 price">$ {product.price} MXN</div>
@@ -28,25 +28,14 @@ function Mainproducts({ products }) {
                   <div className="buttonNav col-12">View</div>
                 </Link>
               </Card.Body>
-            </Card>
+              </div>
+            </div>
           );
         })
         }
-      </CardDeck>
+      </div>
     </div>
   );
 }
 
 export default Mainproducts;
-
-/*
-component={() => {
-                    return (
-                      <Productdp
-                        // products={products}
-                        // id={product._id}
-                        product={product}
-                      />
-                    );
-                  }}
-*/

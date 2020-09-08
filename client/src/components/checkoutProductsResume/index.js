@@ -20,39 +20,32 @@ function ProductsListResume({ localStorageProducts }) {
     localStorage.setItem('total', total.toString());
 
     return (
-        // <Row>
-        //     <div className="col-7">
-
-        //     </div>
-        //     <Card body className="col-4">
-
-        //     </Card>
-        // </Row>
-        <div className="stl">
-            <div className="col-6">
-
+        <div className="row">
+            <div className="col-lg-6 col-sm-12">
             </div>
-            <Card body className="cardRes col-6">
-                <Row>
-                    <div className="col-6">Subtotal</div>
-                    <div className="col-6">${subtototal} MXN</div>
-                </Row>
-                <Row>
-                    <div className="col-6">Shipping</div>
-                    <div className="col-6">${shipping} MXN</div>
-                </Row>
-                <Row>
-                    <div className="col-6">Total</div>
-                    <div className="col-6">${total} MXN</div>
-                </Row>
-                <Row>
-                    <Link
-                        to={process.env.PUBLIC_URL + '/home/payment'}
-                    >
-                        <div className="buttonNav col-12">Purchase</div>
-                    </Link>
-                </Row>
-            </Card>
+            <div className="col-lg-6 col-sm-12">
+                <Card body className="cardRes col-lg-12 col-sm-12">
+                    <Row>
+                        <div className="col-lg-6 col-sm-12">Subtotal</div>
+                        <div className="col-lg-6 col-sm-12">${subtototal} MXN</div>
+                    </Row>
+                    <Row>
+                        <div className="col-lg-6 col-sm-12">Shipping</div>
+                        <div className="col-lg-6 col-sm-12">${shipping} MXN</div>
+                    </Row>
+                    <Row>
+                        <div className="col-lg-6 col-sm-12">Total</div>
+                        <div className="col-lg-6 col-sm-12">${total} MXN</div>
+                    </Row>
+                    <Row>
+                        <Link
+                            to={process.env.PUBLIC_URL + '/home/payment'}
+                        >
+                            <div className="buttonNav col-12">Purchase</div>
+                        </Link>
+                    </Row>
+                </Card>
+            </div>
         </div>
     )
 }

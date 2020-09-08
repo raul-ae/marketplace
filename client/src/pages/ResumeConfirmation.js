@@ -11,7 +11,7 @@ function PDP() {
   return (
     <>
       <NavCustomer />
-      <Container className="marg" fluid>
+      <Container className="marg minht" fluid>
         <Row>
           <div className="col-12 d-flex justify-content-center">
             <h1>

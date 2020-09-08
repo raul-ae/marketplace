@@ -6,7 +6,7 @@ function carousel({ picture, picture2, picture3 }) {
 
 
   return (
-    <Carousel className="carousel">
+    <Carousel className="carousel1">
       <Carousel.Item className="">
         <img
           className="ht"
