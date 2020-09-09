@@ -17,9 +17,18 @@ module.exports = {
       .catch(err => res.status(422).json(err));
   },
   findByEmail: function(req, res) {
+      let value = { email: req.body.email}
+      console.log("user Login: ",value)
     db.Consumer
-      .findOne(req.body.email)
-      .then(dbModel => res.json(dbModel))
+      .findOne(value)
+      .then(dbModel => {
+          if(dbModel.password===req.body.password){
+              dbModel.password = "protected"
+              res.json(dbModel)
+          } else{
+              res.json("Wrong User or Password")
+          }
+        })
       .catch(err => res.status(422).json(err));
   },
   create: function(req, res) {

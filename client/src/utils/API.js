@@ -4,8 +4,8 @@ export default {
 
   // ********** LogIn && SignUp **********
   getUser: function (userName) {
-    console.log("logIn API called")
-    return axios.get("/api/consumers/" + userName);
+    console.log("logIn API called", userName)
+    return axios.post("/api/login", userName);
   },
   saveUser: function (userData) {
     return axios.post("/api/consumers", userData);
