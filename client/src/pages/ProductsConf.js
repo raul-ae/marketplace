@@ -28,7 +28,7 @@ function ProductsConfig({
 }) {
     let currentCategories = categories.map(category => category.categoryName)
     let currentProducts = products.slice(0);
-    console.log("Raul-products: ", currentProducts)
+    //console.log("Raul-products: ", currentProducts)
     return (
         <div>
             <h4><strong>Manage your products</strong></h4>

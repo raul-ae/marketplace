@@ -1,9 +1,39 @@
 import React, { useState, useEffect } from "react";
-import { Row, Col, Card, Button } from "react-bootstrap";
+import { Row, Col, Card } from "react-bootstrap";
 import { Bar, Pie, Line } from "react-chartjs-2";
 
-const Dashboard = () => {
+
+const Dashboard = ({ consumers, stores, products, orders }) => {
     const [chartData, setChartData] = useState({});
+    const [itemsSold, setItemsSold] = useState(0);
+    const [totalSales, setTotalSales] = useState(0);
+    let avgSalerPerStore = 0;
+    let salesPerStore = [];
+    let leaderProducts = [{}];
+    let ordersThisWeek = [{}]
+
+    useEffect(() => {
+
+        if (consumers && stores && products && orders) {
+            consumers.length > 0 ? console.log('consumers: ', consumers) : console.log('');
+            stores.length > 0 ? console.log('stores: ', stores) : console.log('');
+            products.length > 0 ? console.log('products: ', products) : console.log('');
+            orders.length > 0 ? (console.log('orders: ', orders)) : console.log('');
+            if (orders.length > 0) {
+                let itemsCount = 0;
+                let salesSum = 0;
+                orders.forEach(order => {
+                    itemsCount += order.products.length;
+                    salesSum += order.totalAmount;
+                    // console.log('itemsCount: ', itemsCount);
+                });
+                setItemsSold(itemsCount);
+                setTotalSales(salesSum);
+            }
+        }
+
+        chart();
+    }, [consumers, stores, products, orders]);
 
     const chart = () => {
         setChartData({
@@ -34,9 +64,7 @@ const Dashboard = () => {
         });
     };
 
-    useEffect(() => {
-        chart();
-    }, []);
+
 
     return (
         <div>
@@ -50,9 +78,9 @@ const Dashboard = () => {
                         <Card.Header className="py-1">Total Registered</Card.Header>
                         <Card.Body>
                             <Card.Text>
-                                <p>Users: </p>
-                                <p>Stores: </p>
-                                <p>Products: </p>
+                                <p>Users: {consumers.length || '0'}</p>
+                                <p>Stores: {stores.length || '0'}</p>
+                                <p>Products: {products.length || '0'}</p>
                             </Card.Text>
                         </Card.Body>
                     </Card>
@@ -61,7 +89,7 @@ const Dashboard = () => {
                     <Card className="text-center">
                         <Card.Header className="py-1">Items Sold</Card.Header>
                         <Card.Body>
-                            <Card.Title className="mb-0">100</Card.Title>
+                            <Card.Title className="mb-0">{itemsSold}</Card.Title>
                         </Card.Body>
                     </Card>
                 </Col>
@@ -69,7 +97,7 @@ const Dashboard = () => {
                     <Card className="text-center">
                         <Card.Header className="py-1">Total Sales</Card.Header>
                         <Card.Body>
-                            <Card.Title className="mb-0">100</Card.Title>
+                            <Card.Title className="mb-0">{totalSales}</Card.Title>
                         </Card.Body>
                     </Card>
                 </Col>
