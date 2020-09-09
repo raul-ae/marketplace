@@ -12,15 +12,12 @@ import ResumePayment from './ResumePayment'
 import ResumeConfirmation from './ResumeConfirmation'
 import Plp from "./PLPCustomer"
 import PlpSearch from "./PLPCustomerSearch"
+import MasterAdmin from "./MasterAdmin"
 // import Checkout from "./Checkout"
 
 function MasterCustomer() {
 
-const [user, setUser]=useState({})
 
-const handleLogInSuccess = (userData) => {
-  setUser(userData)
-}
 
   return (
 
@@ -40,6 +37,7 @@ const handleLogInSuccess = (userData) => {
           <Route path={process.env.PUBLIC_URL + '/home/shoppingcart'} component={ResumeCheckout} />
           <Route path={process.env.PUBLIC_URL + '/home/payment'} component={ResumePayment} />
           <Route path={process.env.PUBLIC_URL + '/home/confirmation'} component={ResumeConfirmation} />
+          <Route path={process.env.PUBLIC_URL + '/admin'} component={MasterAdmin} />
           <Route component={HomeCustomer} />
         </Switch>
       </Wrapper>
