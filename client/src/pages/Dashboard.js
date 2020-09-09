@@ -7,12 +7,16 @@ const Dashboard = ({ consumers, stores, products, orders }) => {
     const [chartData, setChartData] = useState({});
     const [itemsSold, setItemsSold] = useState(0);
     const [totalSales, setTotalSales] = useState(0);
-    let avgSalerPerStore = 0;
-    let salesPerStore = [];
+    const [avgSalesPerStore, setAvgSalesPerStore] = useState(0);
+    const [salesPerStore, setSalesPerStore] = useState([{}]);
+
     let leaderProducts = [{}];
     let ordersThisWeek = [{}]
 
     useEffect(() => {
+        let salesPerProductID = [{}];
+        let salesPerStore = [{}];
+        //let filteredSalesPerStore = [{}];
 
         if (consumers && stores && products && orders) {
             consumers.length > 0 ? console.log('consumers: ', consumers) : console.log('');
@@ -22,18 +26,85 @@ const Dashboard = ({ consumers, stores, products, orders }) => {
             if (orders.length > 0) {
                 let itemsCount = 0;
                 let salesSum = 0;
+                let avgSales = 0;
+
                 orders.forEach(order => {
                     itemsCount += order.products.length;
                     salesSum += order.totalAmount;
-                    // console.log('itemsCount: ', itemsCount);
+                    stores.length > 0 ? avgSales = salesSum / stores.length : avgSales = 0;
+
+                    // Get sales per product id sold
+                    order.products.forEach((product) => {
+                        salesPerProductID.push({
+                            productID: product._id,
+                            sales: parseFloat(product.quantity) * parseFloat(product.price)
+                        });
+                    });
                 });
+
+                // Get store's products ids
+                if (stores.length > 0) {
+                    //stores.forEach((store) => {
+                    //store.products.forEach((product) => {
+                    salesPerProductID.forEach((salePerID) => {
+                        stores.forEach((store) => {
+                            store.products.forEach((product) => {
+                                if (salePerID.productID === product) {
+                                    //console.log(salePerID.productID + ' === ' + product);
+                                    //order.products.forEach((orderProduct) => {
+                                    salesPerStore.push({
+                                        storeName: store.storeName,
+                                        amount: salePerID.sales
+                                    });
+                                    //});
+                                }
+                            });
+                        });
+
+                    });
+                    //});
+                    //});
+                }
+
+                //console.log('salesPerProductID: ', salesPerProductID);
+                //console.log('salesPerStore: ', salesPerStore);
+                //console.log('filteredSalesPerStore: ', filteredSalesPerStore);
+                let salesPerStore2 = [{}];
+
+                stores.forEach((store) => {
+                    let storeAmount = 0;
+                    salesPerStore.forEach((salePerStore) => {
+                        if (salePerStore.storeName === store.storeName) {
+                            //console.log('salePerStore: ', salePerStore);
+                            //console.log('parseFloat(salePerStore.amount): ', parseFloat(salePerStore.amount));
+                            storeAmount += parseFloat(salePerStore.amount);
+                            //console.log('storeAmount: ', storeAmount);
+                        }
+                    });
+
+                    salesPerStore2.push({
+                        storeName: store.storeName,
+                        amount: parseFloat(storeAmount)
+                    });
+                });
+                console.log('salesPerStore2: ', salesPerStore2);
+
                 setItemsSold(itemsCount);
                 setTotalSales(salesSum);
+                setAvgSalesPerStore(numberWithCommas(avgSales.toFixed(2)));
+                setSalesPerStore(salesPerStore2);
             }
         }
 
         chart();
     }, [consumers, stores, products, orders]);
+
+
+    // Number with thousands separation
+    // Source: https://stackoverflow.com/questions/2901102/how-to-print-a-number-with-commas-as-thousands-separators-in-javascript
+    function numberWithCommas(x) {
+        return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    }
 
     const chart = () => {
         setChartData({
@@ -97,7 +168,7 @@ const Dashboard = ({ consumers, stores, products, orders }) => {
                     <Card className="text-center">
                         <Card.Header className="py-1">Total Sales</Card.Header>
                         <Card.Body>
-                            <Card.Title className="mb-0">{totalSales}</Card.Title>
+                            <Card.Title className="mb-0">$ {numberWithCommas(totalSales)}</Card.Title>
                         </Card.Body>
                     </Card>
                 </Col>
@@ -105,7 +176,7 @@ const Dashboard = ({ consumers, stores, products, orders }) => {
                     <Card className="text-center">
                         <Card.Header className="py-1">Average Sales Per Store</Card.Header>
                         <Card.Body>
-                            <Card.Title className="mb-0">100</Card.Title>
+                            <Card.Title className="mb-0">${avgSalesPerStore}</Card.Title>
                         </Card.Body>
                     </Card>
                 </Col>
