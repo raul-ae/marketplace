@@ -4,6 +4,7 @@ import MasterAdmin from './pages/MasterAdmin'
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Wrapper from "./components/Wrapper";
 import MasterCheckout from './pages/MasterCustomerCheckout'
+import ScrollToTop from "./components/scrollToTop";
 
 // Add Stripe to your React app
 // Use the Stripe.js and the Stripe Elements UI library to stay PCI compliant by ensuring that card details go directly to Stripe and never reach your server.
@@ -31,6 +32,7 @@ function App() {
   return (
 
     <Router>
+      <ScrollToTop />
       <Wrapper>
         <Switch>
           <Route exact path={process.env.PUBLIC_URL + '/'} component={MasterCustomer} />
