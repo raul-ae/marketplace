@@ -10,6 +10,7 @@ import OrdersConfig from "./OrdersConf";
 import CategoriesConfig from "./CategoriesConf";
 import SellersConfig from "./SellersConf";
 import StoresConfig from "./StoresConf";
+import Dashboard from './Dashboard'
 
 function HomeAdmin() {
 
@@ -348,6 +349,9 @@ function HomeAdmin() {
             <Nav.Item>
               <Nav.Link eventKey="fifth">Stores</Nav.Link>
             </Nav.Item>
+            <Nav.Item>
+              <Nav.Link eventKey="sixth">Dashboard</Nav.Link>
+            </Nav.Item>
           </Nav>
         </Col>
         <Col sm={10}>
@@ -392,6 +396,10 @@ function HomeAdmin() {
                 handleNewStoreInputOnChange={handleNewStoreInputOnChange}
                 handleNewStoreCheckOnChange={handleNewStoreCheckOnChange}
                 handleStoreDeleteButton={handleStoreDeleteButton}
+              />
+            </Tab.Pane>
+            <Tab.Pane eventKey="sixth">
+              <Dashboard
               />
             </Tab.Pane>
           </Tab.Content>
