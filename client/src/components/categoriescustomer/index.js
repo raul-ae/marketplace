@@ -1,3 +1,4 @@
+
 import React from "react";
 import Nav from 'react-bootstrap/Nav';
 import "./style.css";
@@ -11,7 +12,7 @@ function Categoriescustomer(props) {
             return (
                 <Nav.Item>
                     <Link
-                        to={process.env.PUBLIC_URL + '/home/productlist/' + cate.categoryName}
+                        to={process.env.PUBLIC_URL + '/home/productlist/' + cate.categoryName} className="hoverlink"
                         >
                         <div className="nav-item">{cate.categoryName}</div>
                     </Link>

@@ -48,3 +48,8 @@
     margin-left: 20px;
     text-align: justify;
 }
+.searchSt{
+    border: solid 1px #E9E9E9;
+    border-radius: 5px;
+    height: 40px;
+}

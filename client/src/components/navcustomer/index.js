@@ -61,12 +61,12 @@ function NavCustomer() {
             </div>
             <div className="col-sm-12 col-lg-8">
                 <Form inline className="linee">
-                    <FormControl type="search" placeholder="Search" className="col-sm-10 col-lg-10"
+                    <input type="search" placeholder="Search" className="col-sm-10 col-lg-10 searchSt"
                         onChange={handleSearchChange}
                     >
-                    </FormControl>
-                    <Link to={process.env.PUBLIC_URL + '/home/productsearch/'+search} className="col-sm-2 col-lg-2">
-                        <div className="buttonNav">Search</div>
+                    </input>
+                    <Link to={process.env.PUBLIC_URL + '/home/productsearch/'+search} className="col-sm-2 col-lg-2 ">
+                        <div className="buttonNav"><i class="fas fa-search"></i></div>
                     </Link>
                 </Form>
             </div>
