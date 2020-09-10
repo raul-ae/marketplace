@@ -4,8 +4,8 @@ import { Bar, Pie, Line } from "react-chartjs-2";
 
 
 const Dashboard = ({ consumers, stores, products, orders }) => {
-    const [chartData, setChartData] = useState({});
     const [salesPerStoreChartData, setSalesPerStoreChartData] = useState({});
+    const [productsChartData, setProductsChartData] = useState({});
     const [ordersPerDateChartData, setOrdersPerDateChartData] = useState();
 
 
@@ -55,6 +55,7 @@ const Dashboard = ({ consumers, stores, products, orders }) => {
                             sales: parseFloat(product.quantity) * parseFloat(product.price)
                         });
                     });
+
                 });
 
 
@@ -134,6 +135,8 @@ const Dashboard = ({ consumers, stores, products, orders }) => {
         leaderProductsChart();
     }, [consumers, stores, products, orders]);
 
+
+
     let ordersPerDateLabelArr = [];
     let ordersPerDateValuesArr = [];
     useEffect(() => {
@@ -144,13 +147,17 @@ const Dashboard = ({ consumers, stores, products, orders }) => {
                 ordersPerDateLabelArr.push(minute.toString());
                 ordersPerDateValuesArr.push(order.totalAmount);
             });
-            console.log('ordersPerDateLabelArr: ', ordersPerDateLabelArr);
-            console.log('ordersPerDateValuesArr: ', ordersPerDateValuesArr);
+            //console.log('ordersPerDateLabelArr: ', ordersPerDateLabelArr);
+            //console.log('ordersPerDateValuesArr: ', ordersPerDateValuesArr);
             setOrdersPerDateLabel(ordersPerDateLabelArr);
             setOrdersPerDateValues(ordersPerDateValuesArr);
             ordersPerDateChart();
         }
     }, [orders]);
+
+    useEffect(() => {
+
+    }, []);
 
     //let ordersPerDateLabel0 = ['1', '2', '3'];
     //let ordersPerDateValues0 = [1, 2, 1.5];
@@ -168,7 +175,7 @@ const Dashboard = ({ consumers, stores, products, orders }) => {
             labels: storeNames,
             datasets: [
                 {
-                    label: "# of Votes",
+                    label: "",
                     data: storeAmounts,
                     backgroundColor: [
                         "rgba(255, 99, 132, 0.2)",
@@ -192,15 +199,44 @@ const Dashboard = ({ consumers, stores, products, orders }) => {
         });
     };
 
+    const leaderProductsChart = () => {
+        setProductsChartData({
+            labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
+            datasets: [
+                {
+                    label: "",
+                    data: [12, 19, 3, 5, 2, 3],
+                    backgroundColor: [
+                        "rgba(255, 99, 132, 0.2)",
+                        "rgba(54, 162, 235, 0.2)",
+                        "rgba(255, 206, 86, 0.2)",
+                        "rgba(75, 192, 192, 0.2)",
+                        "rgba(153, 102, 255, 0.2)",
+                        "rgba(255, 159, 64, 0.2)",
+                    ],
+                    borderColor: [
+                        "rgba(255, 99, 132, 1)",
+                        "rgba(54, 162, 235, 1)",
+                        "rgba(255, 206, 86, 1)",
+                        "rgba(75, 192, 192, 1)",
+                        "rgba(153, 102, 255, 1)",
+                        "rgba(255, 159, 64, 1)",
+                    ],
+                    borderWidth: 1,
+                },
+            ],
+        });
+    }
+
     const ordersPerDateChart = () => {
-        console.log('In ordersPerDateChart()');
-        console.log('ordersPerDateLabel: ', ordersPerDateLabel);
-        console.log('ordersPerDateValues: ', ordersPerDateValues);
+        //console.log('In ordersPerDateChart()');
+        //console.log('ordersPerDateLabel: ', ordersPerDateLabel);
+        //console.log('ordersPerDateValues: ', ordersPerDateValues);
         setOrdersPerDateChartData({
             labels: ordersPerDateLabelArr,
             datasets: [
                 {
-                    label: "# of Votes",
+                    label: "",
                     data: ordersPerDateValuesArr,
                     backgroundColor: [
                         "rgba(75, 192, 192, 0.2)",
@@ -226,34 +262,7 @@ const Dashboard = ({ consumers, stores, products, orders }) => {
         });
     }
 
-    const leaderProductsChart = () => {
-        setChartData({
-            labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
-            datasets: [
-                {
-                    label: "# of Votes",
-                    data: [12, 19, 3, 5, 2, 3],
-                    backgroundColor: [
-                        "rgba(255, 99, 132, 0.2)",
-                        "rgba(54, 162, 235, 0.2)",
-                        "rgba(255, 206, 86, 0.2)",
-                        "rgba(75, 192, 192, 0.2)",
-                        "rgba(153, 102, 255, 0.2)",
-                        "rgba(255, 159, 64, 0.2)",
-                    ],
-                    borderColor: [
-                        "rgba(255, 99, 132, 1)",
-                        "rgba(54, 162, 235, 1)",
-                        "rgba(255, 206, 86, 1)",
-                        "rgba(75, 192, 192, 1)",
-                        "rgba(153, 102, 255, 1)",
-                        "rgba(255, 159, 64, 1)",
-                    ],
-                    borderWidth: 1,
-                },
-            ],
-        });
-    }
+
 
 
     console.log('**** RE-RENDER ****');
@@ -312,6 +321,9 @@ const Dashboard = ({ consumers, stores, products, orders }) => {
                                     data={salesPerStoreChartData}
                                     options={{
                                         responsive: true,
+                                        legend: {
+                                            display: false
+                                        }
                                     }}
                                 />
                             </div>
@@ -324,7 +336,7 @@ const Dashboard = ({ consumers, stores, products, orders }) => {
                         <Card.Body className="p-1">
                             <div style={{ width: "100%" }}>
                                 <Pie
-                                    data={chartData}
+                                    data={productsChartData}
                                     options={{
                                         responsive: true,
                                     }}
@@ -337,7 +349,7 @@ const Dashboard = ({ consumers, stores, products, orders }) => {
             <Row>
                 <Col>
                     <Card className="text-center">
-                        <Card.Header className="py-1">Last Orders</Card.Header>
+                        <Card.Header className="py-1">Last Orders Sales</Card.Header>
                         <Card.Body className="p-1">
                             <div style={{ width: "100%", height: '50%' }}>
                                 {ordersPerDateChartData &&
@@ -345,6 +357,9 @@ const Dashboard = ({ consumers, stores, products, orders }) => {
                                         data={ordersPerDateChartData}
                                         options={{
                                             responsive: true,
+                                            legend: {
+                                                display: false
+                                            }
                                         }}
                                     />}
                             </div>
