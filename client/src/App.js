@@ -27,11 +27,26 @@ dotenv.config();
 
 
 function App() {
+
+  const [user, setUser] = useState({
+    userName: "",
+    userType: "",
+    consumerAddress: {},
+    firstName: "",
+    lastName: "",
+    password: "",
+    email: "",
+    mobile: "",
+    picture: "",
+    paymentMethod: "",
+  })
+
+
   // Initialize Stripe Elements
   // Pass the resulting promise from loadStripe to the Elements provider. This allows the child components to access the Stripe service via the Elements consumer.
   return (
     <Router>
-    <UserContext.Provider value={UserContext}>
+    <UserContext.Provider value={{user, setUser}}>
 
       <Wrapper>
         <Switch>
