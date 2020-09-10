@@ -23,6 +23,8 @@ function HomeAdmin() {
     sku: "",
     productName: "",
     picture: "",
+    picture2: "",
+    picture3: "",
     price: 0,
     description: "",
     categoryName: "",
