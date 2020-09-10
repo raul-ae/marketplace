@@ -25,9 +25,14 @@ const Dashboard = ({ consumers, stores, products, orders }) => {
 
     // console.log('itemsSold: ', itemsSold);
 
+    let productNames = [];
+    let uniqueProductNames = [];
+    let result = {};
+
     useEffect(() => {
         let salesPerProductID = [];
         let salesPerStore = [];
+
         //let filteredSalesPerStore = [{}];
 
         if (consumers && stores && products && orders) {
@@ -54,9 +59,24 @@ const Dashboard = ({ consumers, stores, products, orders }) => {
                             productID: product._id,
                             sales: parseFloat(product.quantity) * parseFloat(product.price)
                         });
+                        productNames.push(product.productName);
                     });
-
                 });
+
+                // Count product names
+                // How to find duplicate element/value in an array in js
+                // Source: https://medium.com/@amirdanish126/how-to-count-duplicate-value-in-an-array-in-javascript-e942b59af8f2
+
+                productNames.forEach((x) => {
+                    result[x] = (result[x] || 0) + 1;
+                });
+                console.log('result: ', result);
+
+                // Get unique product names
+                if (productNames.length > 0) {
+                    uniqueProductNames = productNames.filter(onlyUnique);
+                }
+
 
 
                 // Get store's products ids
@@ -131,6 +151,11 @@ const Dashboard = ({ consumers, stores, products, orders }) => {
             }
         }
 
+
+        console.log('salesPerProductID: ', salesPerProductID);
+        console.log('productNames: ', productNames);
+        console.log('uniqueProductNames: ', uniqueProductNames);
+
         salesPerStorechart();
         leaderProductsChart();
     }, [consumers, stores, products, orders]);
@@ -155,19 +180,24 @@ const Dashboard = ({ consumers, stores, products, orders }) => {
         }
     }, [orders]);
 
-    useEffect(() => {
-
-    }, []);
 
     //let ordersPerDateLabel0 = ['1', '2', '3'];
     //let ordersPerDateValues0 = [1, 2, 1.5];
 
     // Number with thousands separation
     // Source: https://stackoverflow.com/questions/2901102/how-to-print-a-number-with-commas-as-thousands-separators-in-javascript
-    /* function numberWithCommas(x) {
+    function numberWithCommas(x) {
         return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-    } */
+    }
 
+    // Return only unique values of an array
+    // Source: https://stackoverflow.com/questions/1960473/get-all-unique-values-in-a-javascript-array-remove-duplicates
+    // usage example:
+    // var a = ['a', 1, 'a', 2, '1'];
+    // var unique = a.filter(onlyUnique); // returns ['a', 1, 2, '1']
+    function onlyUnique(value, index, self) {
+        return self.indexOf(value) === index;
+    }
 
 
     const salesPerStorechart = () => {
@@ -201,11 +231,11 @@ const Dashboard = ({ consumers, stores, products, orders }) => {
 
     const leaderProductsChart = () => {
         setProductsChartData({
-            labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
+            labels: Object.keys(result),
             datasets: [
                 {
                     label: "",
-                    data: [12, 19, 3, 5, 2, 3],
+                    data: Object.values(result),
                     backgroundColor: [
                         "rgba(255, 99, 132, 0.2)",
                         "rgba(54, 162, 235, 0.2)",
@@ -278,8 +308,8 @@ const Dashboard = ({ consumers, stores, products, orders }) => {
                         <Card.Header className="py-1">Total Registered</Card.Header>
                         <Card.Body>
                             <Card.Text>
-                                <span>Users: {consumers.length}</span>
-                                <span>Stores: {stores.length || '0'}</span>
+                                <span>Users: {consumers.length}</span> <br />
+                                <span>Stores: {stores.length || '0'}</span> <br />
                                 <span>Products: {products.length || '0'}</span>
                             </Card.Text>
                         </Card.Body>
@@ -297,7 +327,7 @@ const Dashboard = ({ consumers, stores, products, orders }) => {
                     <Card className="text-center">
                         <Card.Header className="py-1">Total Sales</Card.Header>
                         <Card.Body>
-                            <Card.Title className="mb-0">$ {(totalSales)}</Card.Title>
+                            <Card.Title className="mb-0">$ {numberWithCommas(totalSales)}</Card.Title>
                         </Card.Body>
                     </Card>
                 </Col>
@@ -305,7 +335,7 @@ const Dashboard = ({ consumers, stores, products, orders }) => {
                     <Card className="text-center">
                         <Card.Header className="py-1">Average Sales Per Store</Card.Header>
                         <Card.Body>
-                            <Card.Title className="mb-0">${avgSalesPerStore}</Card.Title>
+                            <Card.Title className="mb-0">${numberWithCommas(avgSalesPerStore)}</Card.Title>
                         </Card.Body>
                     </Card>
                 </Col>
