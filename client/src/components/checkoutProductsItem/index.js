@@ -11,23 +11,23 @@ function ProductsListItem({ product, handleDeleteBtn, hideDeleteBtn }) {
 
     return (
         <Row className="rowmar">
-            <div className="col-1">
+            <div className="col-lg-1 col-sm-6">
                 <img src={product.picture} className="imgwd" alt="Product"></img>
             </div>
-            <div className="col-2">
+            <div className="col-lg-2 col-sm-6">
                 {product.productName}
             </div>
-            <div className="col-3">
+            <div className="col-lg-3 col-sm-6">
                 ${product.price} MXN
                 </div>
-            <div className="col-3">
+            <div className="col-lg-3 col-sm-6">
                 {product.quantity}
             </div>
-            <div className="col-2">
+            <div className="col-lg-2 col-sm-6">
                 ${parseFloat(product.price) * parseFloat(product.quantity)} MXN
                 </div>
             <div
-                className="col-1">
+                className="col-lg-1 col-sm-6">
                 {hideDeleteBtn &&
                     <i
                         className="fas fa-trash"

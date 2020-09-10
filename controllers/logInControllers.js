@@ -22,9 +22,12 @@ module.exports = {
     db.Consumer
       .findOne(value)
       .then(dbModel => {
+        let user = {}
           if(dbModel.password===req.body.password){
-              dbModel.password = "protected"
-              res.json(dbModel)
+              user=dbModel
+              delete user.password;
+              console.log("Log in succesful: ", user)
+              res.json(user)
           } else{
               res.json("Wrong User or Password")
           }
