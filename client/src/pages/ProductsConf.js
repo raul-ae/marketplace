@@ -129,11 +129,33 @@ function ProductsConfig({
 
                 <InputGroup className="mb-3">
                     <InputGroup.Prepend>
-                        <InputGroup.Text id="picture">Picture</InputGroup.Text>
+                        <InputGroup.Text id="picture">Picture 1</InputGroup.Text>
                     </InputGroup.Prepend>
                     <FormControl
                         placeholder="URL"
                         aria-label="picture"
+                        aria-describedby="picture"
+                        onChange={handleNewProductInputOnChange}
+                    />
+                </InputGroup>
+                <InputGroup className="mb-3">
+                    <InputGroup.Prepend>
+                        <InputGroup.Text id="picture">Picture 2</InputGroup.Text>
+                    </InputGroup.Prepend>
+                    <FormControl
+                        placeholder="URL"
+                        aria-label="picture2"
+                        aria-describedby="picture"
+                        onChange={handleNewProductInputOnChange}
+                    />
+                </InputGroup>
+                <InputGroup className="mb-3">
+                    <InputGroup.Prepend>
+                        <InputGroup.Text id="picture">Picture 3</InputGroup.Text>
+                    </InputGroup.Prepend>
+                    <FormControl
+                        placeholder="URL"
+                        aria-label="picture3"
                         aria-describedby="picture"
                         onChange={handleNewProductInputOnChange}
                     />
