@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./style.css";
 import Row from 'react-bootstrap/Row';
 import {Redirect} from "react-router-dom";
@@ -7,7 +7,28 @@ import {Redirect} from "react-router-dom";
 function ProductDetail({ product, productId, productName, description, price }) {
 
     const [added, setAdded] = useState("")
-    const productRoute = "/home/product/"+productId
+    const [localStorageProducts, setlocalStorageProducts] = useState([]);
+  let localProducts = [];
+
+  useEffect(() => {
+    getLocalStoragePdts();
+  }, []);
+
+ const getLocalStoragePdts = () => {
+    // console.log('localStorage.length: ', localStorage.length);
+    for (let i = 0; i < localStorage.length; i++) {
+      let id = localStorage.key(i);
+      let product = JSON.parse(localStorage.getItem(id));
+      localProducts.push(product);
+      // console.log('productName: ', product.productName);
+    }
+    
+    setlocalStorageProducts(localProducts);
+  }
+  
+
+  
+
     return (
         <> 
         {added==="Confirmed"? 
@@ -55,10 +76,17 @@ function ProductDetail({ product, productId, productName, description, price }) 
                                 <div className="col-auto my-1 align-items-right">
                                     <div type="submit" className="add" onClick={() => {
                                         if(document.querySelector('#quantity').value>0){
+                                            console.log("click add")
                                             let productAndQuantity = {
-                                                ...product,
-                                                quantity: document.querySelector('#quantity').value
-                                            }
+                                                 ...product,                               
+                                                  quantity: document.querySelector('#quantity').value                              
+                                              }      
+                                              localStorageProducts.forEach(element => {
+                                                  if (element._id===productId){
+                                                      productAndQuantity.quantity = parseInt(productAndQuantity.quantity) + parseInt(element.quantity)
+                                                      
+                                                  }
+                                              })                                                     
                                             localStorage.setItem(productId, JSON.stringify(productAndQuantity));
                                             alert("Product added to your cart");
                                             setAdded("Confirmed")
