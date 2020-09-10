@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { CardElement, useStripe, useElements } from "@stripe/react-stripe-js";
 import './CheckoutForm.css'
 import API from '../../utils/API';
+import {Redirect} from "react-router-dom";
 
 export default function CheckoutForm({ consumer }) {
   // Set up the state
@@ -11,7 +12,7 @@ export default function CheckoutForm({ consumer }) {
   const [processing, setProcessing] = useState("");
   const [disabled, setDisabled] = useState(true);
   const [clientSecret, setClientSecret] = useState("");
-
+  const [confirmation, setConfirmation]= useState("")
 
   // const [order, setOrder] = useState({});
 
@@ -118,7 +119,7 @@ export default function CheckoutForm({ consumer }) {
         console.log('Order saved - res.data: ', res.data);
         loadOrders();
         setTimeout(() => {
-          window.location.pathname = 'home/confirmation';
+          setConfirmation("Confirmed");
         }, 3000);
       })
       .catch(err => console.log(err));
@@ -212,6 +213,10 @@ export default function CheckoutForm({ consumer }) {
   // Add a CardElement to your payment form, which embeds an iframe with the necessary input fields to collect the card data. This creates a single input that collects the card number, expiry date, CVC, and postal code. Elements displays localized placeholder text of the postal code field based on your customer's browser locale (e.g. showing "ZIP" for U.S. cardholders, "Postcode" for U.K. cardholders).
 
   return (
+    <>
+    {confirmation==="Confirmed"? 
+        <Redirect push to="/home/confirmation"/>:
+        ""}
     <div className='root'>
       <div className='body'>
         <form id="payment-form" onSubmit={handleSubmit}>
@@ -243,6 +248,7 @@ export default function CheckoutForm({ consumer }) {
         </form>
       </div>
     </div>
+    </>
   );
 }
 
