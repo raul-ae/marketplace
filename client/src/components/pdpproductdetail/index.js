@@ -84,7 +84,7 @@ function ProductDetail({ product, productId, productName, description, price }) 
                                             localStorageProducts.forEach(element => {
                                                 console.log(element);
                                                 if(element._id===productId){
-                                                    console.log("YaSTA")
+                                                    console.log("YaSTAsss")
                                                     
                                                 }
                                             });
