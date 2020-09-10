@@ -1,11 +1,18 @@
 import React, { useState } from "react";
 import "./style.css";
 import Row from 'react-bootstrap/Row';
+import {Redirect} from "react-router-dom";
 
 
 function ProductDetail({ product, productId, productName, description, price }) {
 
+    const [added, setAdded] = useState("")
+    const productRoute = "/home/product/"+productId
     return (
+        <> 
+        {added==="Confirmed"? 
+        <Redirect push to = "/home"/>:
+        ""}
         <div>
             <div className="productheight">
                 <Row className="bott">
@@ -54,8 +61,7 @@ function ProductDetail({ product, productId, productName, description, price }) 
                                             }
                                             localStorage.setItem(productId, JSON.stringify(productAndQuantity));
                                             alert("Product added to your cart");
-                                            window.location.reload();
-                                            
+                                            setAdded("Confirmed")
                                         }else{
                                             alert("You must select at least one item");
                                         };
@@ -72,6 +78,7 @@ function ProductDetail({ product, productId, productName, description, price }) 
             </div>
 
         </div>
+        </>
     );
 }
 
