@@ -1,9 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 import "./style.css";
 import Row from 'react-bootstrap/Row';
 
 
 function ProductDetail({ product, productId, productName, description, price }) {
+
     return (
         <div>
             <div className="productheight">
@@ -53,10 +54,15 @@ function ProductDetail({ product, productId, productName, description, price }) 
                                             }
                                             localStorage.setItem(productId, JSON.stringify(productAndQuantity));
                                             alert("Product added to your cart");
+                                            window.location.reload();
+                                            
                                         }else{
                                             alert("You must select at least one item");
+                                        };
+                                        
                                         }
-                                        }}>Add
+                                        }>
+                                            Add
                                     </div>
                                 </div>
                             </div>

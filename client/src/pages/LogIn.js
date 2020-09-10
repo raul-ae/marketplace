@@ -132,7 +132,7 @@ const [address, setAddress]=useState({
       <NavCustomer />
       <Container className="minht">
         <Row className="logCard">
-          <Card className="col-sm-12 col-lg-6 marg">
+          <Card className="col-sm-12 col-lg-5 marg">
             <h3>Log In</h3>
             <Form>
               <Form.Group controlId="formBasicEmail.user">
@@ -163,7 +163,7 @@ const [address, setAddress]=useState({
               </Button>
             </Form>
           </Card>
-          <Card className="col-sm-12 col-lg-6 marg">
+          <Card className="col-sm-12 col-lg-5 marg">
             <h3>Sign Up</h3>
             <Form>
               <Form.Group>
