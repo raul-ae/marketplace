@@ -85,6 +85,7 @@ function ProductDetail({ product, productId, productName, description, price }) 
                                                 console.log(element);
                                                 if(element._id===productId){
                                                     console.log("YaSTA")
+                                                    
                                                 }
                                             });
 
