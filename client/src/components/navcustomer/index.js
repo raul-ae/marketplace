@@ -74,12 +74,12 @@ function NavCustomer() {
                 <Row>
                     <div>                     
                         <Link to={process.env.PUBLIC_URL + '/home/login'} className="astyle">
-                            <div><i class="fas fa-user"></i> Log In | Sign Up </div>
+                            <div><i class="fas fa-user"></i> Account | </div>
                         </Link>
                     </div>
                     <div className="float-right">
                         <Link to={process.env.PUBLIC_URL + '/home/shoppingcart'} className="astyle">
-                            <div><i className="fas fa-shopping-cart"></i><div className="cart-counter">{counter}</div></div>
+                            <div> Shopping Cart<i className="fas fa-shopping-cart"></i><div className="cart-counter">{counter}</div></div>
                         </Link>
                     </div>
                 </Row>
