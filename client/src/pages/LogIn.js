@@ -13,20 +13,20 @@ import {Redirect} from "react-router-dom";
 
 function SignIn() {
 
-  // const userContext = useContext(UserContext)
+  const {user, setUser} = useContext(UserContext)
 
-  const[state, setState]=useState({
-    userName: "",
-    userType: "",
-    consumerAddress: {},
-    firstName: "",
-    lastName: "",
-    password: "",
-    email: "",
-    mobile: "",
-    picture: "",
-    paymentMethod: "",
-  })
+  // const[state, setState]=useState({
+  //   userName: "",
+  //   userType: "",
+  //   consumerAddress: {},
+  //   firstName: "",
+  //   lastName: "",
+  //   password: "",
+  //   email: "",
+  //   mobile: "",
+  //   picture: "",
+  //   paymentMethod: "",
+  // })
 
   // const handleLogInSuccess = (userData) => {
   // setState(userData)
@@ -69,7 +69,7 @@ const [address, setAddress]=useState({
       .then((res) => {
         console.log("logIn response:  ", res.data);
         if (res.data!=="Wrong User or Password"){
-          setState(res.data)
+          setUser(res.data)
         }else{alert("Wrong user or password")}
       })
       .catch((err) => {
@@ -122,12 +122,11 @@ const [address, setAddress]=useState({
   };
 
   return (
-  <UserContext.Provider value={state}>
 
     <>
-      {state.userType==="Admin"? 
+      {user.userType==="Admin"? 
         <Redirect push to="/admin"/>:
-        state.userType==="Customer"?  
+        user.userType==="Customer"?  
         <Redirect push to="/home"/>:
         ""}
       <NavCustomer />
@@ -304,7 +303,6 @@ const [address, setAddress]=useState({
       </Container>
       <Footer />
     </>
-  </UserContext.Provider>
  
   );
 }

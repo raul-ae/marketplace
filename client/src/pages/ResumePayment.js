@@ -11,25 +11,8 @@ import API from "../utils/API";
 import UserContext from "../utils/UserContext"
 
 function PDP() {
- const user = useContext(UserContext)
- console.log("userContext: ",user)
-  const [consumer, setConsumer] = useState();
+ const {user} = useContext(UserContext)
 
-  useEffect(() => {
-    loadConsumers();
-  }, []);
-
-  const loadConsumers = () => {
-    setConsumer(user)
-    // API.getConsumers()
-    //   .then(res => {
-    //     // setConsumers(res.data);
-    //     console.log('loadConsumers - res.data: ', res.data);
-    //     setConsumer(res.data[0]);
-    //   }
-    //   )
-    //   .catch(err => console.log(err));
-  }
 
   return (
     <>
@@ -39,15 +22,15 @@ function PDP() {
         <Row>
           <div className="col-lg-4 col-sm-12">
             <h1>Personal Information</h1>
-            <PersonalInfoForm consumer={consumer} />
+            <PersonalInfoForm consumer={user} />
           </div>
           <div className="col-lg-4 col-sm-12">
             <h1>Address</h1>
-            <AddressForm consumer={consumer} />
+            <AddressForm consumer={user} />
           </div>
           <div className="col-lg-4 col-sm-12">
             <h1>Add Payment details</h1>
-            <PaymentForm consumer={consumer} />
+            <PaymentForm consumer={user} />
           </div>
         </Row>
       </Container>
