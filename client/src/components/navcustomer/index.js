@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import Navbar from 'react-bootstrap/Navbar';
 import Nav from 'react-bootstrap/Nav';
 import Form from 'react-bootstrap/Form';
+import Row from 'react-bootstrap/Row';
 import FormControl from 'react-bootstrap/FormControl';
 import { Link } from "react-router-dom";
 //import { useHistory } from 'react-router-dom';
@@ -22,9 +23,10 @@ function NavCustomer() {
         getLocalStoragePdts();
       }, []);
 
-    // useEffect(() =>{
-    //     window.
-    // })
+    useEffect(() => {
+        getLocalStoragePdts();
+      }, [counter]);
+
     
     const getLocalStoragePdts = () => {
         let count=0;
@@ -52,47 +54,36 @@ function NavCustomer() {
 
     return (
         <Navbar bg="light" expand="lg" className="row">
-            <Navbar.Brand className="col-sm-12 col-lg-2">
-                <Link
-                    to={process.env.PUBLIC_URL + '/'}
-                >
-                    <img
-                        alt=""
-                        src="../../Images/logo.png"
-                        width="300"
-
-                        className="d-inline-block align-top"
-                    />
+            <div className="col-sm-12 col-lg-2">
+                <Link to={process.env.PUBLIC_URL + '/'}>
+                    <img alt="" src="../../Images/logo.png" width="300" className="d-inline-block align-top"/>
                 </Link>
-            </Navbar.Brand>
-            <Navbar id="basic-navbar-nav" className="col-sm-12 col-lg-10">
-                    <div className="col-sm-12 col-lg-10">
-                        <Form inline>
-                            <FormControl type="search" placeholder="Search" className="col-sm-10 col-lg-10"
-                                onChange={handleSearchChange}
-                            >
-                            </FormControl>
-                            <Link to={process.env.PUBLIC_URL + '/home/productsearch/'+search} className="col-sm-2 col-lg-2">
-                                <div className="buttonNav">Search</div>
-                            </Link>
-                        </Form>
+            </div>
+            <div className="col-sm-12 col-lg-8">
+                <Form inline className="linee">
+                    <FormControl type="search" placeholder="Search" className="col-sm-10 col-lg-10"
+                        onChange={handleSearchChange}
+                    >
+                    </FormControl>
+                    <Link to={process.env.PUBLIC_URL + '/home/productsearch/'+search} className="col-sm-2 col-lg-2">
+                        <div className="buttonNav">Search</div>
+                    </Link>
+                </Form>
+            </div>
+            <div className="col-sm-12 col-lg-2 ">
+                <Row>
+                    <div>                     
+                        <Link to={process.env.PUBLIC_URL + '/home/login'} className="astyle">
+                            <div><i class="fas fa-user"></i> Account | </div>
+                        </Link>
                     </div>
-                    <div className="col-sm-12 col-lg-2">
-                        <Nav>
-                            <Link
-                                to={process.env.PUBLIC_URL + '/home/login'}
-                            >
-                                <Nav.Link href="/home/login">Log In</Nav.Link>
-                            </Link>
-                            <Link
-                                to={process.env.PUBLIC_URL + '/home/shoppingcart'}
-                            >
-                                <Nav.Link href="/home/shoppingcart"><i className="fas fa-shopping-cart"></i><div className="cart-counter">{counter}</div></Nav.Link>
-                            </Link>
-                        </Nav>
+                    <div className="float-right">
+                        <Link to={process.env.PUBLIC_URL + '/home/shoppingcart'} className="astyle">
+                            <div> Shopping Cart<i className="fas fa-shopping-cart"></i><div className="cart-counter">{counter}</div></div>
+                        </Link>
                     </div>
-                
-            </Navbar>
+                </Row>
+            </div>
         </Navbar>
     );
 }

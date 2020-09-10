@@ -10,16 +10,16 @@ function ProductsList({ localStorageProducts, handleDeleteBtn }) {
     return (
         <Card body className="cardRes">
             <Row>
-                <div className="col-3">
+                <div className="col-lg-3 col-sm-12">
                     Product
                 </div>
-                <div className="col-3">
+                <div className="col-lg-3 col-sm-12">
                     Price
                 </div>
-                <div className="col-3">
+                <div className="col-lg-3 col-sm-12">
                     Quantity
                 </div>
-                <div className="col-3">
+                <div className="col-lg-3 col-sm-12">
                     Total
                 </div>
             </Row>
