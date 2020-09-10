@@ -46,12 +46,7 @@ function App() {
   // Pass the resulting promise from loadStripe to the Elements provider. This allows the child components to access the Stripe service via the Elements consumer.
   return (
     <Router>
-<<<<<<< HEAD
-    <UserContext.Provider value={UserContext}>
-=======
     <UserContext.Provider value={{user, setUser}}>
-
->>>>>>> b07ae2495dca368348e6bcf957080e99b721ad2b
       <Wrapper>
         <Switch>
           <Route exact path={process.env.PUBLIC_URL + '/'} component={MasterCustomer} />
