@@ -31,7 +31,8 @@ if (process.env.NODE_ENV === "production") {
 app.use(routes);
 
 // Connect to the Mongo DB
-mongoose.connect(process.env.MONGODB_URI || "mongodb+srv://rrv-db:thePassword20!@cluster0.bazsf.mongodb.net/marketplace?retryWrites=true&w=majority");
+mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/reactreadinglist");
+// mongoose.connect("mongodb://localhost/reactreadinglist");
 
 // Stripe
 const calculateOrderAmount = items => {
@@ -55,6 +56,6 @@ app.post("/create-payment-intent", async (req, res) => {
 });
 
 // Start the API server
-app.listen(PORT, function() {
+app.listen(PORT, function () {
   console.log(`🌎  ==> API Server now listening on PORT ${PORT}!`);
 });
