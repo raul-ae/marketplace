@@ -1,6 +1,7 @@
 import React from "react";
 import Carousel from 'react-bootstrap/Carousel';
 import "./style.css";
+import Container from 'react-bootstrap/Container';
 
 
 function carousel() {

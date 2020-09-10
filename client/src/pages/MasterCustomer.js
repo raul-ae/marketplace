@@ -12,6 +12,7 @@ import ResumePayment from './ResumePayment'
 import ResumeConfirmation from './ResumeConfirmation'
 import Plp from "./PLPCustomer"
 import PlpSearch from "./PLPCustomerSearch"
+import ScrollToTop from "../components/scrollToTop";
 import MasterAdmin from "./MasterAdmin"
 // import Checkout from "./Checkout"
 
@@ -23,6 +24,7 @@ function MasterCustomer() {
 
     
     <Router>
+      <ScrollToTop />
       <Wrapper>
         <Switch>
           <Route exact path={process.env.PUBLIC_URL + '/home'} component={HomeCustomer} />

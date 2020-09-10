@@ -13,20 +13,20 @@ import {Redirect} from "react-router-dom";
 
 function SignIn() {
 
-  // const userContext = useContext(UserContext)
+  const {user, setUser} = useContext(UserContext)
 
-  const[state, setState]=useState({
-    userName: "",
-    userType: "",
-    consumerAddress: {},
-    firstName: "",
-    lastName: "",
-    password: "",
-    email: "",
-    mobile: "",
-    picture: "",
-    paymentMethod: "",
-  })
+  // const[state, setState]=useState({
+  //   userName: "",
+  //   userType: "",
+  //   consumerAddress: {},
+  //   firstName: "",
+  //   lastName: "",
+  //   password: "",
+  //   email: "",
+  //   mobile: "",
+  //   picture: "",
+  //   paymentMethod: "",
+  // })
 
   // const handleLogInSuccess = (userData) => {
   // setState(userData)
@@ -69,7 +69,7 @@ const [address, setAddress]=useState({
       .then((res) => {
         console.log("logIn response:  ", res.data);
         if (res.data!=="Wrong User or Password"){
-          setState(res.data)
+          setUser(res.data)
         }else{alert("Wrong user or password")}
       })
       .catch((err) => {
@@ -122,18 +122,17 @@ const [address, setAddress]=useState({
   };
 
   return (
-  <UserContext.Provider value={state}>
 
     <>
-      {state.userType==="Admin"? 
+      {user.userType==="Admin"? 
         <Redirect push to="/admin"/>:
-        state.userType==="Customer"?  
+        user.userType==="Customer"?  
         <Redirect push to="/home"/>:
         ""}
       <NavCustomer />
       <Container className="minht">
         <Row className="logCard">
-          <Card className="col-sm-12 col-lg-6 marg">
+          <Card className="col-sm-12 col-lg-5 marg">
             <h3>Log In</h3>
             <Form>
               <Form.Group controlId="formBasicEmail.user">
@@ -164,7 +163,7 @@ const [address, setAddress]=useState({
               </Button>
             </Form>
           </Card>
-          <Card className="col-sm-12 col-lg-6 marg">
+          <Card className="col-sm-12 col-lg-5 marg">
             <h3>Sign Up</h3>
             <Form>
               <Form.Group>
@@ -304,7 +303,6 @@ const [address, setAddress]=useState({
       </Container>
       <Footer />
     </>
-  </UserContext.Provider>
  
   );
 }

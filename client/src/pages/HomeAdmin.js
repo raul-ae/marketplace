@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
 import API from "../utils/API";
+import "./styles.css";
 
 // React components
-import { Tab, Row, Col, Nav } from "react-bootstrap";
+import { Tab, Row, Col, Nav, Container } from "react-bootstrap";
 
 // Custom components
 import ProductsConfig from "./ProductsConf";
@@ -23,6 +24,8 @@ function HomeAdmin() {
     sku: "",
     productName: "",
     picture: "",
+    picture2: "",
+    picture3: "",
     price: 0,
     description: "",
     categoryName: "",
@@ -329,14 +332,13 @@ function HomeAdmin() {
 
 
   return (
-    <Tab.Container id="left-tabs-example" defaultActiveKey="first">
+    <Container fluid className="tabAdmin">
+    <Tab.Container id="left-tabs-example" defaultActiveKey="first" >
       <Row>
         <Col sm={2}>
-          <Nav className="flex-column" variant="pills">
+          <Nav className="flex-column">
             <Nav.Item>
-              <Nav.Link eventKey="first" bg="dark" variant="dark">
-                Products
-              </Nav.Link>
+              <Nav.Link eventKey="first">Products</Nav.Link>
             </Nav.Item>
             <Nav.Item>
               <Nav.Link eventKey="second">Orders</Nav.Link>
@@ -411,6 +413,7 @@ function HomeAdmin() {
         </Col>
       </Row>
     </Tab.Container>
+    </Container>
   );
 }
 
