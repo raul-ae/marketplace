@@ -113,10 +113,11 @@ const [address, setAddress]=useState({
   };
 
   const submitSignUp = () => {
-    console.log("submit signUp as: ", signUp);
+    // console.log("submit signUp as: ", signUp);
     API.saveUser(signUp)
       .then((res) => {
-        console.log("signUp response:  ", res.data);
+        setUser(res.data)
+        // console.log("signUp response:  ", res.data);
       })
       .catch((err) => console.log(err));
   };
