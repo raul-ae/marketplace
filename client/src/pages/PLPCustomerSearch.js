@@ -53,7 +53,9 @@ function PLP() {
                 {product.filter(prod=>prod.productName.toUpperCase().includes(id.toUpperCase())||prod.description.toUpperCase().includes(id.toUpperCase())||prod.categoryName.toUpperCase().includes(id.toUpperCase()) ).map(filteredProd =>(
                   <div className="col mb-4">
                     <div className="card card-hgt">
-                        <img src={filteredProd.picture} className="card-img-top img-hgt" alt={product.productName}></img>
+                    <div className="imgCls">
+                    <img src={filteredProd.picture} className="imgClsi" alt={product.productName}></img>
+                    </div>
                         <div className="card-body">
                             <h5 className="card-title prd-tle">{filteredProd.productName}</h5>
                             <p className="card-text sub-crd-height">{filteredProd.description}</p>

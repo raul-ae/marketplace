@@ -14,7 +14,9 @@ function ProductListByCategory(props) {
            return(
             <div className="col mb-4">
             <div className="card card-hgt">
-                <Card.Img variant="top" src={product.picture} className="img-hgt" />
+            <div className="imgCls">
+              <img src={product.picture} className="imgClsi" alt="Product"/>
+              </div>
                 <Card.Body>
                     <h5 className="card-title prd-tle">{product.productName}</h5>
                     <Card.Text className="sub-crd-height">{product.description}</Card.Text>
