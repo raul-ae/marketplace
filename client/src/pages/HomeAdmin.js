@@ -11,6 +11,7 @@ import OrdersConfig from "./OrdersConf";
 import CategoriesConfig from "./CategoriesConf";
 import SellersConfig from "./SellersConf";
 import StoresConfig from "./StoresConf";
+import Dashboard from './Dashboard'
 
 function HomeAdmin() {
 
@@ -48,6 +49,7 @@ function HomeAdmin() {
     products: [],
   })
   const [orders, setOrders] = useState([]);
+  const [consumers, setConsumers] = useState([]);
 
 
   useEffect(() => {
@@ -64,7 +66,7 @@ function HomeAdmin() {
     API.getStores()
       .then(res => {
         setStores(res.data);
-        console.log('loadStores - res.data: ', res.data);
+        // console.log('loadStores - res.data: ', res.data);
       }
       )
       .catch(err => console.log(err));
@@ -72,7 +74,7 @@ function HomeAdmin() {
 
   const handleStoreDeleteButton = (e) => {
     let id = e.target.getAttribute('data-categoryid');
-    console.log('handleStoreDeleteButton - id: ', id);
+    // console.log('handleStoreDeleteButton - id: ', id);
     deleteStore(id);
   }
 
@@ -110,7 +112,7 @@ function HomeAdmin() {
   }
 
   const saveStore = () => {
-    console.log("save new Store: ", newStore)
+    //console.log("save new Store: ", newStore)
     API.saveStore(newStore)
       .then(res => {
         // console.log('Category saved - res.data: ', res.data);
@@ -124,7 +126,7 @@ function HomeAdmin() {
     API.getProducts()
       .then(res => {
         setProducts(res.data);
-        console.log('loadProducts - res.data: ', res.data);
+        //console.log('loadProducts - res.data: ', res.data);
       }
       )
       .catch(err => console.log(err));
@@ -132,7 +134,7 @@ function HomeAdmin() {
 
   const handleProductDeleteButton = (e) => {
     let id = e.target.getAttribute('data-categoryid');
-    console.log('handleProductDeleteButton - id: ', id);
+    //console.log('handleProductDeleteButton - id: ', id);
     deleteProduct(id);
   }
 
@@ -174,7 +176,7 @@ function HomeAdmin() {
     API.getSellers()
       .then(res => {
         setSellers(res.data);
-        console.log('loadSellers - res.data: ', res.data);
+        //console.log('loadSellers - res.data: ', res.data);
       }
       )
       .catch(err => console.log(err));
@@ -204,12 +206,12 @@ function HomeAdmin() {
     let input = e.target.getAttribute('aria-label');
     let value = e.target.value;
 
-    console.log('handleSellerInputOnChange - input: ' + input + ' value: ' + value);
+    //console.log('handleSellerInputOnChange - input: ' + input + ' value: ' + value);
     setSeller({
       ...seller,
       [input]: value
     });
-    console.log('seller state: ', seller);
+    //console.log('seller state: ', seller);
   }
 
   const handleSellerSaveButton = () => {
@@ -309,8 +311,8 @@ function HomeAdmin() {
   const loadConsumers = () => {
     API.getConsumers()
       .then(res => {
-        // setConsumers(res.data);
-        console.log('loadConsumers - res.data: ', res.data);
+        setConsumers(res.data);
+        //console.log('loadConsumers - res.data: ', res.data);
       }
       )
       .catch(err => console.log(err));
@@ -322,7 +324,7 @@ function HomeAdmin() {
     API.getOrders()
       .then(res => {
         setOrders(res.data);
-        console.log('loadOrders - res.data: ', res.data);
+        //console.log('loadOrders - res.data: ', res.data);
       }
       )
       .catch(err => console.log(err));
@@ -349,6 +351,9 @@ function HomeAdmin() {
             </Nav.Item>
             <Nav.Item>
               <Nav.Link eventKey="fifth">Stores</Nav.Link>
+            </Nav.Item>
+            <Nav.Item>
+              <Nav.Link eventKey="sixth">Dashboard</Nav.Link>
             </Nav.Item>
           </Nav>
         </Col>
@@ -394,6 +399,14 @@ function HomeAdmin() {
                 handleNewStoreInputOnChange={handleNewStoreInputOnChange}
                 handleNewStoreCheckOnChange={handleNewStoreCheckOnChange}
                 handleStoreDeleteButton={handleStoreDeleteButton}
+              />
+            </Tab.Pane>
+            <Tab.Pane eventKey="sixth">
+              <Dashboard
+                consumers={consumers}
+                stores={stores}
+                products={products}
+                orders={orders}
               />
             </Tab.Pane>
           </Tab.Content>

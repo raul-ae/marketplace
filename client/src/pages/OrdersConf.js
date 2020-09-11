@@ -47,9 +47,9 @@ function OrdersConfig({ orders }) {
                             <Col>
                                 <p className='text-muted py-0 my-0'>Date: {order.Date} </p>
                                 <p className='text-muted py-0 my-0'>Store ids: {
-                                    order.storeID.map((storeID) => {
+                                    order.storeID.map((storeID, index) => {
                                         return (
-                                            <p className='py-0 my-0'>{storeID}</p>);
+                                            <span key={index} className='py-0 my-0'>{storeID}</span>);
                                     })
                                 } </p>
                                 <p className='text-muted py-0 my-0'>Customer id: {order.customerID} </p>
