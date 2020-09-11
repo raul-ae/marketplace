@@ -1,40 +1,32 @@
 import React from "react";
 import Carousel from 'react-bootstrap/Carousel';
-import "./style.css"
+import "./styleCar.css"
 
 function carousel({ picture, picture2, picture3 }) {
 
 
   return (
-    <Carousel className="carousel1">
-      <Carousel.Item className="">
+    <Carousel className="imgCls2">
+      <Carousel.Item className="imgCls2">
         <img
-          className="ht"
+          className="imgClsi2"
           src={picture}
           alt="First slide"
         />
-        <Carousel.Caption>
-        </Carousel.Caption>
-      </Carousel.Item>
-      <Carousel.Item>
+      </Carousel.Item >
+      <Carousel.Item className="imgCls2">
         <img
-          className="ht"
+          className="imgClsi2"
           src={picture2}
           alt="Third slide"
         />
-
-        <Carousel.Caption>
-        </Carousel.Caption>
       </Carousel.Item>
-      <Carousel.Item>
+      <Carousel.Item className="imgCls2">
         <img
-          className="ht"
+          className="imgClsi2"
           src={picture3}
           alt="Third slide"
         />
-
-        <Carousel.Caption>
-        </Carousel.Caption>
       </Carousel.Item>
     </Carousel>
   );

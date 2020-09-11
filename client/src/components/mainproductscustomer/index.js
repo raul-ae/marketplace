@@ -1,8 +1,7 @@
 import React from "react";
-import CardDeck from 'react-bootstrap/CardDeck';
 import Card from 'react-bootstrap/Card';
 import { Link } from "react-router-dom";
-import "./style.css";
+import "./style3.css";
 // import Productdp from '../../pages/PDPCustomer';
 
 function Mainproducts({ products }) {
@@ -16,7 +15,9 @@ function Mainproducts({ products }) {
           return (
             <div className="col mb-4">
             <div className="card card-hgt">
-              <Card.Img src={product.picture} className="img-hgt" />
+              <div className="imgCls">
+              <img src={product.picture} className="imgClsi" alt="product"/>
+              </div>
               <Card.Body>
                 <h5 className="card-title prd-tle">{product.productName}</h5>
                 <Card.Text className="sub-crd-height">{product.description}</Card.Text>

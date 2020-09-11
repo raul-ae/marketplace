@@ -1,4 +1,4 @@
-import React, { useContext, useState, useEffect } from "react";
+import React, { useContext} from "react";
 import Container from 'react-bootstrap/Container';
 import PersonalInfoForm from "../components/checkoutperinfo";
 import AddressForm from "../components/checkoutaddress";
@@ -7,7 +7,6 @@ import Row from 'react-bootstrap/Row';
 import "./styles.css";
 import NavCustomer from '../components/navcustomercheckout'
 import Footer from '../components/footercustomercheckout'
-import API from "../utils/API";
 import UserContext from "../utils/UserContext"
 
 function PDP() {

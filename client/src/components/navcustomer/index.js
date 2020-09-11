@@ -1,12 +1,11 @@
-import React, { useState, useEffect } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import Navbar from 'react-bootstrap/Navbar';
-import Nav from 'react-bootstrap/Nav';
 import Form from 'react-bootstrap/Form';
 import Row from 'react-bootstrap/Row';
-import FormControl from 'react-bootstrap/FormControl';
 import { Link } from "react-router-dom";
 //import { useHistory } from 'react-router-dom';
 import "./style.css";
+import UserContext from "../../utils/UserContext"
 
 
 function NavCustomer() {
@@ -16,7 +15,7 @@ function NavCustomer() {
     let localProducts = [];
     //console.log("nononono",localStorageProducts);
     const [counter, setCounter] = useState([]);
-
+    const {user} = useContext(UserContext);
 
 
     useEffect(() => {
@@ -74,12 +73,16 @@ function NavCustomer() {
                 <Row>
                     <div>                     
                         <Link to={process.env.PUBLIC_URL + '/home/login'} className="astyle">
-                            <div><i class="fas fa-user"></i> Account | </div>
+                            <div><i class="fas fa-user"></i> 
+                            {user.firstName ? (
+                                "Welcome "+user.firstName+" | "
+                            ) : "Account |"}
+                             </div>
                         </Link>
                     </div>
                     <div className="float-right">
                         <Link to={process.env.PUBLIC_URL + '/home/shoppingcart'} className="astyle">
-                            <div> Shopping Cart<i className="fas fa-shopping-cart"></i><div className="cart-counter">{counter}</div></div>
+                            <div style={{marginLeft: '10px'}}> Shopping Cart<i className="fas fa-shopping-cart"></i><div className="cart-counter">{counter}</div></div>
                         </Link>
                     </div>
                 </Row>

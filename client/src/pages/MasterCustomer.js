@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 // import NavCustomer from '../components/navcustomer'
 // import Categories from '../components/categoriescustomer'
 // import Footer from '../components/footercustomer'
