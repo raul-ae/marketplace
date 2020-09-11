@@ -28,7 +28,7 @@ function carousel() {
       <Carousel.Item className="minCar">
         <img
           className="d-block w-100"
-          src="https://themarket.s3.us-east-2.amazonaws.com/Banners/bannerthemarket.jpg"
+          src="https://themarket.s3.us-east-2.amazonaws.com/Banners/banner3.png"
           alt="Third slide"
         />
 
