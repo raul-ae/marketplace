@@ -1,9 +1,11 @@
-import React from "react";
+import React, { useContext} from "react";
 import Navbar from 'react-bootstrap/Navbar';
 import { Link } from "react-router-dom";
-import "./style.css"
+import "./style.css";
+import UserContext from "../../utils/UserContext";
 
 function NavCustomer() {
+  const {user} = useContext(UserContext)
   return (
     <Navbar bg="light" variant="light" className="navmarginAdmin">
       <Navbar.Brand>
@@ -21,7 +23,7 @@ function NavCustomer() {
       <Navbar.Toggle />
       <Navbar.Collapse className="justify-content-end">
         <Navbar.Text>
-          Signed in as: <a href="#login">#Username</a>
+          Signed in as: <span className="bldd">{user.userName}</span>
         </Navbar.Text>
       </Navbar.Collapse>
     </Navbar>
